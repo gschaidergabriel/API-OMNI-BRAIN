@@ -114,6 +114,7 @@ Read `install.sh` first if you do not want to pipe a script into a shell; verify
 - `docs/WHY.md`
 - `docs/TESTING.md`
 - `docs/TEAM-RUN.md` (what the free-model teams did and what they broke)
+- `docs/SWARM-RUN.md` (50 agents with a mini harness each: what they changed, what was kept, what was reverted)
 - `research/`
 
 ## Requirements and known limits

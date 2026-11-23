@@ -1,0 +1,107 @@
+[
+ {
+  "cls": "calibration",
+  "text": "failed fixed cases 1/2: stay reviewer-only until the next pulse and copy exact anchors",
+  "weight": 30.26
+ },
+ {
+  "cls": "format",
+  "text": "answer ONLY the JSON array, no prose, quotes copied exactly",
+  "weight": 18.25
+ },
+ {
+  "cls": "patch-anchor",
+  "text": "SEARCH text must be copied exactly (indent, quotes) and occur once: keine SEARCH/REPLACE-Bloecke gefunden",
+  "weight": 11.25
+ },
+ {
+  "cls": "guard",
+  "text": "a quote was not verbatim in ui.js: never paraphrase, copy the whole line",
+  "weight": 6.3
+ },
+ {
+  "cls": "guard",
+  "text": "a quote was not verbatim in ui_radar.js: never paraphrase, copy the whole line",
+  "weight": 4.94
+ },
+ {
+  "cls": "guard",
+  "text": "a quote was not verbatim in server.py: never paraphrase, copy the whole line",
+  "weight": 3.88
+ },
+ {
+  "cls": "calibration",
+  "text": "failed fixed cases 0/2: stay reviewer-only until the next pulse and copy exact anchors",
+  "weight": 2.52
+ },
+ {
+  "cls": "patch-anchor",
+  "text": "SEARCH text must be copied exactly (indent, quotes) and occur once: SEARCH in radar.py kommt 0-mal vor (muss genau 1x): '        if todo:\\n            ex = ThreadPoolExecutor(6)\\n ",
+  "weight": 1.43
+ },
+ {
+  "cls": "review",
+  "text": "reviewer rejected the diff for: The fix only checks v.urteil; it fails to address the missing null/undefined check for v.gruende mentioned in the defect.",
+  "weight": 1.22
+ },
+ {
+  "cls": "gate",
+  "text": "a patch made tests worse; keep changes narrower and re-check scan.py",
+  "weight": 1.22
+ },
+ {
+  "cls": "review",
+  "text": "reviewer rejected the diff for: The diff changes d['slot'] to d.get('slot') but doesn't validate that these values exist before using them. If 'slot' or 'hash8' are missing, d.get() ",
+  "weight": 1.22
+ },
+ {
+  "cls": "review",
+  "text": "reviewer rejected the diff for: Optional chaining only guards null/undefined; a non-null, non-string d.vorschau (number, boolean, object) still throws TypeError when .slice is called",
+  "weight": 1.22
+ },
+ {
+  "cls": "review",
+  "text": "reviewer rejected the diff for: The fix is incorrect. The condition checks if recent[-1][1] != recent[-2][1], but this fails when there's only one entry in recent (IndexError). The o",
+  "weight": 1.22
+ },
+ {
+  "cls": "review",
+  "text": "reviewer rejected the diff for: The new expression is logically equivalent to the old one; `injektion` still bypasses halving for documentation files, so the defect remains.",
+  "weight": 1.19
+ },
+ {
+  "cls": "review",
+  "text": "reviewer rejected the diff for: The diff catches KeyError but still accesses d['slot'] in the DELETE query after the try block, which can raise KeyError again if 'slot' is missing. T",
+  "weight": 1.19
+ },
+ {
+  "cls": "review",
+  "text": "reviewer rejected the diff for: no verdict",
+  "weight": 1.19
+ },
+ {
+  "cls": "review",
+  "text": "reviewer rejected the diff for: The fix incorrectly prioritizes 'injektion' over documentation type, causing 'injektion' matches to always use full points even when doku is true, whi",
+  "weight": 1.15
+ },
+ {
+  "cls": "patch-anchor",
+  "text": "SEARCH text must be copied exactly (indent, quotes) and occur once: SEARCH in radar.py kommt 0-mal vor (muss genau 1x): 'def kuratiert():\\n    try:\\n        ps = json.loads(core.re",
+  "weight": 0.94
+ },
+ {
+  "cls": "review",
+  "text": "reviewer rejected the diff for: No-op: 410 was already handled; duplicating it changes nothing and leaves any breaker-usage issue elsewhere unaddressed.",
+  "weight": 0.91
+ },
+ {
+  "cls": "guard",
+  "text": "a quote was not verbatim in radar.py: never paraphrase, copy the whole line",
+  "weight": 0.89
+ },
+ {
+  "cls": "review",
+  "text": "reviewer rejected the diff for: The diff still catches all exceptions broadly and only prints the traceback without proper handling or re-raising, which still hides bugs and doesn't ",
+  "weight": 0.81
+ }
+]

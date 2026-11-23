@@ -68,7 +68,9 @@ def klassifiziere(body, standard="auto"):
 
 def frei(p, m):
     b = BREAKER.get((p, m))
-    return not b or b["bis"] <= time.time()
+    if b and b["bis"] <= time.time():
+        BREAKER.pop((p, m), None)
+    return not BREAKER.get((p, m))
 
 
 def bremse(p, m, status):

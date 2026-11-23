@@ -74,7 +74,7 @@
 
   /* Sicherheits-Urteil als Chip */
   const verdict = v => {
-    if (!v) return h("span", { class: "rd-chip" }, "Not checked yet");
+    if (!v || !v.urteil) return h("span", { class: "rd-chip" }, "Not checked yet");
     const map = {
       unauffaellig: { cls: "ok", txt: "✓ Nothing unusual" },
       lokal: { cls: "ok", txt: "✓ Running locally" },
@@ -117,7 +117,7 @@
     if (d.ok) {
       return h("div", { class: "hint-box" },
         h("div", { class: "rd-chip ok" }, "✓ Sandbox: nothing suspicious found" + (d.netz_isoliert ? " (checked without network access)" : "")),
-        h("pre", {}, d.vorschau.slice(0, 1500))
+        h("pre", {}, typeof d.vorschau === 'string' ? d.vorschau.slice(0, 1500) : '')
       );
     }
     return h("div", { class: "rd-why rd-chip bad" },

@@ -50,8 +50,8 @@ def bericht_voll(c):
              "ts": max([v["zuletzt"] for v in z.values() if v["zuletzt"]] or [None])},
             {"name": 'Security', "info": 'Quarantine sandbox for all external, Tor before keys, %d alerts open, %d dismissed' % (
                 len(quarantaene.offene(c)), c.execute("SELECT COUNT(*) FROM meldung").fetchone()[0]), "ts": c.execute("SELECT MAX(ts) FROM meldung").fetchone()[0]}]
-    except Exception:  # noqa: BLE001
-        pass
+    except Exception as e:  # noqa: BLE001
+        b["organe"] += [{"name": "Error", "info": str(e)}]
     return b
 
 

@@ -48,13 +48,14 @@ def main():
     out = os.path.join(ROOT, "docs_out")
     for f in ("README.md",):
         cp(os.path.join(out, f), os.path.join(REPO, f))
-    for f in ("ORIGIN.md", "WHY.md", "TESTING.md", "TEAM-RUN.md"):
+    for f in ("ORIGIN.md", "WHY.md", "TESTING.md", "TEAM-RUN.md", "SWARM-RUN.md"):
         if os.path.exists(os.path.join(out, f)):
             cp(os.path.join(out, f), os.path.join(REPO, "docs", f))
     j = json.load(open(os.path.join(out, "manual.json")))
     open(os.path.join(REPO, "docs", "MANUAL.md"), "w").write(manual_md(j))
     tree(os.path.join(ROOT, "omnipool", "manual"), os.path.join(REPO, "docs", "manual"))
     cp(os.path.join(ROOT, "docs_src", "install.sh"), os.path.join(REPO, "install.sh"))
+    cp(os.path.join(ROOT, "docs_src", "LICENSE"), os.path.join(REPO, "LICENSE"))
     os.chmod(os.path.join(REPO, "install.sh"), 0o755)
     sums = []
     for n in ("API-OMNI-BRAIN", "API-OMNI-BRAIN.pyz"):
@@ -88,7 +89,7 @@ def main():
             p = os.path.join(r, f)
             if f.endswith(TEXT):
                 s = open(p, encoding="utf-8", errors="replace").read()
-                s2 = s.replace("~", "~").replace("user", "user")
+                s2 = s.replace("/home/ai-core-node", "~").replace("ai-core-node", "user")
                 if s2 != s:
                     open(p, "w", encoding="utf-8").write(s2)
                 for m in SECRET.finditer(s2):

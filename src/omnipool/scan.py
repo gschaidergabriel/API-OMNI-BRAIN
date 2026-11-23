@@ -47,7 +47,7 @@ def pruefe(data, name=""):
     for magic, text in BINAER:
         if data.startswith(magic):
             return {"urteil": "schadhaft", "punkte": 99, "art": "binaer", "treffer": [{"id": "binaer", "text": text + ': only text allowed in pool', "zeile": 0}]}
-    if b"\x00" in data[:8192]:
+    if b"\x00" in data:
         return {"urteil": "schadhaft", "punkte": 99, "art": "binaer", "treffer": [{"id": "binaer", "text": 'Binary data: only text allowed in pool', "zeile": 0}]}
     txt = data.decode("utf-8", "replace")
     doku = name.lower().endswith(DOKU)

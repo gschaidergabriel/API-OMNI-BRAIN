@@ -1,0 +1,800 @@
+{
+ "baseline": {
+  "nav": 10,
+  "errors": 0,
+  "overflow": 0,
+  "contrast_bad": 4,
+  "blank_tabs": 0,
+  "tabs": {
+   "0": 1915,
+   "1": 570,
+   "2": 727,
+   "3": 4398,
+   "4": 579,
+   "5": 244,
+   "6": 725,
+   "7": 282,
+   "8": 299,
+   "9": 9407
+  },
+  "german": 0,
+  "unused_imports": 0,
+  "tests_ok": true,
+  "tests_tail": "57 passed in 5.53s"
+ },
+ "final": {
+  "nav": 10,
+  "errors": 0,
+  "overflow": 0,
+  "contrast_bad": 4,
+  "blank_tabs": 0,
+  "tabs": {
+   "0": 1916,
+   "1": 571,
+   "2": 727,
+   "3": 4398,
+   "4": 579,
+   "5": 294,
+   "6": 725,
+   "7": 282,
+   "8": 299,
+   "9": 9407
+  },
+  "german": 0,
+  "unused_imports": 0,
+  "tests_ok": true,
+  "tests_tail": "57 passed in 6.60s"
+ },
+ "agents": [
+  {
+   "id": "clay_01M847SADFVE6HV7JW08ZCAVJQ",
+   "name": "a12-tests",
+   "role": [
+    "tests",
+    "server.py core.py gehirn.py",
+    "kind=test only: a missing pytest that would catch a real bug (propose the test idea, not a fix)"
+   ],
+   "model": "muse-glimmer-30b",
+   "lessons": 0,
+   "ok": 3,
+   "fail": 0,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAGV8E5QS4V4GGGFW1J1",
+   "name": "a18-ui-radar",
+   "role": [
+    "ui-radar",
+    "ui_radar.js",
+    "JS bugs in the radar/search/use-case tabs: same list as ui-js"
+   ],
+   "model": "mistral-large-4-1t-a52b",
+   "lessons": 2,
+   "ok": 3,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAKR03WWZW5MKS3723VR",
+   "name": "a24-tests",
+   "role": [
+    "tests",
+    "server.py core.py gehirn.py",
+    "kind=test only: a missing pytest that would catch a real bug (propose the test idea, not a fix)"
+   ],
+   "model": "muse-glimmer-30b",
+   "lessons": 3,
+   "ok": 3,
+   "fail": 3,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAHATKPHNSC2AYKYZYNZ",
+   "name": "a19-ui-css",
+   "role": [
+    "ui-css",
+    "ui.css",
+    "CSS defects: duplicated or dead rules, text contrast below 4.5:1, overflow, missing :focus-visible, broken responsive rules"
+   ],
+   "model": "nemotron-3-ultra-550b-a55b",
+   "lessons": 0,
+   "ok": 2,
+   "fail": 0,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAMQW6906NFR0QHXF4ZR",
+   "name": "a26-router",
+   "role": [
+    "router",
+    "gehirn.py server.py",
+    "routing, classification and chooser logic: wrong class, bad probability maths, unfair fallback, stuck circuit breaker"
+   ],
+   "model": "nemotron-3-nano-omni-30b-a3b-reasoning",
+   "lessons": 3,
+   "ok": 2,
+   "fail": 3,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAPQ6149V3WJ5CVGSGF0",
+   "name": "a30-ui-radar",
+   "role": [
+    "ui-radar",
+    "ui_radar.js",
+    "JS bugs in the radar/search/use-case tabs: same list as ui-js"
+   ],
+   "model": "mistral-large-4-1t-a52b",
+   "lessons": 3,
+   "ok": 2,
+   "fail": 2,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAQ76BTJDVQHT4H2KM80",
+   "name": "a31-ui-css",
+   "role": [
+    "ui-css",
+    "ui.css",
+    "CSS defects: duplicated or dead rules, text contrast below 4.5:1, overflow, missing :focus-visible, broken responsive rules"
+   ],
+   "model": "nemotron-3-ultra-550b-a55b",
+   "lessons": 0,
+   "ok": 2,
+   "fail": 0,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SASJXR4EWA181RJRPEGJ",
+   "name": "a36-tests",
+   "role": [
+    "tests",
+    "server.py core.py gehirn.py",
+    "kind=test only: a missing pytest that would catch a real bug (propose the test idea, not a fix)"
+   ],
+   "model": "muse-glimmer-30b",
+   "lessons": 1,
+   "ok": 2,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SA7GYYGAQRSR2SQZ5BRX",
+   "name": "a01-backend-bugs",
+   "role": [
+    "backend-bugs",
+    "server.py core.py",
+    "real bugs in the daemon: crash, wrong status code, race, unhandled input, resource leak, bad JSON handling"
+   ],
+   "model": "minimax-m3.1-flash",
+   "lessons": 2,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SA81W87G26TQ659XCY6P",
+   "name": "a02-router",
+   "role": [
+    "router",
+    "gehirn.py server.py",
+    "routing, classification and chooser logic: wrong class, bad probability maths, unfair fallback, stuck circuit breaker"
+   ],
+   "model": "nemotron-3-nano-omni-30b-a3b-reasoning",
+   "lessons": 2,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SA8RB4GTPDFX7Z4QX4F8",
+   "name": "a03-scanner",
+   "role": [
+    "scanner",
+    "scan.py",
+    "scanner regex errors, false negatives/positives; NEVER propose loosening a rule"
+   ],
+   "model": "nemotron-3.5-bolt-e4b",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SA9AB1WYF676KXYG4EWN",
+   "name": "a04-radar",
+   "role": [
+    "radar",
+    "radar.py",
+    "feed/index/FTS/scheduler bugs, unsafe fetch handling, time or ordering bugs"
+   ],
+   "model": "nemotron-3.5-lightning-30b-a3b",
+   "lessons": 3,
+   "ok": 1,
+   "fail": 3,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAADJJFDWWD5CFVP9P9F",
+   "name": "a06-ui-radar",
+   "role": [
+    "ui-radar",
+    "ui_radar.js",
+    "JS bugs in the radar/search/use-case tabs: same list as ui-js"
+   ],
+   "model": "mistral-large-4-1t-a52b",
+   "lessons": 0,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SABZ5KK4E9H5NHX8AMX5",
+   "name": "a09-copy-en",
+   "role": [
+    "copy-en",
+    "ui.js texte.json ui_radar.js",
+    "English UI copy: remaining German, inconsistent terms, jargon a beginner cannot parse, claims that are not true"
+   ],
+   "model": "step-5-preview",
+   "lessons": 2,
+   "ok": 1,
+   "fail": 5,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SADZ39AR45F35QGD8X96",
+   "name": "a13-backend-bugs",
+   "role": [
+    "backend-bugs",
+    "server.py core.py",
+    "real bugs in the daemon: crash, wrong status code, race, unhandled input, resource leak, bad JSON handling"
+   ],
+   "model": "minimax-m3.1-flash",
+   "lessons": 2,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SAEEV9M3NSWGV8X6ZE3F",
+   "name": "a14-router",
+   "role": [
+    "router",
+    "gehirn.py server.py",
+    "routing, classification and chooser logic: wrong class, bad probability maths, unfair fallback, stuck circuit breaker"
+   ],
+   "model": "nemotron-3-nano-omni-30b-a3b-reasoning",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SAF2HDHEKY4YKNZ37DAP",
+   "name": "a15-scanner",
+   "role": [
+    "scanner",
+    "scan.py",
+    "scanner regex errors, false negatives/positives; NEVER propose loosening a rule"
+   ],
+   "model": "nemotron-3.5-bolt-e4b",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SAFTDX3TCJ0KFMARZF5A",
+   "name": "a16-radar",
+   "role": [
+    "radar",
+    "radar.py",
+    "feed/index/FTS/scheduler bugs, unsafe fetch handling, time or ordering bugs"
+   ],
+   "model": "nemotron-3.5-lightning-30b-a3b",
+   "lessons": 2,
+   "ok": 1,
+   "fail": 3,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAHTPBVVKKZVZXKB2SP8",
+   "name": "a20-a11y",
+   "role": [
+    "a11y",
+    "ui.js ui.css ui.html",
+    "accessibility: labels, roles, keyboard path, focus, aria-live, contrast, prefers-reduced-motion"
+   ],
+   "model": "kimi-k3.1-pro",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAM7TQSFP16WC3C7RFVP",
+   "name": "a25-backend-bugs",
+   "role": [
+    "backend-bugs",
+    "server.py core.py",
+    "real bugs in the daemon: crash, wrong status code, race, unhandled input, resource leak, bad JSON handling"
+   ],
+   "model": "minimax-m3.1-flash",
+   "lessons": 0,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAN86Z50GS01AY3QD1A0",
+   "name": "a27-scanner",
+   "role": [
+    "scanner",
+    "scan.py",
+    "scanner regex errors, false negatives/positives; NEVER propose loosening a rule"
+   ],
+   "model": "nemotron-3.5-bolt-e4b",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SANR3Q5ES1D7FQYFYAY8",
+   "name": "a28-radar",
+   "role": [
+    "radar",
+    "radar.py",
+    "feed/index/FTS/scheduler bugs, unsafe fetch handling, time or ordering bugs"
+   ],
+   "model": "nemotron-3.5-lightning-30b-a3b",
+   "lessons": 0,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAQP72NRNGN8JJFX7Q16",
+   "name": "a32-a11y",
+   "role": [
+    "a11y",
+    "ui.js ui.css ui.html",
+    "accessibility: labels, roles, keyboard path, focus, aria-live, contrast, prefers-reduced-motion"
+   ],
+   "model": "kimi-k3.1-pro",
+   "lessons": 0,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAT2S0GBE2QE696A9FRH",
+   "name": "a37-backend-bugs",
+   "role": [
+    "backend-bugs",
+    "server.py core.py",
+    "real bugs in the daemon: crash, wrong status code, race, unhandled input, resource leak, bad JSON handling"
+   ],
+   "model": "minimax-m3.1-flash",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SATJ1ED8GT265SSHP3BZ",
+   "name": "a38-router",
+   "role": [
+    "router",
+    "gehirn.py server.py",
+    "routing, classification and chooser logic: wrong class, bad probability maths, unfair fallback, stuck circuit breaker"
+   ],
+   "model": "nemotron-3-nano-omni-30b-a3b-reasoning",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SAV1XKP0ED37VHSV0ZC0",
+   "name": "a39-scanner",
+   "role": [
+    "scanner",
+    "scan.py",
+    "scanner regex errors, false negatives/positives; NEVER propose loosening a rule"
+   ],
+   "model": "nemotron-3.5-bolt-e4b",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SAVF9HVYY2PHQZ05F6TM",
+   "name": "a40-radar",
+   "role": [
+    "radar",
+    "radar.py",
+    "feed/index/FTS/scheduler bugs, unsafe fetch handling, time or ordering bugs"
+   ],
+   "model": "nemotron-3.5-lightning-30b-a3b",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SAWEFFHCWASGAYCYZMQV",
+   "name": "a42-ui-radar",
+   "role": [
+    "ui-radar",
+    "ui_radar.js",
+    "JS bugs in the radar/search/use-case tabs: same list as ui-js"
+   ],
+   "model": "mistral-large-4-1t-a52b",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAWXW93H6XXSKBMMTFSF",
+   "name": "a43-ui-css",
+   "role": [
+    "ui-css",
+    "ui.css",
+    "CSS defects: duplicated or dead rules, text contrast below 4.5:1, overflow, missing :focus-visible, broken responsive rules"
+   ],
+   "model": "nemotron-3-ultra-550b-a55b",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAXCPBMGEE34B9W6P5A5",
+   "name": "a44-a11y",
+   "role": [
+    "a11y",
+    "ui.js ui.css ui.html",
+    "accessibility: labels, roles, keyboard path, focus, aria-live, contrast, prefers-reduced-motion"
+   ],
+   "model": "kimi-k3.1-pro",
+   "lessons": 0,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAZ9KEJRHQ0TE0Z37W0B",
+   "name": "a48-tests",
+   "role": [
+    "tests",
+    "server.py core.py gehirn.py",
+    "kind=test only: a missing pytest that would catch a real bug (propose the test idea, not a fix)"
+   ],
+   "model": "muse-glimmer-30b",
+   "lessons": 4,
+   "ok": 1,
+   "fail": 10,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAZYVDYFEQQ6MKNH8SRQ",
+   "name": "a49-backend-bugs",
+   "role": [
+    "backend-bugs",
+    "server.py core.py",
+    "real bugs in the daemon: crash, wrong status code, race, unhandled input, resource leak, bad JSON handling"
+   ],
+   "model": "minimax-m3.1-flash",
+   "lessons": 2,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SB0E1381C86TMBD8KNH5",
+   "name": "a50-router",
+   "role": [
+    "router",
+    "gehirn.py server.py",
+    "routing, classification and chooser logic: wrong class, bad probability maths, unfair fallback, stuck circuit breaker"
+   ],
+   "model": "nemotron-3-nano-omni-30b-a3b-reasoning",
+   "lessons": 1,
+   "ok": 1,
+   "fail": 0,
+   "can_edit": false
+  },
+  {
+   "id": "clay_01M847SA9W0ZJJEBZG0HEC6HNW",
+   "name": "a05-ui-js",
+   "role": [
+    "ui-js",
+    "ui.js",
+    "JS bugs: unhandled promise, wrong state, null access, stale render, innerHTML with data, wrong labels"
+   ],
+   "model": "laguna-xs-2.1",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAAXNRTHVMPEGTCADNDS",
+   "name": "a07-ui-css",
+   "role": [
+    "ui-css",
+    "ui.css",
+    "CSS defects: duplicated or dead rules, text contrast below 4.5:1, overflow, missing :focus-visible, broken responsive rules"
+   ],
+   "model": "nemotron-3-ultra-550b-a55b",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SABFEP6B391XEQKHS95P",
+   "name": "a08-a11y",
+   "role": [
+    "a11y",
+    "ui.js ui.css ui.html",
+    "accessibility: labels, roles, keyboard path, focus, aria-live, contrast, prefers-reduced-motion"
+   ],
+   "model": "kimi-k3.1-pro",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SACEJA6FSNXEFX6A2Q80",
+   "name": "a10-manual-truth",
+   "role": [
+    "manual-truth",
+    "manual.json ui.js",
+    "every sentence of manual.json must be TRUE for the real UI/server; find false, missing or outdated claims"
+   ],
+   "model": "glm-5.3-flash",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SACYZF34TBJ65BZXQZA5",
+   "name": "a11-onboarding",
+   "role": [
+    "onboarding",
+    "ui.js ui.html",
+    "first run: empty states, next-step clarity, beginner not overwhelmed, professional not patronised"
+   ],
+   "model": "gemma-4-31b-it",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAGBQWS7H7A7CDT48179",
+   "name": "a17-ui-js",
+   "role": [
+    "ui-js",
+    "ui.js",
+    "JS bugs: unhandled promise, wrong state, null access, stale render, innerHTML with data, wrong labels"
+   ],
+   "model": "laguna-xs-2.1",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAJ9GK2VGWZD9JR3RX6K",
+   "name": "a21-copy-en",
+   "role": [
+    "copy-en",
+    "ui.js texte.json ui_radar.js",
+    "English UI copy: remaining German, inconsistent terms, jargon a beginner cannot parse, claims that are not true"
+   ],
+   "model": "step-5-preview",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAJRSYKZCAQB3DA7AV73",
+   "name": "a22-manual-truth",
+   "role": [
+    "manual-truth",
+    "manual.json ui.js",
+    "every sentence of manual.json must be TRUE for the real UI/server; find false, missing or outdated claims"
+   ],
+   "model": "glm-5.3-flash",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAK81K40VZ0T5CM34V4A",
+   "name": "a23-onboarding",
+   "role": [
+    "onboarding",
+    "ui.js ui.html",
+    "first run: empty states, next-step clarity, beginner not overwhelmed, professional not patronised"
+   ],
+   "model": "gemma-4-31b-it",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAP7S895Y4GWS8WFZQZ0",
+   "name": "a29-ui-js",
+   "role": [
+    "ui-js",
+    "ui.js",
+    "JS bugs: unhandled promise, wrong state, null access, stale render, innerHTML with data, wrong labels"
+   ],
+   "model": "laguna-xs-2.1",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAR5516WDMHM0VVSBZ6Z",
+   "name": "a33-copy-en",
+   "role": [
+    "copy-en",
+    "ui.js texte.json ui_radar.js",
+    "English UI copy: remaining German, inconsistent terms, jargon a beginner cannot parse, claims that are not true"
+   ],
+   "model": "step-5-preview",
+   "lessons": 2,
+   "ok": 0,
+   "fail": 4,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SARM9315XB4PTTAFGPHK",
+   "name": "a34-manual-truth",
+   "role": [
+    "manual-truth",
+    "manual.json ui.js",
+    "every sentence of manual.json must be TRUE for the real UI/server; find false, missing or outdated claims"
+   ],
+   "model": "glm-5.3-flash",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAS39Q425DHSKRQVWQZ1",
+   "name": "a35-onboarding",
+   "role": [
+    "onboarding",
+    "ui.js ui.html",
+    "first run: empty states, next-step clarity, beginner not overwhelmed, professional not patronised"
+   ],
+   "model": "gemma-4-31b-it",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAVZZEQ6M4GG2S2H6T3T",
+   "name": "a41-ui-js",
+   "role": [
+    "ui-js",
+    "ui.js",
+    "JS bugs: unhandled promise, wrong state, null access, stale render, innerHTML with data, wrong labels"
+   ],
+   "model": "laguna-xs-2.1",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAXW2C49MZJW0DAPEB0D",
+   "name": "a45-copy-en",
+   "role": [
+    "copy-en",
+    "ui.js texte.json ui_radar.js",
+    "English UI copy: remaining German, inconsistent terms, jargon a beginner cannot parse, claims that are not true"
+   ],
+   "model": "step-5-preview",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAYBNXKWWFEFD12HDJQ0",
+   "name": "a46-manual-truth",
+   "role": [
+    "manual-truth",
+    "manual.json ui.js",
+    "every sentence of manual.json must be TRUE for the real UI/server; find false, missing or outdated claims"
+   ],
+   "model": "glm-5.3-flash",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  },
+  {
+   "id": "clay_01M847SAYT82JH8GA5SZ4A0JJV",
+   "name": "a47-onboarding",
+   "role": [
+    "onboarding",
+    "ui.js ui.html",
+    "first run: empty states, next-step clarity, beginner not overwhelmed, professional not patronised"
+   ],
+   "model": "gemma-4-31b-it",
+   "lessons": 1,
+   "ok": 0,
+   "fail": 1,
+   "can_edit": true
+  }
+ ],
+ "models": {
+  "nvidia/nvidia/nemotron-3.5-bolt-e4b": [
+   26,
+   27
+  ],
+  "nvidia/poolside/laguna-xs-2.1": [
+   22,
+   23
+  ],
+  "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning": [
+   28,
+   29
+  ],
+  "nvidia/nvidia/nemotron-3-ultra-550b-a55b": [
+   26,
+   27
+  ],
+  "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b": [
+   22,
+   23
+  ],
+  "nvidia/minimaxai/minimax-m3.1-flash": [
+   23,
+   24
+  ],
+  "nvidia/stepfun-ai/step-5-preview": [
+   26,
+   27
+  ],
+  "nvidia/moonshotai/kimi-k3.1-pro": [
+   24,
+   25
+  ],
+  "nvidia/z-ai/glm-5.3-flash": [
+   23,
+   24
+  ],
+  "nvidia/google/gemma-4-31b-it": [
+   25,
+   26
+  ],
+  "nvidia/meta/muse-glimmer-30b": [
+   39,
+   40
+  ],
+  "nvidia/mistralai/mistral-large-4-1t-a52b": [
+   29,
+   30
+  ]
+ }
+}
