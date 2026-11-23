@@ -122,6 +122,10 @@ Read `install.sh` first if you do not want to pipe a script into a shell; verify
 - Zipapp: Python ≥ 3.8 standard library (tested on 3.12 only)
 - Only tested on the listed systems and Python version
 
+## License
+
+MIT, see `LICENSE`. The licence covers the code; it does not remove your responsibility described above, and it does not grant any rights to third-party services you route to.
+
 ## Naming note
 
 Internal package name `omnipool`, header `X-Omnipool`, environment variables `OMNIPOOL_*` stay for compatibility.
