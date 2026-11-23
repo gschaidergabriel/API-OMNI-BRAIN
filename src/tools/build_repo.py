@@ -73,8 +73,8 @@ def main():
     for f in ("iter/log.jsonl", "iter/REPORT.md", "team/log.jsonl", "team/AUFSEHER.md", "team/IDEEN.md", "team/anglify_map.json", "team/models3.json"):
         if os.path.exists(os.path.join(ROOT, f)):
             cp(os.path.join(ROOT, f), os.path.join(rs, os.path.basename(f)))
-    for f in glob.glob(os.path.join(ROOT, "team", "testing", "*.json")):
-        cp(f, os.path.join(rs, "testing", os.path.basename(f)))
+    for f in glob.glob(os.path.join(ROOT, "team", "testing", "**", "*.json"), recursive=True):
+        cp(f, os.path.join(rs, "testing", os.path.relpath(f, os.path.join(ROOT, "team", "testing"))))
     if os.path.isdir(os.path.join(out, "research")):
         tree(os.path.join(out, "research"), rs)
     for f in glob.glob(os.path.join(ROOT, "team", "DESIGN*.md")):

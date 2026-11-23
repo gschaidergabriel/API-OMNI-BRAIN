@@ -57,3 +57,4 @@
 {"t": 1795405410, "art": "llm_fehler", "modell": "nvidia/stepfun-ai/step-5-preview", "fehler": "RemoteDisconnected"}
 {"t": 1795405413, "art": "doku", "datei": "02-kognition.md", "modell": null, "ok": false}
 {"t": 1795405550, "art": "doku", "datei": "03-web-ux.md", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": true}
+{"t": 1795405595, "art": "llm_fehler", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "fehler": "RemoteDisconnected"}

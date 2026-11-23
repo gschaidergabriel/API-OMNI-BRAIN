@@ -26,6 +26,20 @@ Each run uses an empty HOME, no keys, its own port, `env -i`, background scanner
 | API-OMNI-BRAIN.pyz | netoff | API-OMNI-BRAIN 1.3.0 | PASS | - |
 | API-OMNI-BRAIN.pyz | plain | API-OMNI-BRAIN 1.3.0 | PASS | - |
 
+## Second environment: the "gpt-sandbox" VM (Ubuntu 26.04, Linux 7.0, Python 3.14.4, glibc 2.43)
+
+A KVM virtual machine on the author's machine that has internet access but no keys and a different Python and glibc than the host. It is the sandbox the author's ChatGPT bridge uses. **Honest note:** ChatGPT's own built-in code interpreter has no internet access and cannot download the app, so the job was run in this VM by the author's assistant over SSH, not typed by ChatGPT itself. In a fresh temporary HOME:
+
+1. The one-line installer from `raw.githubusercontent.com` ran: checksum OK, ELF chosen, menu entry and `api-omni-brain` launcher created.
+2. `sha256sum -c bin/SHA256SUMS` on a fresh `git clone`: both files OK.
+3. `api-omni-brain --version` and `python3 -I API-OMNI-BRAIN.pyz --version`: `API-OMNI-BRAIN 1.3.0`.
+4. The 15-check harness, **plain** sandbox, ELF and zipapp: PASS / PASS (`research/testing/vm/`).
+5. **Not run there:** `bwrap` and `firejail` are not installed in the VM, and `unshare -rn` is not permitted for that user, so those three sandbox kinds were skipped (not counted as passes).
+
+## Third environment: the author's PC, real install
+
+The same one-line installer was run on the author's own machine (real HOME, replacing a previous Omnipool 1.2.0 install, which was backed up first): installed binary hash equals the hash in `SHA256SUMS`; the user service `api-omni-brain.service` came up; `/`, `/manual.json`, `/manual/overview.png` and `/ui_manual.js` answer 200; `/api/ping` answers version 1.3.0.
+
 
 ## Not tested (honest list)
 
