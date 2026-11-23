@@ -61,3 +61,7 @@ Run on a copy of the project, never on the live install. Files the swarm may not
 - Shared NVIDIA capacity (another team ran at the same time), so parallelism was capped at 6.
 - Gates cannot judge intent. A patch that removed a valid call passed all gates in the smoke test; this is why cross-file checks were added and why every diff was reviewed by hand.
 - Data: `research/swarm/` holds the board log, summary, shared lessons and the review notes. The per-agent mini DBs are not published.
+
+## Found after the run (not by the swarm)
+
+Re-installing over a running service failed with `Text file busy`: the installer overwrote the running binary in place. None of the 50 agents found it (the gates test fresh installs, not upgrades). Fixed in `__main__.py`: copy to `<name>.new`, then atomic `os.replace`, then restart the service so the upgrade takes effect.

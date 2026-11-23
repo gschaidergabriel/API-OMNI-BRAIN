@@ -48,7 +48,9 @@ def installieren(service=False):
         src = quelle[-1]
         exe = os.path.join(ziel, "API-OMNI-BRAIN" + (".pyz" if src.endswith(".pyz") else ""))
         if os.path.abspath(src) != os.path.abspath(exe):
-            shutil.copy2(src, exe)
+            shutil.copy2(src, exe + ".new")
+            os.chmod(exe + ".new", 0o755)
+            os.replace(exe + ".new", exe)      # atomic: replacing a running binary in place fails with "Text file busy"
         os.chmod(exe, 0o755)
     else:
         print('To install, use the .pyz file or the binary, not the source folder.')
@@ -77,7 +79,8 @@ def installieren(service=False):
         open(os.path.join(u, "api-omni-brain.service"), "w").write("[Unit]\nDescription=API-OMNI-BRAIN (free API pool)\nStartLimitIntervalSec=300\nStartLimitBurst=5\n\n[Service]\nExecStart=%s --daemon\n"
                                                              "Nice=10\nMemoryMax=700M\nCPUQuota=60%%\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=default.target\n" % exe)
         subprocess.run(["systemctl", "--user", "daemon-reload"])
-        subprocess.run(["systemctl", "--user", "enable", "--now", "api-omni-brain.service"])
+        subprocess.run(["systemctl", "--user", "enable", "api-omni-brain.service"])
+        subprocess.run(["systemctl", "--user", "restart", "api-omni-brain.service"])      # also picks up an upgraded binary
     print('installed: %s, menu entry, desktop icon%s' % (exe, ', service' if service else ""))
     return 0
 

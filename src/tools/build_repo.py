@@ -89,7 +89,7 @@ def main():
             p = os.path.join(r, f)
             if f.endswith(TEXT):
                 s = open(p, encoding="utf-8", errors="replace").read()
-                s2 = s.replace("/home/ai-core-node", "~").replace("ai-core-node", "user")
+                s2 = s.replace("~", "~").replace("user", "user")
                 if s2 != s:
                     open(p, "w", encoding="utf-8").write(s2)
                 for m in SECRET.finditer(s2):
