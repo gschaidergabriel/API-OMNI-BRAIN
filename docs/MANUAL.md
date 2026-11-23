@@ -82,13 +82,15 @@ Get the local proxy URL and per-app keys to connect Claude Code, Hermes, Crush, 
 
 ![Connect](manual/connect.png)
 
-1. Copy the local proxy address shown on the tab
-2. Create or copy the per-application key (one per application, switchable)
-3. Paste address and key into your client (Claude Code, Aider, any OpenAI- or Anthropic-compatible client)
-4. Use the virtual model 'omnipool-auto' (or -code, -json, -de, -reason, -long, -tool) for automatic routing
+1. Easiest: tell your agent "Look at http://127.0.0.1:8799/integrate and integrate API-OMNI-BRAIN into your workflow". It registers itself and you approve it once on this tab
+2. Copy the local proxy address shown on the tab
+3. Create or copy the per-application key (one per application, switchable)
+4. Paste address and key into your client (Claude Code, Aider, any OpenAI- or Anthropic-compatible client)
+5. Use the virtual model 'omnipool-auto' (or -code, -json, -de, -reason, -long, -tool) for automatic routing
 
 **What it can do**
 
+- Let an agent integrate itself: /integrate guide, self-registration with one-click approval, offer of what it can take over, and an MCP server (api-omni-brain --mcp)
 - Show address and a separate key for each application
 - Show ready-made setup snippets and an example request (display only, not sent)
 - Switch single applications on or off and add more applications
@@ -96,8 +98,8 @@ Get the local proxy URL and per-app keys to connect Claude Code, Hermes, Crush, 
 
 **What it cannot do - and must not**
 
-- It does not configure your client (it only shows instructions)
-- It does not guarantee compatibility: Claude Code, Hermes and Grokbot have not been tested live against it
+- It does not configure your client itself: the agent does that after your approval, otherwise the tab only shows instructions
+- Claude Code accepts its MCP server (connection check passes), but real conversations with Claude Code, Hermes and Grokbot have not been tested live
 - It does not support clients that need other API styles than OpenAI or Anthropic
 
 ## Settings
@@ -216,7 +218,7 @@ Describe a task; a strong model extracts capabilities and matches free APIs from
 
 - It is not an antivirus: the scanner uses signatures and heuristics; 'nothing found' is not 'proven harmless'.
 - It does not create accounts, buy anything, handle payments, trade, or move money.
-- It never writes into other programs' configuration (the Connect tab only shows instructions).
+- It never writes into other programs' configuration itself (an agent changes its own configuration, only after you asked it to and approved it here).
 - It does not bypass rate limits, quotas, terms of service, CAPTCHAs, or paywalls.
 - It does not farm or share keys.
 - It does not crawl behind logins.

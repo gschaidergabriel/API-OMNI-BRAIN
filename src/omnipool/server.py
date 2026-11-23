@@ -15,7 +15,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from . import anbieter as AN
-from . import core, gehirn, quarantaene, radar, sicher
+from . import core, gehirn, integrieren, quarantaene, radar, sicher
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 VERSION = "1.3.0"
@@ -278,6 +278,38 @@ class H(BaseHTTPRequestHandler):
     def do_DELETE(self):
         self.route("DELETE")
 
+    def angemeldet(self):
+        return [{"name": a, "status": "approved" if v.get("an") else "pending" if v.get("angemeldet") else "off", "scope": v.get("scope", [])} for a, v in core.settings()["harness"].items() if v.get("angemeldet") or v.get("an")]
+
+    def key_of_request(self):
+        return (self.headers.get("Authorization") or "").replace("Bearer ", "").strip() or self.headers.get("x-api-key", "")
+
+    def registrieren(self, base):
+        """a harness asks to be connected: it gets its key at once, but the application stays OFF until the user approves it in the UI"""
+        if "application/json" not in (self.headers.get("Content-Type") or ""):
+            return self.senden(415, {"error": 'Content-Type must be application/json'})
+        d = self.json_body()
+        name = integrieren.clean_name(d.get("name"))
+        if not name:
+            return self.senden(400, {"error": 'name missing (a-z, 0-9, _)'})
+        s = core.settings()
+        if name not in s["harness"] and len(s["harness"]) >= 20:
+            return self.senden(429, {"error": 'too many applications; remove unused ones in the Connect tab'})
+        scope = [str(x)[:40] for x in (d.get("scope") if isinstance(d.get("scope"), list) else [])][:6]
+        e = s["harness"].get(name) or {"an": False, "klasse": "auto"}
+        if not e.get("an") and not e.get("angemeldet"):
+            core.save_settings({**s, "harness": {**s["harness"], name: {**e, "an": False, "angemeldet": time.time(), "scope": scope}}})
+        st = "approved" if e.get("an") else "pending"
+        return self.senden(200, {"name": name, "key": harness_key(name), "status": st, "approve": base + "/#connect",
+                                 "poll": base + "/v1/register/" + name, "next": "Tell your user to approve this application in API-OMNI-BRAIN (Connect tab, one click), then use the key."})
+
+    def reg_status(self, name):
+        name = integrieren.clean_name(name)
+        e = core.settings()["harness"].get(name)
+        if not e or not hmac.compare_digest(self.key_of_request(), harness_key(name)):
+            return self.senden(401, {"error": "unknown application or wrong key"})
+        return self.senden(200, {"name": name, "status": "approved" if e.get("an") else "pending" if e.get("angemeldet") else "denied"})
+
     def route(self, meth):
         try:
             if not self.lokal():
@@ -294,6 +326,17 @@ class H(BaseHTTPRequestHandler):
                     return self.senden(404, {"error": "unknown"})
             if meth == "GET" and path in ("/ui.css", "/ui.js", "/ui_radar.js", "/ui_manual.js", "/texte.json", "/manual.json"):
                 return self.senden(200, core.res(path[1:]), {"css": "text/css", "js": "text/javascript", "json": "application/json"}[path.rsplit(".", 1)[1]] + "; charset=utf-8")
+            base = "http://127.0.0.1:%d" % self.server.server_address[1]
+            if meth == "GET" and path in ("/integrate", "/integrate.md", "/llms.txt"):
+                return self.senden(200, integrieren.guide(base, VERSION, integrieren.snippets(base)).encode(), "text/markdown; charset=utf-8")
+            if meth == "GET" and path == "/.well-known/api-omni-brain.json":
+                return self.senden(200, integrieren.manifest(base, VERSION))
+            if meth == "GET" and path == "/v1/offer":
+                return self.senden(200, integrieren.offer(core.db(), base, self.angemeldet()))
+            if meth == "POST" and path == "/v1/register":
+                return self.registrieren(base)
+            if meth == "GET" and path.startswith("/v1/register/"):
+                return self.reg_status(path[13:])
             if path.startswith("/api/"):
                 if self.headers.get("X-Omnipool") != "1":
                     return self.senden(403, {"error": 'Header X-Omnipool missing'})
@@ -440,7 +483,9 @@ class H(BaseHTTPRequestHandler):
             if "harness" in d:
                 a = re.sub(r"[^a-z0-9_]", "", str(d["harness"]["name"]).lower())[:24]
                 if a:
-                    n["harness"] = {**s["harness"], a: {"an": bool(d["harness"].get("an")), "klasse": d["harness"].get("klasse", "auto") if d["harness"].get("klasse", "auto") in ("auto",) + core.KLASSEN else "auto"}}
+                    n["harness"] = {**s["harness"], a: {**s["harness"].get(a, {}), "an": bool(d["harness"].get("an")), "klasse": d["harness"].get("klasse", "auto") if d["harness"].get("klasse", "auto") in ("auto",) + core.KLASSEN else "auto"}}
+            if "harness" in d and d["harness"].get("ablehnen") and a in n["harness"]:
+                n["harness"][a] = {k: v for k, v in n["harness"][a].items() if k not in ("angemeldet", "scope")}
             core.save_settings(n)
             return self.senden(200, {"ok": True})
         if p == "aus":

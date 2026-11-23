@@ -149,9 +149,15 @@ function verbinden(){
       )
     );
   }
+  const satz="Look at "+S.url+"/integrate and integrate API-OMNI-BRAIN into your workflow.";
   return h("div",{},
+    h("div",{class:"card",style:"margin-bottom:var(--space-4)"},
+      h("h3",{},"Easiest way: let your agent do it"),
+      h("p",{class:"mu"},"Tell Claude Code, Hermes, Grokbot or any other agent this sentence. It reads the guide, registers itself and changes its own settings. You only approve it once here."),
+      h("div",{class:"row"},h("code",{},satz),
+        h("button",{class:"b s",on:{click:async e=>{await navigator.clipboard.writeText(satz);e.target.textContent="Copied"}}},"Copy"))),
     h("div",{class:"di",style:"margin-bottom:var(--space-3)"},
-      "Each application gets its own key. API-OMNI-BRAIN does not write to third-party configurations – you copy the block yourself and paste it into the application."
+      "Each application gets its own key. API-OMNI-BRAIN never edits another program's configuration: either the agent changes its own settings (see above), or you copy a block below yourself."
     ),
     h("div",{class:"g",style:"margin-top:var(--space-3)"},
       apps.map(([name,v])=>{
@@ -259,7 +265,19 @@ function showToast(msg){
   clearTimeout(el._t);
   el._t=setTimeout(()=>{el.style.opacity="0";el.style.transform="translateY(10px)"},2200);
 }
-function render(){if(!S)return;head();const m=$("#main"),y=window.scrollY;m.replaceChildren([uebersicht,keys,modelle,verbinden,einst,ereig,...EX.map(x=>x.fn)][tab]());window.scrollTo(0,y)
+/* an application asked to be connected (POST /v1/register): the user decides here, nothing is active before */
+function anfragen(){
+  const p=Object.entries(S.harness||{}).filter(([n,v])=>v.angemeldet&&!v.an);
+  if(!p.length)return h("div",{});
+  return h("div",{class:"card",style:"border-color:var(--ac);margin-bottom:var(--space-4)"},
+    h("h3",{},"An application wants to use API-OMNI-BRAIN"),
+    p.map(([n,v])=>h("div",{class:"row"},
+      h("b",{},v.label||n),
+      h("span",{class:"mu"},(v.scope&&v.scope.length)?"would like to hand over: "+v.scope.join(", "):"no scope given"),
+      h("button",{class:"b",on:{click:async()=>{await api("settings",{harness:{name:n,an:true,klasse:v.klasse||"auto"}});load()}}},"Approve"),
+      h("button",{class:"b s",on:{click:async()=>{await api("settings",{harness:{name:n,an:false,klasse:v.klasse||"auto",ablehnen:true}});load()}}},"Deny"))));
+}
+function render(){if(!S)return;head();const m=$("#main"),y=window.scrollY;m.replaceChildren(anfragen(),[uebersicht,keys,modelle,verbinden,einst,ereig,...EX.map(x=>x.fn)][tab]());window.scrollTo(0,y)
 $("#nav").replaceChildren(...TABS.map((t,i)=>h("button",{class:i===tab?"on":"",on:{click:()=>{tab=i;if(i===2&&!M)api("modelle").then(x=>{M=x;render()});render()}}},t)))}
 async function load(){S=await api("status");if(tab===2)M=await api("modelle");render()}
 $("#bScan").onclick=async()=>{await api("lauf",{});load()};$("#bAus").onclick=async()=>{await api("aus",{aus:!S.aus});load()};

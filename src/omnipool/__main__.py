@@ -116,6 +116,14 @@ def main():
     if a[:1] == ["--status"]:
         print(core.status())
         return
+    if a[:1] == ["--mcp"]:                             # MCP stdio server for harnesses
+        from . import mcp
+        return mcp.serve()
+    if a[:1] == ["--guide"]:                           # the integration guide for an AI agent, works without the service running
+        from . import integrieren
+        b = "http://127.0.0.1:%d" % port
+        print(integrieren.guide(b, "1.3.0", integrieren.snippets(b)))
+        return
     if a[:1] == ["--version"]:
         print("API-OMNI-BRAIN 1.3.0")
         return

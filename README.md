@@ -117,6 +117,18 @@ Read `install.sh` first if you do not want to pipe a script into a shell; verify
 - `docs/SWARM-RUN.md` (50 agents with a mini harness each: what they changed, what was kept, what was reverted)
 - `research/`
 
+## Let your agent integrate it (the easy way)
+
+Tell any agent harness (Claude Code, Hermes, Grokbot, Crush, Aider, anything with a shell or HTTP):
+
+> Look at http://127.0.0.1:8799/integrate and integrate API-OMNI-BRAIN into your workflow.
+
+The agent reads the guide, registers itself (`POST /v1/register`, nothing is active yet), tells you to approve it once in the **Connect** tab, and then changes **its own** configuration. API-OMNI-BRAIN never edits another program's settings.
+`GET /v1/offer` tells the agent what the pool is good for (routine sub-tasks) and which model leads each class, so it can ask you whether it may hand such work over.
+For MCP harnesses: `api-omni-brain --mcp` (tools `pool_ask`, `pool_models`, `pool_offer`). Offline: `api-omni-brain --guide` prints the same guide. Machine-readable: `/.well-known/api-omni-brain.json`.
+
+Tested: registration, approval, denial and use against a fake provider (63 unit tests, 6 of them cover this flow) and the MCP server through real JSON-RPC; Claude Code's own health check reports it as connected. Not tested live: full conversations with Claude Code, Hermes and Grokbot.
+
 ## Requirements and known limits
 
 - Binary: glibc ≥ 2.38 (Linux x86_64)
