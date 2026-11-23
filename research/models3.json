@@ -1,0 +1,42 @@
+{
+ "historian": {
+  "nvidia/z-ai/glm-5.3-flash": [
+   1,
+   1
+  ],
+  "nvidia/mistralai/mistral-large-4-1t-a52b": [
+   0,
+   1
+  ]
+ },
+ "essayist": {
+  "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning": [
+   1,
+   1
+  ],
+  "nvidia/nvidia/nemotron-3-ultra-550b-a55b": [
+   0,
+   1
+  ]
+ },
+ "manual": {
+  "nvidia/z-ai/glm-5.3-flash": [
+   1,
+   1
+  ],
+  "nvidia/stepfun-ai/step-5-preview": [
+   0,
+   1
+  ]
+ },
+ "release": {
+  "nvidia/stepfun-ai/step-5-preview": [
+   1,
+   1
+  ],
+  "nvidia/minimaxai/minimax-m3.1-flash": [
+   0,
+   1
+  ]
+ }
+}

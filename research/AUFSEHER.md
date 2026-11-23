@@ -1,0 +1,5 @@
+09:58 R_t: LEBT=ja phase=A, Berichte 4/10 | E_t: Digest, vor 0min aktiv | F -> nichts tun | INV: ok (Check 1)
+10:08 R_t: PAUSE von FranKenstein, team/HOLD aktiv | E_t: Koordinator-Nachricht | F -> nur Journal+sleep, kein Neustart, keine Tickets/Bugs | INV: ok (Check 2)
+10:18 R_t: HOLD aktiv, LEBT=NEIN, Log zeigt aber Aktivitaet vor 1min (anglify/duell) | E_t: Digest | F -> nichts tun (Pause-Befehl), Widerspruch LEBT vs. Aktivitaet bleibt sichtbar | INV: ok (Check 3)
+10:28 R_t: HOLD aktiv, LEBT=NEIN, Log weiter aktiv (anglify 11, duell 2, llm_fehler 1) | E_t: Digest | F -> nichts tun (Pause) | INV: ok (Check 4)
+10:38 R_t: HOLD aktiv, LEBT=NEIN, Log aktiv (anglify2/3, duell 3, review 3) | E_t: Digest | F -> nichts tun (Pause) | INV: ok (Check 5)

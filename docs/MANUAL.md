@@ -1,0 +1,228 @@
+# Manual
+
+API-OMNI-BRAIN is a local application: a daemon on 127.0.0.1:8799 plus a web interface that opens in its own window. It manages your free-tier API keys on your machine, probes models, ranks them and routes requests through a local OpenAI- and Anthropic-compatible proxy. No key is shipped with the app; a key leaves your machine only toward the provider it belongs to.
+
+## Overview
+
+The first screen: counts of keys and catalogued models, per-application and per-provider usage of the last 24 hours, the status of the internal 'organs' (scanner, probes, router, ...), the best model per class and models that are currently resting after errors. The header shows the run state and has two buttons: scan now, and the emergency stop.
+
+![Overview](manual/overview.png)
+
+1. Read the key and model counts and their status
+2. See which applications and providers used the proxy in the last 24 hours
+3. Look at the organ list to see when each part last ran
+4. Use 'Scan and probe now' to start a scan, or 'All off' to stop routing
+
+**What it can do**
+
+- Show key and model counts and the best model per class
+- Show usage per application and provider over 24 hours
+- Show which models are resting and why
+- Start a scan on demand and switch everything off with one click
+
+**What it cannot do - and must not**
+
+- It does not start or stop the operating-system service (use systemctl --user)
+- It does not add, remove or test keys here (that is the Keys & Providers tab)
+- It does not change settings here
+
+## Keys & Providers
+
+Paste a token; the app recognises its format, checks it live, and saves it only after you confirm. Unknown OpenAI-compatible providers can be added by URL and token after a safety gate.
+
+![Keys & Providers](manual/keys.png)
+
+1. Paste an API token into the input field
+2. Wait for automatic format recognition and live validity check
+3. Confirm to save the key locally
+4. Add a custom provider by entering its base URL and token
+5. Pass the safety gate before the key is sent to the new provider
+
+**What it can do**
+
+- Recognise the token format and check it live before saving
+- Save keys in a local key file with owner-only permissions
+- Add a custom OpenAI-compatible provider by address after a safety gate
+
+**What it cannot do - and must not**
+
+- It does not create accounts or obtain keys for you
+- It does not bypass the safety gate for unknown providers
+- It never shows a key in clear text (slot and short hash only)
+- It sends a key only to the provider it belongs to
+
+## Models
+
+The catalogue lists every model from working providers, grouped into classes (code, JSON, German, reasoning, long context, tool calling) with probe scores and status.
+
+![Models](manual/models.png)
+
+1. Open the tab and type part of a provider/model name into the filter
+2. Filter by capability
+3. Sort by provider, model, capability or status
+4. Read the probe results (code, JSON, German, reasoning, long text, tools) per model
+
+**What it can do**
+
+- Display all models from working providers with their classes
+- Show probe results for code, JSON, German, reasoning, long context, tool calling
+- Sort and filter the model list
+- Indicate model status (valid, rate-limited, etc.)
+
+**What it cannot do - and must not**
+
+- It does not run a probe on one chosen model on demand (probes are planned by the scheduler or 'Scan and probe now')
+- It does not edit classes or probe definitions
+- Scores are measurements of a past run, not a guarantee of current quality
+- It does not list models from providers you have no working key for
+
+## Connect
+
+Get the local proxy URL and per-app keys to connect Claude Code, Hermes, Crush, Aider, or any OpenAI/Anthropic-compatible client. Copy buttons and an on/off switch are provided.
+
+![Connect](manual/connect.png)
+
+1. Copy the local proxy address shown on the tab
+2. Create or copy the per-application key (one per application, switchable)
+3. Paste address and key into your client (Claude Code, Aider, any OpenAI- or Anthropic-compatible client)
+4. Use the virtual model 'omnipool-auto' (or -code, -json, -de, -reason, -long, -tool) for automatic routing
+
+**What it can do**
+
+- Show address and a separate key for each application
+- Show ready-made setup snippets and an example request (display only, not sent)
+- Switch single applications on or off and add more applications
+- Pass through non-chat calls (image, audio, embeddings, search) via /x/<provider>/...
+
+**What it cannot do - and must not**
+
+- It does not configure your client (it only shows instructions)
+- It does not guarantee compatibility: Claude Code, Hermes and Grokbot have not been tested live against it
+- It does not support clients that need other API styles than OpenAI or Anthropic
+
+## Settings
+
+Planner and routing options: how often the planner runs, how many models it probes per run, a provider priority bonus, optional reporting to the author's internal evaluation system, the key file location and the port (applies after a restart).
+
+![Settings](manual/settings.png)
+
+1. Set the run interval in minutes and the number of models per run
+2. Optionally change the NVIDIA priority (0 to 0.5)
+3. Leave the 'modellwahl' reporting off unless you run that system (it is only available on the author's machines)
+4. Change the key file path or the port if needed, then press Save
+
+**What it can do**
+
+- Change planner interval and models per run
+- Change a provider priority bonus
+- Change the key file path and the port (after restart)
+- Read the security notes and the emergency-stop file name
+
+**What it cannot do - and must not**
+
+- It does not edit the safety scanner or quarantine rules (those are fixed in code)
+- It does not reset keys or probe data
+- It does not change what the router is allowed to spend: paid providers and paid models are never used
+
+## Events
+
+A list of recent system events (information and warnings), newest first, with their age. The list is read-only and refreshes with the next planner run.
+
+![Events](manual/events.png)
+
+1. Open the tab
+2. Read the entries, newest first; the icon shows information or warning
+
+**What it can do**
+
+- Show recent system events with age and level icon
+
+**What it cannot do - and must not**
+
+- It does not filter, search or export events
+- It does not clear the log
+- It is not an audit log for compliance purposes
+
+## Radar
+
+Aggregates ~110 news feeds and 10 Hacker News searches every 2 hours, indexes ~2600 free-API entries with full-text search, re-checks models twice weekly, and matches use cases. Quarantined files are scanned, overwritten with zeros, and deleted with a popup; there is no release button.
+
+![Radar](manual/radar.png)
+
+1. View latest news and Hacker News items
+2. Search the free-API index with full-text search
+3. Read safety verdicts for URLs (TLS, domain age, shorteners, punycode, risky TLDs)
+4. See quarantined items with explanation
+
+**What it can do**
+
+- Display aggregated news from ~110 feeds and HN
+- Search ~2600 free-API entries with full-text search
+- Show safety verdicts for URLs
+- Explain quarantined items: scanned, found unsafe, overwritten and deleted
+
+**What it cannot do - and must not**
+
+- Cannot fetch from Reddit (blocked on purpose)
+- Cannot release or recover quarantined files
+- Cannot guarantee all feeds are alive (95 of 129 alive at first run)
+- Cannot verify safety beyond signatures and heuristics
+
+## API Search
+
+Search the free-API index (~2600 entries) with full-text search; each result shows a safety verdict.
+
+![API Search](manual/search.png)
+
+1. Enter search terms
+2. Review results with safety verdicts
+3. Open provider details
+
+**What it can do**
+
+- Search the free-API index with full-text search
+- Show safety verdicts for each result (TLS, domain age, shorteners, punycode, risky TLDs)
+- Link to provider details
+
+**What it cannot do - and must not**
+
+- Cannot search the live web
+- Cannot guarantee index completeness or freshness
+- Cannot override safety verdicts
+
+## Use cases
+
+Describe a task; a strong model extracts capabilities and matches free APIs from the index, returning results with safety verdicts.
+
+![Use cases](manual/usecases.png)
+
+1. Describe your task in the input field
+2. Submit to get matching free APIs
+3. Review matches with safety verdicts
+
+**What it can do**
+
+- Match your described use case to free APIs using a strong model for capability extraction
+- Show matching APIs with safety verdicts
+- Provide links to provider details
+
+**What it cannot do - and must not**
+
+- Cannot execute the use case for you
+- Cannot guarantee the matched APIs will work for your specific need
+- Cannot bypass provider terms or rate limits
+
+## What this app cannot do - and does not want to
+
+- It is not an antivirus: the scanner uses signatures and heuristics; 'nothing found' is not 'proven harmless'.
+- It does not create accounts, buy anything, handle payments, trade, or move money.
+- It never writes into other programs' configuration (the Connect tab only shows instructions).
+- It does not bypass rate limits, quotas, terms of service, CAPTCHAs, or paywalls.
+- It does not farm or share keys.
+- It does not crawl behind logins.
+- It cannot make a free API reliable: free tiers change, vanish, throttle; rankings are measurements of today.
+- It does not guarantee privacy at the provider: your prompts go to the provider you route to; their policies apply.
+- Search is only as good as the index; the judge model is coarse; the vision judge used for UI scoring is noisy (+-0.5 on a 10 scale).
+- Not tested on other distributions or Python versions than the listed ones (Linux x86_64 glibc >= 2.38, Python 3.12).
+
+> You are responsible for obtaining and using API keys in accordance with each provider's terms of service. Your prompts are sent to the providers you route to; their privacy policies apply. Free tiers may change or vanish without notice; the app's rankings reflect measurements at the time of the scan. The app has only been tested on Linux x86_64 with glibc >= 2.38 and Python 3.12; other environments are unsupported.

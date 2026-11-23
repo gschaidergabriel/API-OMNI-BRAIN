@@ -1,0 +1,59 @@
+{"t": 1795402337, "art": "leer", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b"}
+{"t": 1795402350, "art": "start", "stunden": 5.0, "modelle": ["nvidia/minimaxai/minimax-m3.1-flash", "nvidia/mistralai/mistral-large-4-1t-a52b", "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "nvidia/nvidia/nemotron-3.5-bolt-e4b", "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "nvidia/poolside/laguna-xs-2.1", "nvidia/stepfun-ai/step-5-preview", "nvidia/z-ai/glm-5.3-flash"]}
+{"t": 1795402499, "art": "entitaet", "id": "01-onboarding", "ok": true, "modell": "nvidia/mistralai/mistral-large-4-1t-a52b"}
+{"t": 1795402524, "art": "entitaet", "id": "02-kognition", "ok": true, "modell": "nvidia/stepfun-ai/step-5-preview"}
+{"t": 1795402582, "art": "entitaet", "id": "04-web-konkurrenz", "ok": true, "modell": "nvidia/minimaxai/minimax-m3.1-flash"}
+{"t": 1795402621, "art": "entitaet", "id": "05-grf", "ok": true, "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b"}
+{"t": 1795402686, "art": "start", "stunden": 5.0, "modelle": ["nvidia/minimaxai/minimax-m3.1-flash", "nvidia/mistralai/mistral-large-4-1t-a52b", "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "nvidia/nvidia/nemotron-3.5-bolt-e4b", "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "nvidia/poolside/laguna-xs-2.1", "nvidia/stepfun-ai/step-5-preview", "nvidia/z-ai/glm-5.3-flash"]}
+{"t": 1795402842, "art": "entitaet", "id": "06-claycode", "ok": true, "modell": "nvidia/mistralai/mistral-large-4-1t-a52b"}
+{"t": 1795402856, "art": "entitaet", "id": "03-web-ux", "ok": true, "modell": "nvidia/z-ai/glm-5.3-flash"}
+{"t": 1795402867, "art": "entitaet", "id": "08-profi", "ok": true, "modell": "nvidia/poolside/laguna-xs-2.1"}
+{"t": 1795402870, "art": "entitaet", "id": "07-laie", "ok": true, "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"}
+{"t": 1795402888, "art": "entitaet", "id": "09-zugang", "ok": true, "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b"}
+{"t": 1795402912, "art": "entitaet", "id": "10-chef", "ok": true, "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b"}
+{"t": 1795402996, "art": "synthese", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "bytes": 13526}
+{"t": 1795402996, "art": "tickets", "n": 0}
+{"t": 1795403212, "art": "anglify", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 30, "gueltig": 30}
+{"t": 1795403342, "art": "anglify", "modell": "nvidia/mistralai/mistral-large-4-1t-a52b", "angefragt": 30, "gueltig": 30}
+{"t": 1795403354, "art": "anglify", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "angefragt": 30, "gueltig": 30}
+{"t": 1795403486, "art": "anglify", "modell": "nvidia/stepfun-ai/step-5-preview", "angefragt": 30, "gueltig": 30}
+{"t": 1795403614, "art": "anglify", "modell": "nvidia/z-ai/glm-5.3-flash", "angefragt": 30, "gueltig": 30}
+{"t": 1795403664, "art": "anglify", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 30, "gueltig": 30}
+{"t": 1795403770, "art": "duell", "rolle": "historian", "sieger": "nvidia/z-ai/glm-5.3-flash", "verlierer": "nvidia/mistralai/mistral-large-4-1t-a52b"}
+{"t": 1795403796, "art": "anglify", "modell": "nvidia/mistralai/mistral-large-4-1t-a52b", "angefragt": 30, "gueltig": 28}
+{"t": 1795403819, "art": "anglify", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "angefragt": 30, "gueltig": 28}
+{"t": 1795403967, "art": "anglify", "modell": "nvidia/stepfun-ai/step-5-preview", "angefragt": 30, "gueltig": 28}
+{"t": 1795404010, "art": "llm_fehler", "modell": "nvidia/stepfun-ai/step-5-preview", "fehler": "TimeoutError"}
+{"t": 1795404013, "art": "review", "was": "ORIGIN", "modell": null, "probleme": null}
+{"t": 1795404013, "art": "doku", "datei": "ORIGIN.md", "bytes": 6955}
+{"t": 1795404099, "art": "anglify", "modell": "nvidia/z-ai/glm-5.3-flash", "angefragt": 30, "gueltig": 28}
+{"t": 1795404133, "art": "duell", "rolle": "essayist", "sieger": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "verlierer": "nvidia/nvidia/nemotron-3-ultra-550b-a55b"}
+{"t": 1795404147, "art": "anglify", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 30, "gueltig": 29}
+{"t": 1795404246, "art": "review", "was": "WHY", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "probleme": 7}
+{"t": 1795404296, "art": "doku", "datei": "WHY.md", "bytes": 3523}
+{"t": 1795404487, "art": "anglify", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 23, "gueltig": 23}
+{"t": 1795404624, "art": "anglify2", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 40, "geaendert": 13}
+{"t": 1795404656, "art": "anglify2", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "angefragt": 40, "geaendert": 16}
+{"t": 1795404678, "art": "anglify2", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 40, "geaendert": 14}
+{"t": 1795404710, "art": "anglify3", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 40, "geaendert": 2}
+{"t": 1795404711, "art": "duell", "rolle": "manual", "sieger": "nvidia/z-ai/glm-5.3-flash", "verlierer": "nvidia/stepfun-ai/step-5-preview"}
+{"t": 1795404711, "art": "doku", "datei": "manual.json", "modell": "nvidia/z-ai/glm-5.3-flash", "sektionen": 9}
+{"t": 1795404738, "art": "anglify3", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "angefragt": 40, "geaendert": 14}
+{"t": 1795404764, "art": "anglify2", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "angefragt": 40, "geaendert": 13}
+{"t": 1795404803, "art": "anglify2", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 40, "geaendert": 11}
+{"t": 1795404809, "art": "anglify3", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 40, "geaendert": 6}
+{"t": 1795404820, "art": "anglify2", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "angefragt": 40, "geaendert": 15}
+{"t": 1795404828, "art": "anglify3", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "angefragt": 40, "geaendert": 24}
+{"t": 1795404835, "art": "anglify2", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 19, "geaendert": 6}
+{"t": 1795404888, "art": "anglify3", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "angefragt": 40, "geaendert": 7}
+{"t": 1795404898, "art": "anglify3", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "angefragt": 33, "geaendert": 9}
+{"t": 1795405070, "art": "duell", "rolle": "release", "sieger": "nvidia/stepfun-ai/step-5-preview", "verlierer": "nvidia/minimaxai/minimax-m3.1-flash"}
+{"t": 1795405071, "art": "review", "was": "README", "modell": "nvidia/poolside/laguna-xs-2.1", "probleme": 1}
+{"t": 1795405218, "art": "doku", "datei": "README.md", "bytes": 9936}
+{"t": 1795405281, "art": "llm_fehler", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "fehler": "RemoteDisconnected"}
+{"t": 1795405284, "art": "llm_fehler", "modell": "nvidia/poolside/laguna-xs-2.1", "fehler": "URLError"}
+{"t": 1795405287, "art": "doku", "datei": "01-onboarding.md", "modell": null, "ok": false}
+{"t": 1795405287, "art": "llm_fehler", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "fehler": "URLError"}
+{"t": 1795405410, "art": "llm_fehler", "modell": "nvidia/stepfun-ai/step-5-preview", "fehler": "RemoteDisconnected"}
+{"t": 1795405413, "art": "doku", "datei": "02-kognition.md", "modell": null, "ok": false}
+{"t": 1795405550, "art": "doku", "datei": "03-web-ux.md", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": true}

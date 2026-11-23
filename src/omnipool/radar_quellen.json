@@ -1,0 +1,800 @@
+{
+"feeds": [
+{
+"url": "https://huggingface.co/blog/feed.xml",
+"titel": "Hugging Face Blog",
+"fokus": 1
+},
+{
+"url": "https://developer.nvidia.com/blog/feed/",
+"titel": "NVIDIA Developer Blog",
+"fokus": 1
+},
+{
+"url": "https://blogs.nvidia.com/feed/",
+"titel": "NVIDIA Blog",
+"fokus": 1
+},
+{
+"url": "https://groq.com/feed/",
+"titel": "Groq",
+"fokus": 1
+},
+{
+"url": "https://mistral.ai/news/rss.xml",
+"titel": "Mistral",
+"fokus": 1
+},
+{
+"url": "https://blog.cloudflare.com/rss/",
+"titel": "Cloudflare Blog",
+"fokus": 1
+},
+{
+"url": "https://www.together.ai/blog/rss.xml",
+"titel": "Together AI",
+"fokus": 1
+},
+{
+"url": "https://fireworks.ai/blog/rss.xml",
+"titel": "Fireworks",
+"fokus": 1
+},
+{
+"url": "https://cerebras.ai/blog/rss.xml",
+"titel": "Cerebras",
+"fokus": 1
+},
+{
+"url": "https://sambanova.ai/blog/rss.xml",
+"titel": "SambaNova",
+"fokus": 1
+},
+{
+"url": "https://cohere.com/blog/rss.xml",
+"titel": "Cohere",
+"fokus": 1
+},
+{
+"url": "https://replicate.com/blog/rss",
+"titel": "Replicate",
+"fokus": 1
+},
+{
+"url": "https://deepinfra.com/blog/rss.xml",
+"titel": "DeepInfra",
+"fokus": 1
+},
+{
+"url": "https://openrouter.ai/announcements/rss",
+"titel": "OpenRouter",
+"fokus": 1
+},
+{
+"url": "https://developers.googleblog.com/feeds/posts/default",
+"titel": "Google Developers",
+"fokus": 1
+},
+{
+"url": "https://blog.google/technology/ai/rss/",
+"titel": "Google AI",
+"fokus": 1
+},
+{
+"url": "https://openai.com/news/rss.xml",
+"titel": "OpenAI",
+"fokus": 1
+},
+{
+"url": "https://deepmind.google/blog/rss.xml",
+"titel": "DeepMind",
+"fokus": 1
+},
+{
+"url": "https://ai.meta.com/blog/rss/",
+"titel": "Meta AI",
+"fokus": 1
+},
+{
+"url": "https://qwenlm.github.io/blog/index.xml",
+"titel": "Qwen",
+"fokus": 1
+},
+{
+"url": "https://elevenlabs.io/blog/rss.xml",
+"titel": "ElevenLabs",
+"fokus": 1
+},
+{
+"url": "https://www.assemblyai.com/blog/rss/",
+"titel": "AssemblyAI",
+"fokus": 1
+},
+{
+"url": "https://deepgram.com/learn/rss.xml",
+"titel": "Deepgram",
+"fokus": 1
+},
+{
+"url": "https://stability.ai/news?format=rss",
+"titel": "Stability AI",
+"fokus": 1
+},
+{
+"url": "https://blog.langchain.dev/rss/",
+"titel": "LangChain",
+"fokus": 1
+},
+{
+"url": "https://www.llamaindex.ai/blog/rss.xml",
+"titel": "LlamaIndex",
+"fokus": 1
+},
+{
+"url": "https://lmsys.org/rss.xml",
+"titel": "LMSYS",
+"fokus": 1
+},
+{
+"url": "https://github.blog/ai-and-ml/feed/",
+"titel": "GitHub AI",
+"fokus": 1
+},
+{
+"url": "https://github.blog/feed/",
+"titel": "GitHub Blog",
+"fokus": 0
+},
+{
+"url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+"titel": "AWS ML",
+"fokus": 1
+},
+{
+"url": "https://blogs.microsoft.com/ai/feed/",
+"titel": "Microsoft AI",
+"fokus": 1
+},
+{
+"url": "https://cloud.google.com/blog/products/ai-machine-learning/rss",
+"titel": "Google Cloud AI",
+"fokus": 1
+},
+{
+"url": "https://www.microsoft.com/en-us/research/feed/",
+"titel": "Microsoft Research",
+"fokus": 0
+},
+{
+"url": "https://machinelearning.apple.com/rss.xml",
+"titel": "Apple ML",
+"fokus": 0
+},
+{
+"url": "https://research.google/blog/rss/",
+"titel": "Google Research",
+"fokus": 0
+},
+{
+"url": "https://bair.berkeley.edu/blog/feed.xml",
+"titel": "BAIR",
+"fokus": 0
+},
+{
+"url": "https://www.fast.ai/index.xml",
+"titel": "fast.ai",
+"fokus": 0
+},
+{
+"url": "https://lilianweng.github.io/index.xml",
+"titel": "Lil'Log",
+"fokus": 0
+},
+{
+"url": "https://simonwillison.net/atom/everything/",
+"titel": "Simon Willison",
+"fokus": 1
+},
+{
+"url": "https://www.latent.space/feed",
+"titel": "Latent Space",
+"fokus": 1
+},
+{
+"url": "https://www.interconnects.ai/feed",
+"titel": "Interconnects",
+"fokus": 1
+},
+{
+"url": "https://importai.substack.com/feed",
+"titel": "Import AI",
+"fokus": 0
+},
+{
+"url": "https://magazine.sebastianraschka.com/feed",
+"titel": "Ahead of AI",
+"fokus": 0
+},
+{
+"url": "https://www.deeplearning.ai/the-batch/feed/",
+"titel": "The Batch",
+"fokus": 0
+},
+{
+"url": "https://the-decoder.com/feed/",
+"titel": "The Decoder",
+"fokus": 1
+},
+{
+"url": "https://the-decoder.de/feed/",
+"titel": "The Decoder DE",
+"fokus": 1
+},
+{
+"url": "https://www.marktechpost.com/feed/",
+"titel": "MarkTechPost",
+"fokus": 0
+},
+{
+"url": "https://news.ycombinator.com/rss",
+"titel": "Hacker News",
+"fokus": 0
+},
+{
+"url": "https://lobste.rs/rss",
+"titel": "Lobsters",
+"fokus": 0
+},
+{
+"url": "https://lobste.rs/t/ai.rss",
+"titel": "Lobsters AI",
+"fokus": 0
+},
+{
+"url": "https://lobste.rs/t/api.rss",
+"titel": "Lobsters API",
+"fokus": 0
+},
+{
+"url": "https://dev.to/feed/tag/llm",
+"titel": "dev.to LLM",
+"fokus": 1
+},
+{
+"url": "https://dev.to/feed/tag/api",
+"titel": "dev.to API",
+"fokus": 0
+},
+{
+"url": "https://dev.to/feed/tag/ai",
+"titel": "dev.to AI",
+"fokus": 0
+},
+{
+"url": "https://dev.to/feed/tag/openai",
+"titel": "dev.to OpenAI",
+"fokus": 0
+},
+{
+"url": "https://dev.to/feed/tag/machinelearning",
+"titel": "dev.to ML",
+"fokus": 0
+},
+{
+"url": "https://dev.to/feed/tag/freetier",
+"titel": "dev.to Free Tier",
+"fokus": 1
+},
+{
+"url": "https://medium.com/feed/tag/free-api",
+"titel": "Medium free-api",
+"fokus": 1
+},
+{
+"url": "https://medium.com/feed/tag/llm",
+"titel": "Medium LLM",
+"fokus": 0
+},
+{
+"url": "https://medium.com/feed/tag/generative-ai",
+"titel": "Medium GenAI",
+"fokus": 0
+},
+{
+"url": "https://www.producthunt.com/feed",
+"titel": "Product Hunt",
+"fokus": 0
+},
+{
+"url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+"titel": "The Verge AI",
+"fokus": 0
+},
+{
+"url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+"titel": "TechCrunch AI",
+"fokus": 0
+},
+{
+"url": "https://venturebeat.com/category/ai/feed/",
+"titel": "VentureBeat AI",
+"fokus": 0
+},
+{
+"url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+"titel": "MIT Tech Review KI",
+"fokus": 0
+},
+{
+"url": "https://feeds.arstechnica.com/arstechnica/technology-lab",
+"titel": "Ars Technica",
+"fokus": 0
+},
+{
+"url": "https://www.heise.de/rss/heise-atom.xml",
+"titel": "heise",
+"fokus": 0
+},
+{
+"url": "https://rss.golem.de/rss.php?feed=RSS2.0",
+"titel": "Golem",
+"fokus": 0
+},
+{
+"url": "https://t3n.de/rss.xml",
+"titel": "t3n",
+"fokus": 0
+},
+{
+"url": "https://netzpolitik.org/feed/",
+"titel": "netzpolitik",
+"fokus": 0
+},
+{
+"url": "https://rss.arxiv.org/rss/cs.CL",
+"titel": "arXiv cs.CL",
+"fokus": 0
+},
+{
+"url": "https://rss.arxiv.org/rss/cs.LG",
+"titel": "arXiv cs.LG",
+"fokus": 0
+},
+{
+"url": "https://rss.arxiv.org/rss/cs.AI",
+"titel": "arXiv cs.AI",
+"fokus": 0
+},
+{
+"url": "https://rss.arxiv.org/rss/cs.CR",
+"titel": "arXiv cs.CR",
+"fokus": 0
+},
+{
+"url": "https://nordicapis.com/feed/",
+"titel": "Nordic APIs",
+"fokus": 1
+},
+{
+"url": "https://blog.postman.com/feed/",
+"titel": "Postman",
+"fokus": 1
+},
+{
+"url": "https://swagger.io/blog/feed/",
+"titel": "Swagger",
+"fokus": 0
+},
+{
+"url": "https://stackoverflow.blog/feed/",
+"titel": "Stack Overflow Blog",
+"fokus": 0
+},
+{
+"url": "https://thenewstack.io/feed/",
+"titel": "The New Stack",
+"fokus": 0
+},
+{
+"url": "https://www.infoq.com/feed/",
+"titel": "InfoQ",
+"fokus": 0
+},
+{
+"url": "https://changelog.com/news/feed",
+"titel": "Changelog News",
+"fokus": 0
+},
+{
+"url": "https://krebsonsecurity.com/feed/",
+"titel": "Krebs on Security (Warnungen)",
+"fokus": 0
+},
+{
+"url": "https://www.bleepingcomputer.com/feed/",
+"titel": "BleepingComputer (Warnungen)",
+"fokus": 0
+},
+{
+"url": "https://github.com/ollama/ollama/releases.atom",
+"titel": "Releases ollama",
+"fokus": 1
+},
+{
+"url": "https://github.com/ggml-org/llama.cpp/releases.atom",
+"titel": "Releases llama.cpp",
+"fokus": 1
+},
+{
+"url": "https://github.com/vllm-project/vllm/releases.atom",
+"titel": "Releases vllm",
+"fokus": 1
+},
+{
+"url": "https://github.com/BerriAI/litellm/releases.atom",
+"titel": "Releases litellm",
+"fokus": 1
+},
+{
+"url": "https://github.com/huggingface/transformers/releases.atom",
+"titel": "Releases transformers",
+"fokus": 1
+},
+{
+"url": "https://github.com/open-webui/open-webui/releases.atom",
+"titel": "Releases open-webui",
+"fokus": 1
+},
+{
+"url": "https://github.com/Aider-AI/aider/releases.atom",
+"titel": "Releases aider",
+"fokus": 1
+},
+{
+"url": "https://github.com/anthropics/claude-code/releases.atom",
+"titel": "Releases claude-code",
+"fokus": 1
+},
+{
+"url": "https://github.com/openai/openai-python/releases.atom",
+"titel": "Releases openai-python",
+"fokus": 1
+},
+{
+"url": "https://github.com/anthropics/anthropic-sdk-python/releases.atom",
+"titel": "Releases anthropic-sdk-python",
+"fokus": 1
+},
+{
+"url": "https://github.com/sst/opencode/releases.atom",
+"titel": "Releases opencode",
+"fokus": 1
+},
+{
+"url": "https://github.com/charmbracelet/crush/releases.atom",
+"titel": "Releases crush",
+"fokus": 1
+},
+{
+"url": "https://github.com/NousResearch/hermes-agent/releases.atom",
+"titel": "Releases hermes-agent",
+"fokus": 1
+},
+{
+"url": "https://github.com/lm-sys/FastChat/releases.atom",
+"titel": "Releases FastChat",
+"fokus": 1
+},
+{
+"url": "https://github.com/langchain-ai/langchain/releases.atom",
+"titel": "Releases langchain",
+"fokus": 1
+},
+{
+"url": "https://github.com/run-llama/llama_index/releases.atom",
+"titel": "Releases llama_index",
+"fokus": 1
+},
+{
+"url": "https://github.com/unslothai/unsloth/releases.atom",
+"titel": "Releases unsloth",
+"fokus": 1
+},
+{
+"url": "https://github.com/ml-explore/mlx/releases.atom",
+"titel": "Releases mlx",
+"fokus": 1
+},
+{
+"url": "https://github.com/comfyanonymous/ComfyUI/releases.atom",
+"titel": "Releases ComfyUI",
+"fokus": 1
+},
+{
+"url": "https://github.com/openai/whisper/releases.atom",
+"titel": "Releases whisper",
+"fokus": 1
+},
+{
+"url": "https://github.com/SYSTRAN/faster-whisper/releases.atom",
+"titel": "Releases faster-whisper",
+"fokus": 1
+},
+{
+"url": "https://github.com/coqui-ai/TTS/releases.atom",
+"titel": "Releases TTS",
+"fokus": 1
+},
+{
+"url": "https://github.com/kvcache-ai/ktransformers/releases.atom",
+"titel": "Releases ktransformers",
+"fokus": 1
+},
+{
+"url": "https://github.com/microsoft/autogen/releases.atom",
+"titel": "Releases autogen",
+"fokus": 1
+},
+{
+"url": "https://github.com/continuedev/continue/releases.atom",
+"titel": "Releases continue",
+"fokus": 1
+},
+{
+"url": "https://github.com/public-apis/public-apis/commits/master.atom",
+"titel": "Liste: public-apis",
+"fokus": 1
+}
+],
+"hn": [
+{
+"art": "hnjson",
+"q": "free api",
+"titel": "HN-Suche: free api"
+},
+{
+"art": "hnjson",
+"q": "free tier llm",
+"titel": "HN-Suche: free tier llm"
+},
+{
+"art": "hnjson",
+"q": "free inference api",
+"titel": "HN-Suche: free inference api"
+},
+{
+"art": "hnjson",
+"q": "free credits api",
+"titel": "HN-Suche: free credits api"
+},
+{
+"art": "hnjson",
+"q": "openrouter free",
+"titel": "HN-Suche: openrouter free"
+},
+{
+"art": "hnjson",
+"q": "nvidia nim free",
+"titel": "HN-Suche: nvidia nim free"
+},
+{
+"art": "hnjson",
+"q": "groq free",
+"titel": "HN-Suche: groq free"
+},
+{
+"art": "hnjson",
+"q": "free llm api",
+"titel": "HN-Suche: free llm api"
+},
+{
+"art": "hnjson",
+"q": "free image generation api",
+"titel": "HN-Suche: free image generation api"
+},
+{
+"art": "hnjson",
+"q": "free text to speech api",
+"titel": "HN-Suche: free text to speech api"
+}
+],
+"indizes": [
+{
+"name": "public-apis",
+"url": "https://raw.githubusercontent.com/public-apis/public-apis/master/README.md",
+"art": "md-tabelle"
+},
+{
+"name": "awesome-free-llm-apis",
+"url": "https://raw.githubusercontent.com/mnfst/awesome-free-llm-apis/main/README.md",
+"art": "md"
+},
+{
+"name": "free-apis",
+"url": "https://raw.githubusercontent.com/Free-APIs/Free-APIs/main/README.md",
+"art": "md"
+}
+],
+"stichwoerter": [
+"free api",
+"free tier",
+"free credits",
+"free inference",
+"gratis",
+"kostenlos",
+"api key",
+"new model",
+"launch",
+"pricing",
+"rate limit",
+"nim",
+"openrouter",
+"groq",
+"cerebras",
+"gemini",
+"mistral",
+"deepseek",
+"qwen",
+"llama",
+"tts",
+"video generation",
+"embedding",
+"whisper",
+"open weights",
+"inference",
+"self-host",
+"sovereign"
+],
+"kuratiert_extra": [
+{
+"name": "Pollinations.ai",
+"url": "https://pollinations.ai",
+"beschr": "Bild- und Text-Generierung ohne Schluessel per einfacher URL (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Bild"
+},
+{
+"name": "Hugging Face Inference Providers",
+"url": "https://huggingface.co/docs/inference-providers",
+"beschr": "Viele Modelle (Bild, Audio, Text) mit freiem Monatskontingent (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Bild Audio Chat"
+},
+{
+"name": "Cloudflare Workers AI",
+"url": "https://developers.cloudflare.com/workers-ai/",
+"beschr": "Taegliches Gratis-Kontingent fuer Text, Bild, Sprache, Embeddings (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Chat Bild Audio Embedding"
+},
+{
+"name": "Google AI Studio (Gemini API)",
+"url": "https://ai.google.dev/gemini-api/docs/pricing",
+"beschr": "Gratis-Stufe fuer Gemini-Modelle inkl. Bild- und Videoverstehen (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Chat Vision"
+},
+{
+"name": "fal.ai",
+"url": "https://fal.ai/models",
+"beschr": "Schnelle Bild- und Video-Modelle, Startguthaben (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Video Bild"
+},
+{
+"name": "Replicate",
+"url": "https://replicate.com/explore",
+"beschr": "Tausende Modelle (Video, Bild, Audio) pro Nutzung, kleines Startguthaben (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Video Bild Audio"
+},
+{
+"name": "Stability AI Platform",
+"url": "https://platform.stability.ai",
+"beschr": "Bildgenerierung, Startguthaben (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Bild"
+},
+{
+"name": "Leonardo.Ai API",
+"url": "https://docs.leonardo.ai",
+"beschr": "Bildgenerierung mit taeglichem Gratis-Kontingent in der App (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Bild"
+},
+{
+"name": "ElevenLabs",
+"url": "https://elevenlabs.io/docs/api-reference",
+"beschr": "Sprachsynthese, monatliches Gratis-Kontingent (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Audio Sprache TTS"
+},
+{
+"name": "Cartesia",
+"url": "https://docs.cartesia.ai",
+"beschr": "Sehr schnelle Sprachsynthese, Gratis-Stufe (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Audio Sprache TTS"
+},
+{
+"name": "Deepgram",
+"url": "https://developers.deepgram.com",
+"beschr": "Spracherkennung, Startguthaben (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Audio Transkription STT"
+},
+{
+"name": "AssemblyAI",
+"url": "https://www.assemblyai.com/docs",
+"beschr": "Spracherkennung, Gratis-Stunden (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Audio Transkription STT"
+},
+{
+"name": "Groq Whisper",
+"url": "https://console.groq.com/docs/speech-to-text",
+"beschr": "Sehr schnelle Transkription ueber den Groq-Gratisplan (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Audio Transkription STT"
+},
+{
+"name": "Jina AI Embeddings & Reader",
+"url": "https://jina.ai",
+"beschr": "Embeddings, Reranker und Web-Reader mit Gratis-Token (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Embedding Rerank Suche"
+},
+{
+"name": "Voyage AI",
+"url": "https://docs.voyageai.com",
+"beschr": "Embeddings und Reranker, Gratis-Token (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Embedding Rerank"
+},
+{
+"name": "Cohere Trial Key",
+"url": "https://dashboard.cohere.com/api-keys",
+"beschr": "Chat, Embeddings, Rerank mit kostenlosem Test-Schluessel (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Chat Embedding Rerank"
+},
+{
+"name": "Mistral La Plateforme (Experiment-Plan)",
+"url": "https://console.mistral.ai",
+"beschr": "Kostenloser Experiment-Plan mit Ratenlimits, inkl. OCR (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Chat OCR"
+},
+{
+"name": "Tavily Search API",
+"url": "https://tavily.com",
+"beschr": "Web-Suche fuer KI mit monatlichem Gratis-Kontingent (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Suche"
+},
+{
+"name": "Brave Search API",
+"url": "https://brave.com/search/api/",
+"beschr": "Web-Suche, kleines Gratis-Kontingent (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Suche"
+},
+{
+"name": "Exa",
+"url": "https://docs.exa.ai",
+"beschr": "Semantische Websuche, Startguthaben (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Suche"
+},
+{
+"name": "Serper",
+"url": "https://serper.dev",
+"beschr": "Google-Suche als API, Gratis-Anfragen zum Start (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Suche"
+},
+{
+"name": "OCR.space",
+"url": "https://ocr.space/ocrapi",
+"beschr": "Texterkennung in Bildern/PDF mit Gratis-Schluessel (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "OCR"
+},
+{
+"name": "DeepL API Free",
+"url": "https://www.deepl.com/pro-api",
+"beschr": "Uebersetzung, 500.000 Zeichen pro Monat gratis (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Uebersetzung"
+},
+{
+"name": "LibreTranslate",
+"url": "https://libretranslate.com",
+"beschr": "Uebersetzung, selbst hostbar (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Uebersetzung"
+},
+{
+"name": "Open-Meteo",
+"url": "https://open-meteo.com",
+"beschr": "Wetterdaten ohne Schluessel (handgepflegt, Gratis-Umfang selbst pruefen)",
+"kategorie": "Daten"
+}
+]
+}
