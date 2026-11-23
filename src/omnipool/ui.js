@@ -10,7 +10,17 @@ function bars(rows,fmt){const mx=Math.max(1,...rows.map(r=>r[1]));return h("div"
 function head(){$("#pLauf").textContent=S.lauf.laeuft?"Run active":"Last run "+ago(S.lauf.ts);$("#pLauf").className="pill "+(S.lauf.laeuft?"warn":"ok");
 $("#pBusy").textContent=S.busy?"Machine busy":"";$("#pBusy").className="pill warn"+(S.busy?"":" hide");$("#pAus").textContent=S.aus?"OFF":"";$("#pAus").className="pill bad"+(S.aus?"":" hide");$("#bAus").textContent=S.aus?"Back on":"All off"}
 function uebersicht(){const ks={};S.keys.forEach(k=>ks[k.status]=(ks[k.status]||0)+1);const B=S.bericht;
-return h("div",{},h("div",{class:"g"},
+return h("div",{},
+h("section",{class:"hero"},
+h("p",{class:"hero-eyebrow"},"API-OMNI-BRAIN: Local AI API Testing & Routing"),
+h("h1",{class:"hero-title"},"One local API for every AI app."),
+h("p",{class:"hero-sub"},"API-OMNI-BRAIN finds working free AI keys, tests them, picks the right model for each request, and routes everything through one local address. Stop juggling providers, endpoints, and rate limits."),
+h("div",{class:"hero-steps"},
+h("div",{class:"hero-step"},h("span",{class:"hero-num"},"1"),h("div",{},h("b",{},"Scan"),h("span",{},"Find free or existing keys on this machine."))),
+h("div",{class:"hero-step"},h("span",{class:"hero-num"},"2"),h("div",{},h("b",{},"Connect"),h("span",{},"Point your app at one local address."))),
+h("div",{class:"hero-step"},h("span",{class:"hero-num"},"3"),h("div",{},h("b",{},"Watch"),h("span",{},"See models, costs, and errors as they happen.")))),
+h("p",{class:"hero-note"},"Runs on this machine. Only the AI providers you use need internet.")),
+h("div",{class:"g"},
 h("div",{class:"card"},h("h3",{},"Keys"),h("div",{class:"big"},S.keys.length),h("div",{class:"mu"},Object.entries(ks).map(([a,b])=>b+" "+a).join(" · ")||"no scan yet")),
 h("div",{class:"card"},h("h3",{},"Models in catalog"),h("div",{class:"big"},S.modelle),h("div",{class:"mu"},S.geprobt+" content-verified"),bars(S.faehigkeiten.map(f=>[f[0],f[1]]))),
 h("div",{class:"card"},h("h3",{},"Applications, last 24 h"),B.anwendungen.length?bars(B.anwendungen.map(a=>[a.app,a.n]),r=>{const a=B.anwendungen.find(x=>x.app===r[0]);return a.n+" requests, "+pct(a.ok,a.n)+" % ok, Ø "+a.lat+" s"}):h("div",{class:"di"},"no requests yet")),
@@ -19,7 +29,10 @@ h("div",{class:"g",style:"margin-top:14px"},h("div",{class:"card"},h("h3",{},"Th
 h("div",{class:"di",style:"margin-top:8px"},"Honestly: a well-made set of scripts and proto-AI parts (rules, bandit, judge model), not a learned mind. Needles and 0.8B are planned.")),
 h("div",{class:"card"},h("h3",{},"Best choice per class"),h("table",{},h("tr",{},h("th",{},"Class"),h("th",{},"Model"),h("th",{},"p"),h("th",{},"n")),
 Object.entries(S.wahl).flatMap(([k,r])=>r.slice(0,2).map((x,i)=>h("tr",{},h("td",{},i?"":k),h("td",{},x[0]+"/"+x[1].split("/").pop()),h("td",{},x[2]),h("td",{},x[3])))))),
-B.ruhende.length?h("div",{class:"card"},h("h3",{},"Resting (immune system)"),B.ruhende.map(r=>h("div",{class:"org"},h("span",{},r.modell),h("span",{class:"mu"},r.grund+", still "+r.noch_s+" s")))):""))}
+B.ruhende.length?h("div",{class:"card"},h("h3",{},"Resting (immune system)"),B.ruhende.map(r=>h("div",{class:"org"},h("span",{},r.modell),h("span",{class:"mu"},r.grund+", still "+r.noch_s+" s")))):""),
+h("div",{class:"card",style:"margin-top:var(--space-5)"},h("h3",{},"Get Started"),h("p",{class:"mu",style:"margin:0 0 var(--space-2)"},"Add a key, then connect your app. API-OMNI-BRAIN takes care of model choice and routing."),h("div",{class:"overview-actions"},
+h("button",{class:"b",on:{click:()=>{const tabIndex=TABS.indexOf("Keys & Providers");tab=tabIndex;render()}}},"Add Keys"),
+h("button",{class:"s",on:{click:()=>{const tabIndex=TABS.indexOf("Connect");tab=tabIndex;render()}}},"Connect Application"))))}
 async function pruefen(){const t=$("#tok").value.trim();if(!t)return;tmp.res=await api("token/check",{token:t,provider:$("#prov").value});render()}
 function keys(){const r=tmp.res,E=tmp.ent;
 return h("div",{},h("div",{class:"card"},h("h3",{},"Add token"),h("div",{class:"row"},h("input",{type:"password",id:"tok",placeholder:"Paste token (never displayed or logged)",autocomplete:"off"}),
@@ -46,7 +59,7 @@ function modelle(){
   const sortDir=tmp.sd||"asc";
   const rawCaps=[...new Set(M.map(m=>m.faehigkeit))].sort();
   const capLabel=cap=>{
-    const map={"chat":"Chat (Text)","code":"Code","embedding":"Embeddings","image":"Image Generation","video":"Video","audio":"Audio","search":"Search","tool":"Tool-Calling","vision":"Vision","reasoning":"Reasoning","unknown":"Unknown"};
+    const map={"chat":"Chat (Text)","code":"Code","embedding":"Embeddings","image":"Image Generation","video":"Video","audio":"Audio","search":"Search","tool":"Tool-Calling","vision":"Vision","reasoning":"Reasoning","unknown":"Unknown","sicherheit":"Safety"};
     return map[cap]||cap;
   };
   const classKeys=["code","json","de","reason","long","tool"];
@@ -68,7 +81,7 @@ function modelle(){
   });
   rows=rows.slice(0,400);
   const thClick=(col)=>()=>{tmp.sc=col;tmp.sd=tmp.sc===col&&tmp.sd==="asc"?"desc":"asc";render()};
-  const statusPill=s=>s==="ok"?h("span",{class:"pill ok"},"Available"):s==="nicht_verfuegbar"?h("span",{class:"pill bad"},"Unavailable"):h("span",{class:"pill warn"},s);
+  const statusPill=s=>s==="ok"?h("span",{class:"pill ok"},"Available"):s==="nicht_verfuegbar"?h("span",{class:"pill bad"},"Unavailable"):h("span",{class:"pill warn"},({neu:"New (untested)",fehler:"Failing",keine_klasse:"No class yet"})[s]||s);
   const classBar=(m,key)=>{
     const v=m.klassen[key];
     if(!v||v[0]<0)return h("td",{class:"mu",style:"text-align:center"},h("span",{style:"color:var(--ink-subtle)"},"–"));
@@ -230,7 +243,7 @@ h("div",{class:"row"},"Port (after restart)",h("input",{type:"number",id:"po",va
 h("button",{class:"b",on:{click:async()=>{await api("settings",{lauf_min:+$("#lm").value,max_modelle:+$("#mm").value,vorrang:{nvidia:+$("#vn").value},melden:$("#me").checked,keys_file:$("#kf").value,port:+$("#po").value});tmp.msg="Saved";load()}}},"Save"),tmp.msg?h("span",{class:"s-ok"}," "+tmp.msg):""),
 h("div",{class:"card"},h("h3",{},"Security"),h("div",{class:"di"},"127.0.0.1 only. UI calls need the X-Omnipool header; applications need their own key. Keys are never displayed or logged (slot and hash only). Paid providers and paid models are not used (OpenRouter :free only). Emergency stop: button above, or file ~/.cache/omnipool/AUS.")),
 h("div",{class:"card"},h("h3",{},"Advanced settings"),h("div",{class:"di"},"Additional options for advanced users. Here you can make special configurations not needed for daily use.")))}
-function ereig(){const e=S.bericht.ereignisse;return h("div",{class:"card"},h("h3",{},"System events"),e.length?h("table",{},e.map(x=>h("tr",{},h("td",{class:"mu"},ago(x.ts)),h("td",{},x.art==="info"?"ℹ️":"⚠️"),h("td",{},x.text)))):h("div",{class:"empty",style:"padding:var(--space-6);text-align:center"},
+function ereig(){const e=S.bericht.ereignisse;return h("div",{class:"card"},h("h3",{},"System events"),e.length?h("table",{},e.map(x=>h("tr",{},h("td",{class:"mu"},ago(x.ts)),h("td",{},["drift","radar_fehler","quarantaene_still"].includes(x.art)?"⚠️":"ℹ️"),h("td",{},x.text)))):h("div",{class:"empty",style:"padding:var(--space-6);text-align:center"},
 h("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:"1.5"},h("path",{d:"M12 9v2m0 4h.01m-6.73 2h13.46c1.5 0 2.25-1.68 1.73-3L13 7c-1.5-2-6-2-7.5 0l-6.22 6.78c-.52.85.22 1.98 1.73 1.98z"})),
 h("p",{},"No system events available."),
 h("p",{class:"hint"},"Events are updated on the next run.")))}

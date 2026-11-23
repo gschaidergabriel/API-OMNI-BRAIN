@@ -255,7 +255,7 @@ def main():
                 if r.get("d") is not None and r["d"] is not d:
                     d = r["d"]
                     okb, base = it.ui_gate(d.port, None)
-                L.status(stand=st, code=r)
+                L.status(stand=st, code={k: v for k, v in r.items() if k != "d"})
         except Exception as e:  # noqa: BLE001
             log(art="fehler", fehler="%s: %s" % (type(e).__name__, str(e)[:200]))
             time.sleep(15)

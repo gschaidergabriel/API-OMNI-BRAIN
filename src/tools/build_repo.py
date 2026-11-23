@@ -48,7 +48,7 @@ def main():
     out = os.path.join(ROOT, "docs_out")
     for f in ("README.md",):
         cp(os.path.join(out, f), os.path.join(REPO, f))
-    for f in ("ORIGIN.md", "WHY.md", "TESTING.md"):
+    for f in ("ORIGIN.md", "WHY.md", "TESTING.md", "TEAM-RUN.md"):
         if os.path.exists(os.path.join(out, f)):
             cp(os.path.join(out, f), os.path.join(REPO, "docs", f))
     j = json.load(open(os.path.join(out, "manual.json")))
@@ -70,7 +70,7 @@ def main():
         cp(os.path.join(ROOT, f), os.path.join(src, f))
     cp(os.path.join(ROOT, "docs_src", "facts.md"), os.path.join(REPO, "docs", "FACTS.md"))
     rs = os.path.join(REPO, "research")
-    for f in ("iter/log.jsonl", "iter/REPORT.md", "team/log.jsonl", "team/AUFSEHER.md", "team/IDEEN.md", "team/anglify_map.json", "team/models3.json"):
+    for f in ("iter/log.jsonl", "iter/REPORT.md", "team/log.jsonl", "team/AUFSEHER.md", "team/REPORT.md", "team/IDEEN.md", "team/anglify_map.json", "team/models3.json"):
         if os.path.exists(os.path.join(ROOT, f)):
             cp(os.path.join(ROOT, f), os.path.join(rs, os.path.basename(f)))
     for f in glob.glob(os.path.join(ROOT, "team", "testing", "**", "*.json"), recursive=True):

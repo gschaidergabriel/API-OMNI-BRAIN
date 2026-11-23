@@ -58,3 +58,148 @@
 {"t": 1795405413, "art": "doku", "datei": "02-kognition.md", "modell": null, "ok": false}
 {"t": 1795405550, "art": "doku", "datei": "03-web-ux.md", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": true}
 {"t": 1795405595, "art": "llm_fehler", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "fehler": "RemoteDisconnected"}
+{"t": 1795405631, "art": "start", "stunden": 3.5, "modelle": ["nvidia/minimaxai/minimax-m3.1-flash", "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "nvidia/nvidia/nemotron-3.5-bolt-e4b", "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "nvidia/poolside/laguna-xs-2.1"]}
+{"t": 1795405728, "art": "doku", "datei": "04-web-konkurrenz.md", "modell": "nvidia/stepfun-ai/step-5-preview", "ok": true}
+{"t": 1795405770, "art": "synthese", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "bytes": 5295}
+{"t": 1795405770, "art": "tickets", "n": 6}
+{"t": 1795405817, "art": "doku", "datei": "05-grf.md", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": true}
+{"t": 1795405950, "art": "doku", "datei": "06-claycode.md", "modell": "nvidia/z-ai/glm-5.3-flash", "ok": true}
+{"t": 1795406018, "art": "kandidat", "ticket": "T1", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": false, "score": null, "ref": 7.33, "info": "Patch: SEARCH in ui.js kommt 0-mal vor (muss genau 1x): 'function head(){$(\"#pLauf\").textContent=S.lauf.laeuft?\"Run "}
+{"t": 1795406075, "art": "doku", "datei": "07-laie.md", "modell": "nvidia/mistralai/mistral-large-4-1t-a52b", "ok": true}
+{"t": 1795406085, "art": "doku", "datei": "08-profi.md", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": true}
+{"t": 1795406099, "art": "doku", "datei": "09-zugang.md", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": true}
+{"t": 1795406107, "art": "doku", "datei": "10-chef.md", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": true}
+{"t": 1795406224, "art": "doku", "datei": "DESIGN-v1-invented-electron.md", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": true}
+{"t": 1795406290, "art": "kandidat", "ticket": "T1", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": false, "score": 4.0, "ref": 7.33, "info": "Score 4.0 < 6.8"}
+{"t": 1795406362, "art": "kandidat", "ticket": "T1", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "score": null, "ref": 7.33, "info": "UI: {'tabs': [131, 573, 704, 4398, 579, 304, 725, 282, 299, 9407], 'errors': [], 'flow': True, 'nodes': 88, 'overflow': 0, 'anim': 9}"}
+{"t": 1795406478, "art": "kandidat", "ticket": "T2", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.js kommt 0-mal vor (muss genau 1x): 'function head(){$(\"#pLauf\").textContent=S.lauf.laeuft?\"Run ; SEARCH in ui.css kommt 0-mal vor (muss genau 1x): 'header{display:flex;align-items:center"}
+{"t": 1795406697, "art": "kandidat", "ticket": "T2", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": true, "score": 6.666666666666667, "ref": 6.67, "info": "ok"}
+{"t": 1795406840, "art": "kandidat", "ticket": "T2", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": true, "score": 6.666666666666667, "ref": 6.67, "info": "ok"}
+{"t": 1795406840, "art": "sieger", "ticket": "T2", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "score": 6.666666666666667, "ref": 6.67, "kandidaten": 2}
+{"t": 1795406840, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795406997, "art": "kandidat", "ticket": "T3", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": false, "score": null, "ref": 7.0, "info": "Patch: keine SEARCH/REPLACE-Bloecke gefunden"}
+{"t": 1795407183, "art": "kandidat", "ticket": "T3", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "score": null, "ref": 7.0, "info": "Patch: zu viele Bloecke (62)"}
+{"t": 1795407226, "art": "kandidat", "ticket": "T3", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": false, "score": null, "ref": 7.0, "info": "Patch: SEARCH in ui.js kommt 0-mal vor (muss genau 1x): \"fetch('/texte.json').then(r=>r.json()).then(j=>{TXT=j;rende"}
+{"t": 1795407476, "art": "kandidat", "ticket": "T4", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": false, "score": null, "ref": 7.0, "info": "Patch: SEARCH in ui.js kommt 0-mal vor (muss genau 1x): 'function verbinden(){\\n  const H=S.harness;\\n  const apps=O"}
+{"t": 1795407659, "art": "kandidat", "ticket": "T4", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": true, "score": 7.0, "ref": 7.0, "info": "ok"}
+{"t": 1795407661, "art": "llm_fehler", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "fehler": "TimeoutError"}
+{"t": 1795407709, "art": "kandidat", "ticket": "T4", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "ok": false, "score": null, "ref": 7.0, "info": "Patch: SEARCH in ui.js kommt 0-mal vor (muss genau 1x): '  const TABS=[\"Overview\",\"Keys & Providers\",\"Models\",\"Conne; SEARCH in ui.js kommt 0-mal vor (muss genau 1x): 'function keys(){const r=tmp.res,E=tmp.e"}
+{"t": 1795407709, "art": "sieger", "ticket": "T4", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "score": 7.0, "ref": 7.0, "kandidaten": 1}
+{"t": 1795407897, "art": "runde_code", "art2": "fuzz", "ok": false, "grund": "kein Befund-Format"}
+{"t": 1795407897, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795408088, "art": "kandidat", "ticket": "T5", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "ok": false, "score": null, "ref": 6.67, "info": "Syntax ui.js: /tmp/op-cand.js:34\n),\n^\n\nSyntaxError: Unexpected token ')'\n    at internalCompileFunction (node:internal/vm:73:18)\n    at wrapSafe (node:internal/modules"}
+{"t": 1795408220, "art": "kandidat", "ticket": "T5", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.html kommt 0-mal vor (muss genau 1x): 'class=\"status-indicator\"'"}
+{"t": 1795408406, "art": "kandidat", "ticket": "T5", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.js kommt 0-mal vor (muss genau 1x): 'async function load(){const r=await api(\"status\");S=r;if(EX; SEARCH in ui.html kommt 0-mal vor (muss genau 1x): '<header>\\n    <img src=\"/icon.png\" al"}
+{"t": 1795408527, "art": "kandidat", "ticket": "T6", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": false, "score": null, "ref": 7.0, "info": "Patch: zu viele Bloecke (45)"}
+{"t": 1795408648, "art": "kandidat", "ticket": "T6", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "ok": true, "score": 7.333333333333333, "ref": 7.0, "info": "ok"}
+{"t": 1795408928, "art": "llm_fehler", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "fehler": "TimeoutError"}
+{"t": 1795408931, "art": "sieger", "ticket": "T6", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "score": 7.333333333333333, "ref": 7.0, "kandidaten": 1}
+{"t": 1795409134, "art": "tester", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "boes": 10, "gut": 10, "luecken": 8, "fehlalarme": 0}
+{"t": 1795409272, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "grund": "Die Punktzahl für 'zerstoerer' wurde von 99 auf 99 mit hard=False gesenkt, was die Regel für harmlosen Code wie 'open(...).write(...)' wichtig ist. Allerdings wurde die Punktzahl für 'pipe_sh' von 3 a"}
+{"t": 1795409412, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "grund": "Patch deaktiviert kritische Regel 'zerstoerer' (rm -rf /, Forkbombs) und senkt Score bei 'pipe_sh' (curl|bash) - beides harte Lockerungen ohne Bezug auf die Luecken (obfuskierte exec/os.system/Persist"}
+{"t": 1795409412, "art": "runde_code", "kind": "scanner", "ok": false, "grund": "nach 2 Versuchen verworfen"}
+{"t": 1795409412, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795409584, "art": "kandidat", "ticket": "P1", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": true, "score": 7.0, "ref": 7.33, "info": "ok"}
+{"t": 1795409795, "art": "kandidat", "ticket": "P1", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "ok": true, "score": 7.0, "ref": 7.33, "info": "ok"}
+{"t": 1795410147, "art": "kandidat", "ticket": "P1", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": true, "score": 7.333333333333333, "ref": 7.33, "info": "ok"}
+{"t": 1795410147, "art": "sieger", "ticket": "P1", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "score": 7.333333333333333, "ref": 7.33, "kandidaten": 3}
+{"t": 1795410400, "art": "kandidat", "ticket": "P2", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": false, "score": null, "ref": 7.0, "info": "Patch: zu viele Bloecke (49)"}
+{"t": 1795410486, "art": "kandidat", "ticket": "P2", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "ok": true, "score": 7.0, "ref": 7.0, "info": "ok"}
+{"t": 1795410500, "art": "kandidat", "ticket": "P2", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "score": null, "ref": 7.0, "info": "Patch: SEARCH in ui.html kommt 0-mal vor (muss genau 1x): '<header>\\n  <img src=\"/icon.png\" alt=\"Omnipool\">\\n  <h1>Omn"}
+{"t": 1795410500, "art": "sieger", "ticket": "P2", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "score": 7.0, "ref": 7.0, "kandidaten": 1}
+{"t": 1795410552, "art": "intelligenz", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "gegenleser": "nvidia/minimaxai/minimax-m3.1-flash", "neu": 16, "einig": 12, "fehlklassifiziert": 7}
+{"t": 1795410574, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "grund": "Der Patch behebt nicht alle gelisteten Fehlklassifizierungen: Fall 2 ('Vergleiche ...', erwartet 'reason') wird durch die neue Regel 'Extraction/summarization' nicht erfasst und fällt auf die deutsche"}
+{"t": 1795410589, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "grund": "Der Patch fügt eine zu breite Regex für 'reason' (Extraktion/Zusammenfassung) *vor* den Checks für 'de' und 'tool' ein. Dadurch werden valide Fälle für 'long' (PDF-Analyse, Log-Extraktion), 'de' (Über"}
+{"t": 1795410589, "art": "runde_code", "kind": "klass", "ok": false, "grund": "nach 2 Versuchen verworfen"}
+{"t": 1795410589, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795410604, "art": "inbox_ticket", "ticket": "S10603"}
+{"t": 1795410747, "art": "kandidat", "ticket": "S10603", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "ok": true, "score": 7.333333333333333, "ref": 7.33, "info": "ok"}
+{"t": 1795410750, "art": "kandidat", "ticket": "S10603", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": false, "score": null, "ref": 7.33, "info": "Patch: SEARCH in texte.json kommt 0-mal vor (muss genau 1x): '\"leer_keys\": \"No keys found. [Scan for free keys] [Add manu"}
+{"t": 1795410763, "art": "kandidat", "ticket": "S10603", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "score": null, "ref": 7.33, "info": "Patch: SEARCH in texte.json kommt 0-mal vor (muss genau 1x): '{\\n \"keys\": \"Each key unlocks access to a provider. We veri"}
+{"t": 1795410763, "art": "sieger", "ticket": "S10603", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "score": 7.333333333333333, "ref": 7.33, "kandidaten": 1}
+{"t": 1795410834, "art": "kandidat", "ticket": "P3", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "score": null, "ref": 7.0, "info": "Patch: SEARCH in ui.js kommt 0-mal vor (muss genau 1x): '\"API-OMNI-BRAIN does not write to third-party configuration"}
+{"t": 1795410921, "art": "kandidat", "ticket": "P3", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "ok": false, "score": null, "ref": 7.0, "info": "Patch: SEARCH in ui.css kommt 2-mal vor (muss genau 1x): 'header{display:flex;align-items:center;gap:var(--space-4);p"}
+{"t": 1795410988, "art": "kandidat", "ticket": "P3", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": false, "score": null, "ref": 7.0, "info": "Patch: SEARCH in ui.css kommt 0-mal vor (muss genau 1x): 'header{display:flex;align-items:center;gap:var(--space-4);p"}
+{"t": 1795411123, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "grund": "Neue Regel 'persist_exec' mit Score 6 und hard=False erlaubt verschachtelte/Ausführungsaufrufe, was zu locker ist und zu vielen False Positives erzeugen kann; zudem 'hidden_exec' mit Score 5 und hard="}
+{"t": 1795411165, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": true, "grund": "Patch ergaenzt 7 neue Regeln (os_exec, exec_eval, persist_exec, hidden_exec, exec_os_call, os_system_exec, persist_write) gezielt fuer obfuskierte exec/os.system/Persistenz-Luecken. Bestehende Regeln "}
+{"t": 1795411172, "art": "runde_code", "kind": "inbox", "ok": true, "bauer": "nvidia/poolside/laguna-xs-2.1", "pruefer": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "detail": "Tests gruen, Daemon neu gestartet", "dateien": ["scan.py"]}
+{"t": 1795411183, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795411534, "art": "kandidat", "ticket": "P4", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": true, "score": 7.333333333333333, "ref": 6.67, "info": "ok"}
+{"t": 1795411611, "art": "kandidat", "ticket": "P4", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": false, "score": null, "ref": 6.67, "info": "Patch: keine SEARCH/REPLACE-Bloecke gefunden"}
+{"t": 1795411618, "art": "kandidat", "ticket": "P4", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.html kommt 0-mal vor (muss genau 1x): '<header>\\n    <img src=\"/icon.png\" alt=\"Omnipool\">\\n    <h1"}
+{"t": 1795411618, "art": "sieger", "ticket": "P4", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "score": 7.333333333333333, "ref": 6.67, "kandidaten": 1}
+{"t": 1795411934, "art": "kandidat", "ticket": "P5", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": false, "score": null, "ref": 7.33, "info": "Patch: SEARCH in ui.css kommt 0-mal vor (muss genau 1x): '.sp{flex:1}\\nheader .subtitle.app-slogan{margin-left:4px;fo"}
+{"t": 1795411966, "art": "kandidat", "ticket": "P5", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": false, "score": null, "ref": 7.33, "info": "Patch: SEARCH in ui.html kommt 0-mal vor (muss genau 1x): '<div class=\"subtitle app-slogan\">API-OMNI-BRAIN</div>'"}
+{"t": 1795411975, "art": "kandidat", "ticket": "P5", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": false, "score": null, "ref": 7.33, "info": "Patch: SEARCH in ui.html kommt 0-mal vor (muss genau 1x): '<header>\\n  <img src=\"/icon.png\" alt=\"Omnipool\">\\n  <div cl"}
+{"t": 1795412077, "art": "zerleger", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "anfragen": 42, "probleme": 0, "lebt": true}
+{"t": 1795412208, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "grund": "Der Patch korrigiert einen Fehler in der Fehlerbehandlung: Unerwartete Exceptions werden statt mit 500 (interner Serverfehler) nun mit 400 (schlechter Request) behandelt. Dies ist jedoch keine sichere"}
+{"t": 1795412208, "art": "runde_code", "kind": "fuzz", "ok": false, "grund": "nach 2 Versuchen verworfen"}
+{"t": 1795412208, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795412569, "art": "kandidat", "ticket": "P6", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": true, "score": 7.333333333333333, "ref": 7.0, "info": "ok"}
+{"t": 1795412587, "art": "kandidat", "ticket": "P6", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": false, "score": null, "ref": 7.0, "info": "Patch: keine SEARCH/REPLACE-Bloecke gefunden"}
+{"t": 1795412724, "art": "kandidat", "ticket": "P6", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": true, "score": 7.333333333333333, "ref": 7.0, "info": "ok"}
+{"t": 1795412724, "art": "sieger", "ticket": "P6", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "score": 7.333333333333333, "ref": 7.0, "kandidaten": 2}
+{"t": 1795413070, "art": "llm_fehler", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "fehler": "TimeoutError"}
+{"t": 1795413163, "art": "kandidat", "ticket": "P7", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": false, "score": null, "ref": 7.33, "info": "Patch: SEARCH in ui.html kommt 0-mal vor (muss genau 1x): 'app-slogan'"}
+{"t": 1795413263, "art": "kandidat", "ticket": "P7", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": true, "score": 7.0, "ref": 7.33, "info": "ok"}
+{"t": 1795413263, "art": "sieger", "ticket": "P7", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "score": 7.0, "ref": 7.33, "kandidaten": 1}
+{"t": 1795413349, "art": "tester", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "boes": 10, "gut": 10, "luecken": 9, "fehlalarme": 2}
+{"t": 1795413417, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "grund": "Die Patch-Änderungen schwächen die Sicherheitsregeln, z.B. durch Hinzufügen von '|' als False-Flag für remote_exec und .system in os_exec, was Fehlalarme verursacht."}
+{"t": 1795413417, "art": "runde_code", "kind": "scanner", "ok": false, "grund": "nach 2 Versuchen verworfen"}
+{"t": 1795413417, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795413604, "art": "kandidat", "ticket": "P8", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": true, "score": 7.0, "ref": 6.67, "info": "ok"}
+{"t": 1795413612, "art": "kandidat", "ticket": "P8", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.css kommt 2-mal vor (muss genau 1x): 'header{display:flex;align-items:center;gap:var(--space-4);p"}
+{"t": 1795413615, "art": "kandidat", "ticket": "P8", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.css kommt 0-mal vor (muss genau 1x): 'header .subtitle{font-size:var(--fs-xs);color:var(--ink-mut"}
+{"t": 1795413615, "art": "sieger", "ticket": "P8", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "score": 7.0, "ref": 6.67, "kandidaten": 1}
+{"t": 1795413836, "art": "kandidat", "ticket": "P9", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": true, "score": 7.0, "ref": 7.0, "info": "ok"}
+{"t": 1795414035, "art": "kandidat", "ticket": "P9", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": true, "score": 7.0, "ref": 7.0, "info": "ok"}
+{"t": 1795414180, "art": "kandidat", "ticket": "P9", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": false, "score": null, "ref": 7.0, "info": "Syntax ui.js: /tmp/op-cand.js:23\nh(\"div\",{class:\"card\",style:\"margin-top:var(--space-5)\"},h(\"h3\",{},\"Get started\"),h(\"div\",{class:\"di\"},S.keys.length?\"Connected to \"+S"}
+{"t": 1795414180, "art": "sieger", "ticket": "P9", "modell": "nvidia/poolside/laguna-xs-2.1", "score": 7.0, "ref": 7.0, "kandidaten": 2}
+{"t": 1795414288, "art": "intelligenz", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "gegenleser": "nvidia/minimaxai/minimax-m3.1-flash", "neu": 16, "einig": 14, "fehlklassifiziert": 7}
+{"t": 1795414336, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "grund": "Der Patch hartkodiert Schlüsselwörter der Testfälle (Overfitting), bricht bestehende Logik (Klasse 'reason' wird zu 'long' bei Fall 1 & 6), und die riesige Regex ist wartungsfeindlich sowie potenziell"}
+{"t": 1795414351, "art": "runde_code", "kind": "klass", "ok": false, "grund": "nach 2 Versuchen verworfen"}
+{"t": 1795414351, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795414577, "art": "kandidat", "ticket": "P10", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "ok": true, "score": 6.666666666666667, "ref": 6.67, "info": "ok"}
+{"t": 1795414713, "art": "kandidat", "ticket": "P10", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": true, "score": 6.333333333333333, "ref": 6.67, "info": "ok"}
+{"t": 1795414841, "art": "kandidat", "ticket": "P10", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.html kommt 0-mal vor (muss genau 1x): '<header>\\n    <img src=\"/icon.png\" alt=\"Omnipool\">\\n    <h1"}
+{"t": 1795414841, "art": "sieger", "ticket": "P10", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "score": 6.666666666666667, "ref": 6.67, "kandidaten": 2}
+{"t": 1795415030, "art": "kandidat", "ticket": "P11", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": false, "score": 6.333333333333333, "ref": 7.0, "info": "Score 6.3 < 6.5"}
+{"t": 1795415154, "art": "kandidat", "ticket": "P11", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": false, "score": null, "ref": 7.0, "info": "Patch: SEARCH in ui.css kommt 0-mal vor (muss genau 1x): 'header .subtitle{font-size:var(--fs-sm);color:var(--ink-dim"}
+{"t": 1795415331, "art": "judge_fehler", "tab": 3, "fehler": "TypeError"}
+{"t": 1795415331, "art": "kandidat", "ticket": "P11", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "ok": true, "score": 7.0, "ref": 7.0, "info": "ok"}
+{"t": 1795415331, "art": "sieger", "ticket": "P11", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "score": 7.0, "ref": 7.0, "kandidaten": 1}
+{"t": 1795415419, "art": "runde_code", "kind": "inbox", "ok": false, "grund": "nach 2 Versuchen verworfen"}
+{"t": 1795415419, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795415666, "art": "kandidat", "ticket": "P12", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "ok": true, "score": 6.666666666666667, "ref": 6.67, "info": "ok"}
+{"t": 1795415743, "art": "kandidat", "ticket": "P12", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.css kommt 0-mal vor (muss genau 1x): 'header .subtitle{font-size:var(--fs-sm);color:var(--ink-dim; SEARCH in ui.js kommt 0-mal vor (muss genau 1x): 'const $=(s,r=document)=>r.querySelecto"}
+{"t": 1795416078, "art": "kandidat", "ticket": "P12", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": true, "score": 7.0, "ref": 6.67, "info": "ok"}
+{"t": 1795416078, "art": "sieger", "ticket": "P12", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "score": 7.0, "ref": 6.67, "kandidaten": 2}
+{"t": 1795416176, "art": "kandidat", "ticket": "P13", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "score": null, "ref": 7.0, "info": "Patch: SEARCH in ui.css kommt 0-mal vor (muss genau 1x): 'header .subtitle{font-size:var(--fs-sm);color:var(--ink-dim"}
+{"t": 1795416279, "art": "kandidat", "ticket": "P13", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": true, "score": 7.333333333333333, "ref": 7.0, "info": "ok"}
+{"t": 1795416365, "art": "kandidat", "ticket": "P13", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "ok": false, "score": null, "ref": 7.0, "info": "Patch: SEARCH in ui.css kommt 0-mal vor (muss genau 1x): 'header .title{font-size:var(--fs-lg);font-weight:700;letter"}
+{"t": 1795416365, "art": "sieger", "ticket": "P13", "modell": "nvidia/poolside/laguna-xs-2.1", "score": 7.333333333333333, "ref": 7.0, "kandidaten": 1}
+{"t": 1795416446, "art": "runde_code", "art2": "fuzz", "ok": false, "grund": "kein Befund-Format"}
+{"t": 1795416446, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795416605, "art": "kandidat", "ticket": "P14", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "ok": true, "score": 6.666666666666667, "ref": 6.67, "info": "ok"}
+{"t": 1795416687, "art": "kandidat", "ticket": "P14", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.js kommt 0-mal vor (muss genau 1x): '\"API-OMNI-BRAIN does not write to third-party configuration"}
+{"t": 1795416794, "art": "kandidat", "ticket": "P14", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": true, "score": 6.666666666666667, "ref": 6.67, "info": "ok"}
+{"t": 1795416794, "art": "sieger", "ticket": "P14", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "score": 6.666666666666667, "ref": 6.67, "kandidaten": 2}
+{"t": 1795417025, "art": "kandidat", "ticket": "P15", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "ok": true, "score": 7.0, "ref": 6.67, "info": "ok"}
+{"t": 1795417098, "art": "llm_fehler", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "fehler": "TimeoutError"}
+{"t": 1795417122, "art": "kandidat", "ticket": "P15", "modell": "nvidia/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", "ok": true, "score": 6.666666666666667, "ref": 6.67, "info": "ok"}
+{"t": 1795417145, "art": "kandidat", "ticket": "P15", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.css kommt 0-mal vor (muss genau 1x): 'header .subtitle{font-size:var(--fs-sm);color:var(--ink-dim"}
+{"t": 1795417145, "art": "sieger", "ticket": "P15", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "score": 7.0, "ref": 6.67, "kandidaten": 2}
+{"t": 1795417267, "art": "tester", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "boes": 10, "gut": 10, "luecken": 8, "fehlalarme": 1}
+{"t": 1795417343, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "grund": "Regex-Praezidenzfehler in 'requests_post' und 'sqlite_insert': Alternation '|' bindet schwächer als Konkatenation, sodass 'httpbin.org', 'requestbin', 'INSERT INTO' etc. global ohne Kontext matchen (h"}
+{"t": 1795417458, "art": "pruefer", "modell": "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "ok": false, "grund": "Regel 'persistenz' erweitert auf 'crontab -l' und 'crontab -e' (nur Anzeigen/Bearbeiten), was legitime Admin-Befehle als Persistenz klassifiziert (False Positives / Logikfehler)."}
+{"t": 1795417458, "art": "runde_code", "kind": "scanner", "ok": false, "grund": "nach 2 Versuchen verworfen"}
+{"t": 1795417458, "art": "fehler", "fehler": "TypeError: Object of type Daemon is not JSON serializable"}
+{"t": 1795417683, "art": "kandidat", "ticket": "P16", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": true, "score": 6.666666666666667, "ref": 6.67, "info": "ok"}
+{"t": 1795417694, "art": "kandidat", "ticket": "P16", "modell": "nvidia/poolside/laguna-xs-2.1", "ok": false, "score": null, "ref": 6.67, "info": "Patch: SEARCH in ui.css kommt 0-mal vor (muss genau 1x): 'header .subtitle.app-slogan::before{content:\"Omnipool: Loca"}
+{"t": 1795417894, "art": "kandidat", "ticket": "P16", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "ok": true, "score": 6.666666666666667, "ref": 6.67, "info": "ok"}
+{"t": 1795417894, "art": "sieger", "ticket": "P16", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "score": 6.666666666666667, "ref": 6.67, "kandidaten": 2}
+{"t": 1795418104, "art": "kandidat", "ticket": "P17", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "ok": true, "score": 7.333333333333333, "ref": 6.67, "info": "ok"}
+{"t": 1795418229, "art": "kandidat", "ticket": "P17", "modell": "nvidia/nvidia/nemotron-3.5-lightning-30b-a3b", "ok": true, "score": 6.666666666666667, "ref": 6.67, "info": "ok"}
+{"t": 1795418330, "art": "kandidat", "ticket": "P17", "modell": "nvidia/minimaxai/minimax-m3.1-flash", "ok": true, "score": 7.0, "ref": 6.67, "info": "ok"}
+{"t": 1795418330, "art": "sieger", "ticket": "P17", "modell": "nvidia/nvidia/nemotron-3.5-bolt-e4b", "score": 7.333333333333333, "ref": 6.67, "kandidaten": 3}
+{"t": 1795418479, "art": "ende", "stand": {"design": 24, "design_ok": 19, "code": 11, "code_ok": 1}, "final": 6.5}

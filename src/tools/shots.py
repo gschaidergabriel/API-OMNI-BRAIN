@@ -22,6 +22,9 @@ def grab(base, tabs, hook=None):
     c = cdp.Chrome(1280, 860)
     try:
         c.goto(base + "/", 3.0)
+        vis = c.js("[...document.querySelectorAll('nav button')].filter(b=>b.offsetHeight>0).length")
+        if not vis or vis < 9:
+            raise SystemExit("structural check failed: only %s visible nav buttons (expected 9)" % vis)
         for name, idx, _src in tabs:
             c.js("document.querySelectorAll('nav button')[%d].click()" % idx)
             time.sleep(1.6)

@@ -113,6 +113,7 @@ Read `install.sh` first if you do not want to pipe a script into a shell; verify
 - `docs/ORIGIN.md`
 - `docs/WHY.md`
 - `docs/TESTING.md`
+- `docs/TEAM-RUN.md` (what the free-model teams did and what they broke)
 - `research/`
 
 ## Requirements and known limits

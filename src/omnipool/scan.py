@@ -22,6 +22,8 @@ REGELN = [
     ("dl_chmod", r"(curl|wget|urlretrieve)[^\n]{0,300}(?:\n[^\n]{0,300})?chmod\s+\+x", 4, False, 'loads file and makes it executable'),
     ("psenc", r"powershell[^\n]{0,300}\s-e(nc(odedcommand)?)?\s+[A-Za-z0-9+/=]{20,}|FromBase64String|Invoke-Expression|\bIEX\s*\(", 5, False, 'PowerShell obfuscation'),
     ("persistenz", r"crontab\s+-|/etc/cron|authorized_keys|LaunchAgents|schtasks\s+/create|reg\s+add\s+HKCU\\[^\n]{0,300}\\Run", 3, False, 'establishes persistence'),
+    ("os_exec", r"os\.system\s*\(\s*[\"']|os\.popen\s*\(\s*[\"']|subprocess\.(call|run|Popen)\s*\(\s*[\"']", 5, False, 'OS command execution via string'),
+    ("exec_eval", r"exec\s*\(\s*[\"']|eval\s*\(\s*[\"']", 5, False, 'exec/eval with string argument'),
     ("keylogger", r"pynput|GetAsyncKeyState|SetWindowsHookEx|keylogger", 4, False, 'Keystroke logging'),
     ("blob", r"[A-Za-z0-9+/]{500,}={0,2}", 3, False, 'Huge encoded block (obfuscation)'),
     ("hexblob", r"(\\x[0-9a-fA-F]{2}){40,}", 4, False, 'Hex obfuscation'),
