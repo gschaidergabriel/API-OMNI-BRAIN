@@ -70,6 +70,7 @@ def main():
     for f in ("build.sh", "build_pyz.sh", "install.sh", "uninstall.sh", "launch.py"):
         cp(os.path.join(ROOT, f), os.path.join(src, f))
     cp(os.path.join(ROOT, "docs_src", "facts.md"), os.path.join(REPO, "docs", "FACTS.md"))
+    cp(os.path.join(ROOT, "docs_src", "modelcard.md"), os.path.join(REPO, "docs", "MODELCARD.md"))
     rs = os.path.join(REPO, "research")
     for f in ("iter/log.jsonl", "iter/REPORT.md", "team/log.jsonl", "team/AUFSEHER.md", "team/REPORT.md", "team/IDEEN.md", "team/anglify_map.json", "team/models3.json"):
         if os.path.exists(os.path.join(ROOT, f)):
