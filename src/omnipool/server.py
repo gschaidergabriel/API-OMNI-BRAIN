@@ -18,7 +18,7 @@ from . import anbieter as AN
 from . import assistent, core, gehirn, integrieren, quarantaene, radar, sicher
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-VERSION = "1.3.0"
+VERSION = "1.4.0"
 STATE = {"lauf": False, "ts": 0.0, "fehler": "", "start": time.time()}
 LABEL = {"claude_code": "Claude Code", "hermes": "Hermes Agent", "grokbot": "Grokbot", "crush": "Crush", "aider": "Aider", "openai": 'Other OpenAI-compatible applications'}
 
@@ -360,6 +360,9 @@ class H(BaseHTTPRequestHandler):
         c, s = core.db(), core.settings()
         if p == "ping":
             return self.senden(200, {"ok": True, "version": VERSION})
+        if p == "needles":
+            from . import schatten
+            return self.senden(200, schatten.stand())
         if p == "status":
             rows = c.execute("SELECT slot, provider, hash8, status, n_models, checked FROM key ORDER BY provider, slot").fetchall()
             hs = {a: {**v, "label": LABEL.get(a, a), "key": harness_key(a)} for a, v in s["harness"].items()}

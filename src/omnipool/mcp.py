@@ -85,7 +85,7 @@ def serve():
         if i is None:                                           # notifications need no answer
             continue
         if m == "initialize":
-            reply(i, {"protocolVersion": PROTO, "capabilities": {"tools": {}}, "serverInfo": {"name": "api-omni-brain", "version": "1.3.0"}})
+            reply(i, {"protocolVersion": PROTO, "capabilities": {"tools": {}}, "serverInfo": {"name": "api-omni-brain", "version": "1.4.0"}})
         elif m == "tools/list":
             reply(i, {"tools": TOOLS})
         elif m == "tools/call":

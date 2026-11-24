@@ -43,7 +43,21 @@ def _text(c):
 
 
 def klassifiziere(body, standard="auto"):
-    """-> (class, reason). An explicit model name wins, then the app's preset, then tools, then what the last user message looks like."""
+    """-> (class, reason). Explicit choices, tools and very long contexts are decided by the rules; for the content-based classes the trained router needle decides (schatten.py, setting needle_router),
+    the rules stay as fallback (no numpy / no weights / error / machine under load) and as the only decider in shadow/off mode."""
+    k, why = _regel(body, standard)
+    if why in ("Code signals", "JSON signals", "German text", "Default"):
+        from . import schatten
+        text = next((_text(m.get("content")) for m in reversed(body.get("messages") or []) if m.get("role") == "user"), "")
+        n = schatten.entscheide(text, k)
+        if n:
+            return n, "Trained router"
+        schatten.beobachte(text, k)
+    return k, why
+
+
+def _regel(body, standard="auto"):
+    """An explicit model name wins, then the app's preset, then tools, then what the last user message looks like."""
     k = CLASS_NAMES.get(str(body.get("model", "")))
     if k and k != "auto":
         return k, 'Model name'

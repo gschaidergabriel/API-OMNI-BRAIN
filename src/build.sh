@@ -9,5 +9,5 @@ PYTHONNOUSERSITE=1 PYTHONPATH="$HOME/omnipool-build/shim" lowprio -m 3G -c 200 -
   --add-data "$PWD/omnipool/ui.html:omnipool" --add-data "$PWD/omnipool/ui.css:omnipool" --add-data "$PWD/omnipool/ui.js:omnipool" --add-data "$PWD/omnipool/ui_radar.js:omnipool" --add-data "$PWD/omnipool/ui_manual.js:omnipool" --add-data "$PWD/omnipool/manual.json:omnipool" --add-data "$PWD/omnipool/manual:omnipool/manual" \
   --add-data "$PWD/omnipool/assets:omnipool/assets" --add-data "$PWD/omnipool/texte.json:omnipool" --add-data "$PWD/omnipool/radar_quellen.json:omnipool" --add-data "$PWD/omnipool/icon.png:omnipool" \
   --add-data "$PWD/omnipool/vendor/providers_free.json:omnipool/vendor" --add-data "$PWD/omnipool/vendor/providers_free.json:." \
-  --exclude-module PySide6 --exclude-module tkinter --exclude-module numpy --exclude-module PIL launch.py
+  --exclude-module PySide6 --exclude-module tkinter --exclude-module PIL launch.py
 sha256sum dist/API-OMNI-BRAIN | tee dist/API-OMNI-BRAIN.sha256

@@ -81,6 +81,8 @@ def installieren(service=False):
         subprocess.run(["systemctl", "--user", "daemon-reload"])
         subprocess.run(["systemctl", "--user", "enable", "api-omni-brain.service"])
         subprocess.run(["systemctl", "--user", "restart", "api-omni-brain.service"])      # also picks up an upgraded binary
+    elif shutil.which("systemctl") and subprocess.run(["systemctl", "--user", "is-active", "--quiet", "api-omni-brain.service"]).returncode == 0:
+        subprocess.run(["systemctl", "--user", "restart", "api-omni-brain.service"])      # an upgrade over a running service must take effect without --service
     print('installed: %s, menu entry, desktop icon%s' % (exe, ', service' if service else ""))
     return 0
 
@@ -122,10 +124,16 @@ def main():
     if a[:1] == ["--guide"]:                           # the integration guide for an AI agent, works without the service running
         from . import integrieren
         b = "http://127.0.0.1:%d" % port
-        print(integrieren.guide(b, "1.3.0", integrieren.snippets(b)))
+        print(integrieren.guide(b, "1.4.0", integrieren.snippets(b)))
         return
+    if a[:1] == ["--needles-install"]:                 # optional trained router needle, checksummed download from the GitHub release
+        from . import schatten
+        return sys.exit(schatten.installieren())
+    if a[:1] == ["--needles-test"]:                    # load the installed router needle and classify a few samples (label + milliseconds)
+        from . import schatten
+        return sys.exit(schatten.selbsttest())
     if a[:1] == ["--version"]:
-        print("API-OMNI-BRAIN 1.3.0")
+        print("API-OMNI-BRAIN 1.4.0")
         return
     if a[:1] == ["--install"]:
         return sys.exit(installieren("--service" in a))
