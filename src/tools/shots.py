@@ -15,7 +15,7 @@ import demo  # noqa: E402
 
 OUT = os.path.join(it.ROOT, "omnipool", "manual")
 TABS = [("overview", 0, "demo"), ("keys", 1, "demo"), ("models", 2, "demo"), ("connect", 3, "demo"), ("settings", 4, "demo"), ("events", 5, "demo"),
-        ("radar", 6, "real"), ("search", 7, "real"), ("usecases", 8, "real")]
+        ("assistant", 6, "demo"), ("radar", 7, "real"), ("search", 8, "real"), ("usecases", 9, "real")]
 
 
 def grab(base, tabs, hook=None):
@@ -23,8 +23,8 @@ def grab(base, tabs, hook=None):
     try:
         c.goto(base + "/", 3.0)
         vis = c.js("[...document.querySelectorAll('nav button')].filter(b=>b.offsetHeight>0).length")
-        if not vis or vis < 9:
-            raise SystemExit("structural check failed: only %s visible nav buttons (expected 9)" % vis)
+        if not vis or vis < 10:
+            raise SystemExit("structural check failed: only %s visible nav buttons (expected 10)" % vis)
         for name, idx, _src in tabs:
             c.js("document.querySelectorAll('nav button')[%d].click()" % idx)
             time.sleep(1.6)

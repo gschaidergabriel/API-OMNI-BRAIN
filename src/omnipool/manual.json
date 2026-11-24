@@ -139,6 +139,30 @@
    "image": "events.png"
   },
   {
+   "id": "assistant",
+   "title": "Assistant",
+   "summary": "A chat inside the app, in German or English, to ask questions about your keys, models and applications and to give small tasks. It answers with a free model from your own pool (weaker than a frontier model, and it says so) and gets only a short live summary, never a key.",
+   "steps": [
+    "Open the Assistant tab or press Ask in the header",
+    "Type a question or a task, for example: 'What is the best model for code?', 'Is there a free OCR API?', 'Scan now', 'Zeig mir die Modelle fuer Bilder'",
+    "Read the answer; the model that wrote it is shown under it",
+    "If the assistant proposes an action (scan, emergency stop, open a tab), press the button it shows"
+   ],
+   "can": [
+    "Answer in German or English about the live state: best model per class, models per capability, applications, keys (counts only)",
+    "Look up free APIs in the local index (Radar data)",
+    "Propose a scan, the emergency stop (and undoing it) or opening a tab; you press the button, nothing changes without your click",
+    "Refuse a message that contains something that looks like an API key, before it reaches any model"
+   ],
+   "cannot": [
+    "It cannot add, show or change keys; use Keys & Providers",
+    "It does not change settings, applications or data on its own: state changes are only proposals",
+    "It can be wrong: it is a free model and sees only a summary; check important answers in the matching tab",
+    "Nothing is stored: the conversation lives in the open page and is gone when you reload"
+   ],
+   "image": "assistant.png"
+  },
+  {
    "id": "radar",
    "title": "Radar",
    "summary": "Aggregates ~110 news feeds and 10 Hacker News searches every 2 hours, indexes ~2600 free-API entries with full-text search, re-checks models twice weekly, and matches use cases. Quarantined files are scanned, overwritten with zeros, and deleted with a popup; there is no release button.",

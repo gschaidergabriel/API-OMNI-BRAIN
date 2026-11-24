@@ -15,7 +15,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from . import anbieter as AN
-from . import core, gehirn, integrieren, quarantaene, radar, sicher
+from . import assistent, core, gehirn, integrieren, quarantaene, radar, sicher
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 VERSION = "1.3.0"
@@ -383,6 +383,11 @@ class H(BaseHTTPRequestHandler):
         if meth != "POST":
             return self.senden(404, {"error": "unbekannt"})
         d = self.json_body()
+        if p == "chat":
+            def frage(body, klasse):
+                r = beschaffe(c, waehle_kandidaten(c, {"model": "omnipool-auto"}, klasse), body, False, "assistant", klasse)
+                return (None, r[1]) if r[0] is None else (r[0]["choices"][0]["message"].get("content") or "", "%s/%s" % (r[1], r[2]))
+            return self.senden(200, assistent.chat(c, d.get("messages"), frage))
         if p == "lauf":
             return self.senden(200, {"gestartet": starte_lauf(int(d.get("max", 0)) or None)})
         if p == "token/check":

@@ -127,7 +127,11 @@ The agent reads the guide, registers itself (`POST /v1/register`, nothing is act
 `GET /v1/offer` tells the agent what the pool is good for (routine sub-tasks) and which model leads each class, so it can ask you whether it may hand such work over.
 For MCP harnesses: `api-omni-brain --mcp` (tools `pool_ask`, `pool_models`, `pool_offer`). Offline: `api-omni-brain --guide` prints the same guide. Machine-readable: `/.well-known/api-omni-brain.json`.
 
-Tested: registration, approval, denial and use against a fake provider (63 unit tests, 6 of them cover this flow) and the MCP server through real JSON-RPC; Claude Code's own health check reports it as connected. Not tested live: full conversations with Claude Code, Hermes and Grokbot.
+Tested: registration, approval, denial and use against a fake provider (73 unit tests, 6 of them cover this flow and 9 the assistant) and the MCP server through real JSON-RPC; Claude Code's own health check reports it as connected. Not tested live: full conversations with Claude Code, Hermes and Grokbot.
+
+## Assistant (chat in the app)
+
+The **Assistant** tab (or the **Ask** button) is a chat in German or English. Ask about your keys, models and applications, or give a task. It answers with a free model from your own pool and sees only a short live summary (never a key; a message that looks like a key is refused before it reaches any model). Read-only questions (best model per class, models per capability, free APIs from the local index) are answered from the local data. Anything that changes state (scan now, emergency stop, open a tab) is only **proposed**: you press the button. Nothing is stored. It is a free model, weaker than a frontier model.
 
 ## Requirements and known limits
 

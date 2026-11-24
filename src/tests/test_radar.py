@@ -94,6 +94,15 @@ def test_usecase_rules_without_key(c, monkeypatch):
     assert "ocr" in r["faehigkeiten"] and r["eingeordnet_von"] == "Rules" and r["empfehlungen"][0]["name"] == "OCR.space" and "warum" in r["empfehlungen"][0]
 
 
+def test_usecase_reads_english_judge_answer(c, monkeypatch):
+    """the prompt asks for English keys; an answer in them must win over the rule fallback (it was silently ignored before)"""
+    monkeypatch.setattr(core, "tokens_of", lambda p: ["k"])
+    monkeypatch.setattr(core, "chat", lambda *a, **k: (200, '{"capabilities":["audio"],"search_terms":["speech synthesis"],"summary":"Sprachausgabe"}'))
+    monkeypatch.setattr(radar, "urteile", lambda cc, urls, zeit=9: {u: {"urteil": "unauffaellig", "gruende": []} for u in urls})
+    r = radar.usecase(c, "Ich will etwas vorlesen lassen")
+    assert r["faehigkeiten"] == ["audio"] and r["eingeordnet_von"] != "Rules" and r["zusammenfassung"] == "Sprachausgabe" and "speech" in r["suchbegriffe"]
+
+
 def test_usecase_drops_dangerous(c, monkeypatch):
     monkeypatch.setattr(core, "tokens_of", lambda p: [])
     now = time.time()

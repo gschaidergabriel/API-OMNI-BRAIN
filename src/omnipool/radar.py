@@ -318,10 +318,10 @@ def usecase(c, text):
         try:
             raw = core.chat(core.JUDGE[0], core.JUDGE[1], prompt, tk[0], 500, 60)[1]
             d = json.loads(re.search(r"\{.*\}", raw, re.S).group(0))
-            fc = [x for x in d.get("faehigkeiten", []) if x in FAEHIG][:4]
-            sb = [re.sub(r"[^\w\- ]", "", str(x))[:30] for x in d.get("suchbegriffe", [])][:6]
+            fc = [x for x in (d.get("capabilities") or d.get("faehigkeiten") or []) if x in FAEHIG][:4]          # the prompt asks for English keys; the old German ones stay accepted
+            sb = [re.sub(r"[^\w\- ]", "", str(x))[:30] for x in (d.get("search_terms") or d.get("suchbegriffe") or [])][:6]
             if fc or sb:
-                caps, begriffe, zus, quelle = fc or caps, [w for x in sb for w in woerter(x)] or begriffe, _txt(d.get("zusammenfassung", ""), 200), core.JUDGE[1].split("/")[-1]
+                caps, begriffe, zus, quelle = fc or caps, [w for x in sb for w in woerter(x)] or begriffe, _txt(d.get("summary") or d.get("zusammenfassung", ""), 200), core.JUDGE[1].split("/")[-1]
         except (ValueError, AttributeError, TypeError, KeyError, OSError):
             pass
     schon = []
