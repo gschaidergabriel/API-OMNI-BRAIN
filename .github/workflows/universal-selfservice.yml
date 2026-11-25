@@ -1,0 +1,45 @@
+name: Universal Self-Service and Secret Hygiene
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'docs/SELF-SERVICE.md'
+      - 'README.md'
+      - '.github/workflows/universal-selfservice.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      OMNIPOOL_RADAR: "0"
+      OMNIPOOL_MELDEN: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check repository text for live-looking secrets without printing values
+        run: python3 src/tools/check_secrets.py
+      - name: Compile changed Python modules
+        run: |
+          python3 -B - <<'PY'
+          from pathlib import Path
+          for name in (
+              "src/omnipool/selfservice.py",
+              "src/omnipool/server.py",
+              "src/omnipool/mcp.py",
+              "src/omnipool/integrieren.py",
+              "src/omnipool/__main__.py",
+              "src/tests/test_selfservice.py",
+          ):
+              compile(Path(name).read_bytes(), name, "exec")
+          print("PYTHON_COMPILE_OK")
+          PY
+      - name: Install isolated test runner
+        run: python3 -m pip install --disable-pip-version-check pytest
+      - name: Exercise synthetic-provider API, MCP and local consent tests
+        run: PYTHONPATH=src python3 -m pytest -q src/tests/test_selfservice.py src/tests/test_integrate.py
