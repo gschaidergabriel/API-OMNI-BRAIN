@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     env:
-      OMNIPOOL_RADAR: "0"
       OMNIPOOL_MELDEN: "0"
       PYTHONDONTWRITEBYTECODE: "1"
     steps:
