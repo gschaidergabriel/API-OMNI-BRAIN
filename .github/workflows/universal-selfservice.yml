@@ -44,4 +44,4 @@ jobs:
       - name: Install isolated test runner
         run: python3 -m pip install --disable-pip-version-check pytest
       - name: Exercise synthetic-provider API, MCP and local consent tests
-        run: PYTHONPATH=src python3 -m pytest -q src/tests/test_selfservice.py src/tests/test_integrate.py
+        run: PYTHONPATH=src python3 -m pytest -q src/tests/test_selfservice.py src/tests/test_integrate.py src/tests/test_radar.py src/tests/test_deep.py
