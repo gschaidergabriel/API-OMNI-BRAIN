@@ -118,7 +118,7 @@ def main():
         except (selfservice.Denied, OSError, FileExistsError) as exc:
             print(json.dumps({"status": "BLOCKED",
                               "reason_code": type(exc).__name__}))
-            return 1
+            raise SystemExit(1)
         return 0
     port = core.settings()["port"]
     if a[:1] == ["--daemon"]:
