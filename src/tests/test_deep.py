@@ -18,7 +18,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET = "fake-secret-token-0123456789"
+SECRET = "synthetic-" + ("fixture" * 5)  # deliberately not an API credential
 CALLS = []
 
 
