@@ -53,7 +53,7 @@ def test_mcp_flow(env):
         return json.loads(p.stdout.readline())["result"]
     try:
         assert rpc(1, "initialize")["serverInfo"]["name"] == "api-omni-brain"
-        assert {t["name"] for t in rpc(2, "tools/list")["tools"]} == {"pool_ask", "pool_models", "pool_offer"}
+        assert {t["name"] for t in rpc(2, "tools/list")["tools"]} == {"pool_ask", "pool_models", "pool_offer", "pool_selfservice_capabilities", "pool_selfservice_plan", "pool_selfservice_status", "pool_selfservice_execute"}
         assert "good_for" in rpc(3, "tools/call", {"name": "pool_offer"})["content"][0]["text"]
         t = rpc(4, "tools/call", {"name": "pool_ask", "arguments": {"prompt": "hi"}})["content"][0]["text"]
         assert "approve" in t.lower()                                                                       # pending: the agent is told to ask the user
