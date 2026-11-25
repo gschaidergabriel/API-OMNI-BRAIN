@@ -4,6 +4,8 @@ on:
     paths:
       - 'src/**'
       - 'docs/SELF-SERVICE.md'
+      - 'docs/SECRET-AUDIT.md'
+      - '.gitignore'
       - 'README.md'
       - '.github/workflows/universal-selfservice.yml'
   workflow_dispatch:
