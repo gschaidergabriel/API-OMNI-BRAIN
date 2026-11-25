@@ -15,7 +15,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from . import anbieter as AN
-from . import assistent, core, gehirn, integrieren, quarantaene, radar, sicher
+from . import assistent, core, gehirn, integrieren, quarantaene, radar, sicher, selfservice
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 VERSION = "1.5.0"
@@ -331,6 +331,8 @@ class H(BaseHTTPRequestHandler):
                 return self.senden(200, integrieren.guide(base, VERSION, integrieren.snippets(base)).encode(), "text/markdown; charset=utf-8")
             if meth == "GET" and path == "/.well-known/api-omni-brain.json":
                 return self.senden(200, integrieren.manifest(base, VERSION))
+            if meth == "GET" and path == "/.well-known/omnipool-tools.json":
+                return self.senden(200, selfservice.standard_manifest(base))
             if meth == "GET" and path == "/v1/offer":
                 return self.senden(200, integrieren.offer(core.db(), base, self.angemeldet()))
             if meth == "POST" and path == "/v1/register":
@@ -515,6 +517,30 @@ class H(BaseHTTPRequestHandler):
         hs = core.settings()["harness"][app]
         if not hs.get("an") or core.aus():
             return self.senden(403, {"error": {"type": "permission_error", "message": 'Application not authorized in API-OMNI-BRAIN'}})
+        # Shared HTTP tool contract for any tool-capable AI. The existing
+        # per-application key/Connect-tab approval above is mandatory.
+        # A second, per-plan LOCAL human approval is required before execution.
+        if path.startswith("/v1/selfservice/"):
+            try:
+                if path == "/v1/selfservice/capabilities" and meth == "GET":
+                    return self.senden(200, selfservice.capabilities())
+                if path == "/v1/selfservice/plans" and meth == "POST":
+                    data = self.json_body()
+                    if not isinstance(data, dict) or set(data) != {"actions"}:
+                        raise selfservice.Denied("invalid tool plan")
+                    return self.senden(201, selfservice.propose(app, data["actions"]))
+                match = re.fullmatch(r"/v1/selfservice/plans/([0-9a-f]{24})", path)
+                if match and meth == "GET":
+                    return self.senden(200, selfservice.status(app, match.group(1)))
+                match = re.fullmatch(r"/v1/selfservice/execute/([0-9a-f]{24})", path)
+                if match and meth == "POST":
+                    # No approval route is exposed to an AI or other HTTP client.
+                    return self.senden(200, selfservice.execute(app, match.group(1)))
+                return self.senden(404, {"error": "unknown selfservice operation"})
+            except selfservice.Denied:
+                return self.senden(403, {"error": "selfservice denied: approval or policy"})
+            except FileExistsError:
+                return self.senden(409, {"error": "approval already consumed"})
         c = core.db()
         if path == "/v1/models":
             ids = ["omnipool-auto"] + ["omnipool-" + x for x in core.KLASSEN]
