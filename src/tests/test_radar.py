@@ -225,9 +225,9 @@ def dm():
 def test_gate_blocks_unsafe_provider_before_any_key_moves(dm):
     for base in ("http://api.example.com/v1", "https://bit.ly/x", "https://user:pw@evil.example/v1", "https://free-gpt-unlimited.xyz/v1"):
         for route in ("anbieter/entdecke", "anbieter/speichern"):
-            r = dm.api(route, {"base": base, "token": "sk-test-not-real-0123456789", "profile": {"id": "evil", "base": base, "label": "E"}})
+            r = dm.api(route, {"base": base, "token": ("sk-" + "x" * 32), "profile": {"id": "evil", "base": base, "label": "E"}})
             assert r["gesperrt"] is True and r["sicherheit"]["urteil"] in ("gefaehrlich", "vorsicht"), (base, r)
-    r = dm.api("anbieter/entdecke", {"base": "https://bit.ly/x", "token": "sk-test-not-real-0123456789", "bestaetigt": True})
+    r = dm.api("anbieter/entdecke", {"base": "https://bit.ly/x", "token": ("sk-" + "x" * 32), "bestaetigt": True})
     assert r["gesperrt"] is True                                     # 'gefaehrlich' cannot be confirmed away
     assert dm.api("anbieter/entdecke", {"base": "http://127.0.0.1:1/v1", "token": "x"}).get("gesperrt") is None      # local addresses pass the gate
 
