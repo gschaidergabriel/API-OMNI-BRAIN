@@ -6,7 +6,7 @@ import sys
 import urllib.error
 import urllib.request
 
-from . import core
+from . import core, selfservice
 
 PROTO = "2024-11-05"
 TOOLS = [
@@ -14,6 +14,7 @@ TOOLS = [
      "inputSchema": {"type": "object", "properties": {"prompt": {"type": "string"}, "task_class": {"type": "string", "enum": ["auto", "code", "json", "de", "reason", "long", "tool"]}, "max_tokens": {"type": "integer"}}, "required": ["prompt"]}},
     {"name": "pool_models", "description": "List the models the pool currently offers.", "inputSchema": {"type": "object", "properties": {}}},
     {"name": "pool_offer", "description": "What the pool is good for and which model leads each task class right now.", "inputSchema": {"type": "object", "properties": {}}}]
+TOOLS.extend(selfservice.tool_schemas())
 ST = {"key": None}
 
 
@@ -60,6 +61,24 @@ def tool(name, a):
             return msg
     if name == "pool_models":
         return [m["id"] for m in call("GET", "/v1/models", key=key)[1].get("data", [])]
+    if name == "pool_selfservice_capabilities":
+        c, result = call("GET", "/v1/selfservice/capabilities", key=key)
+        return result if c == 200 else {"status": "BLOCKED", "http_status": c}
+    if name == "pool_selfservice_plan":
+        c, result = call("POST", "/v1/selfservice/plans",
+                         {"actions": a.get("actions", [])}, key=key)
+        return result if c == 201 else {"status": "BLOCKED", "http_status": c}
+    if name == "pool_selfservice_status":
+        c, result = call("GET", "/v1/selfservice/plans/" +
+                         str(a.get("plan_id", "")), key=key)
+        return result if c == 200 else {"status": "BLOCKED", "http_status": c}
+    if name == "pool_selfservice_execute":
+        c, result = call("POST", "/v1/selfservice/execute/" +
+                         str(a.get("plan_id", "")), {}, key=key)
+        return result if c == 200 else {"status": "BLOCKED", "http_status": c}
+    if name != "pool_ask":
+        return {"status": "BLOCKED", "reason": "unknown tool"}
+
     cl = a.get("task_class", "auto")
     body = {"model": "omnipool-auto" if cl == "auto" else "omnipool-" + cl, "max_tokens": int(a.get("max_tokens") or 800), "messages": [{"role": "user", "content": str(a.get("prompt", ""))[:60000]}]}
     c, r = call("POST", "/v1/chat/completions", body, key)

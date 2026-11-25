@@ -108,6 +108,18 @@ def main():
         from . import scan
         return scan.worker(a[1])
     from . import core
+    if a[:1] == ["--selfservice-approve"]:
+        # Local interactive operator action. No remote or MCP approval path.
+        from . import selfservice
+        try:
+            if len(a) != 2:
+                raise selfservice.Denied("exactly one plan ID is required")
+            print(json.dumps(selfservice.approve_local(a[1]), sort_keys=True))
+        except (selfservice.Denied, OSError, FileExistsError) as exc:
+            print(json.dumps({"status": "BLOCKED",
+                              "reason_code": type(exc).__name__}))
+            raise SystemExit(1)
+        return 0
     port = core.settings()["port"]
     if a[:1] == ["--daemon"]:
         from . import server

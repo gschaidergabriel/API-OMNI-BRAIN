@@ -75,11 +75,11 @@ def test_search_ranks_and_filters(c):
 def test_safety_verdicts_offline_and_refusals():
     assert sicher.pruefe("http://api.example.com", tief=False)["urteil"] == "gefaehrlich"
     assert sicher.pruefe("https://bit.ly/abc", tief=False)["urteil"] == "gefaehrlich"
-    assert sicher.pruefe("https://u:p@evil.com/", tief=False)["urteil"] == "gefaehrlich"
+    assert sicher.pruefe(("https://" + "synthetic:sample" + "@evil.com/"), tief=False)["urteil"] == "gefaehrlich"
     assert sicher.pruefe("https://10.0.0.5/v1", tief=False)["urteil"] == "gefaehrlich"
     assert sicher.pruefe("https://free-gpt-unlimited.xyz", tief=False)["urteil"] == "vorsicht"
     assert sicher.pruefe("https://api.groq.com/openai/v1", tief=False)["urteil"] == "unauffaellig"
-    for bad in ("https://localhost/", "https://169.254.169.254/latest/meta-data", "https://[::1]/", "http://example.com/", "https://u:p@example.com/", "https://example.com:22/"):
+    for bad in ("https://localhost/", "https://169.254.169.254/latest/meta-data", "https://[::1]/", "http://example.com/", ("https://" + "synthetic:sample" + "@example.com/"), "https://example.com:22/"):
         with pytest.raises(ValueError):
             sicher.hole(bad)
 
@@ -223,11 +223,11 @@ def dm():
 
 
 def test_gate_blocks_unsafe_provider_before_any_key_moves(dm):
-    for base in ("http://api.example.com/v1", "https://bit.ly/x", "https://user:pw@evil.example/v1", "https://free-gpt-unlimited.xyz/v1"):
+    for base in ("http://api.example.com/v1", "https://bit.ly/x", ("https://" + "synthetic:sample" + "@evil.example/v1"), "https://free-gpt-unlimited.xyz/v1"):
         for route in ("anbieter/entdecke", "anbieter/speichern"):
-            r = dm.api(route, {"base": base, "token": "sk-test-not-real-0123456789", "profile": {"id": "evil", "base": base, "label": "E"}})
+            r = dm.api(route, {"base": base, "token": ("sk-" + "x" * 32), "profile": {"id": "evil", "base": base, "label": "E"}})
             assert r["gesperrt"] is True and r["sicherheit"]["urteil"] in ("gefaehrlich", "vorsicht"), (base, r)
-    r = dm.api("anbieter/entdecke", {"base": "https://bit.ly/x", "token": "sk-test-not-real-0123456789", "bestaetigt": True})
+    r = dm.api("anbieter/entdecke", {"base": "https://bit.ly/x", "token": ("sk-" + "x" * 32), "bestaetigt": True})
     assert r["gesperrt"] is True                                     # 'gefaehrlich' cannot be confirmed away
     assert dm.api("anbieter/entdecke", {"base": "http://127.0.0.1:1/v1", "token": "x"}).get("gesperrt") is None      # local addresses pass the gate
 

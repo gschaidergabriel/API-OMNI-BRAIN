@@ -2,7 +2,7 @@
 Nothing here holds a secret: keys are only handed out by POST /v1/register, and they work only after the user approves the application in the UI."""
 import re
 
-from . import core
+from . import core, selfservice
 
 GOOD = ["summarise or shorten text", "boilerplate and repetitive code", "translate", "classify, extract fields, reformat as JSON", "first drafts and rewrites",
         "read long documents and report back (long context class)", "second opinion on a diff"]
@@ -19,7 +19,11 @@ def manifest(base, version):
             "openai": {"base_url": base + "/v1", "models": ["omnipool-auto"] + ["omnipool-" + k for k in core.KLASSEN]},
             "anthropic": {"base_url": base, "note": "set ANTHROPIC_BASE_URL; model omnipool-auto"},
             "register": {"method": "POST", "url": base + "/v1/register", "body": {"name": "your_harness_name", "scope": ["what you may hand over"]}, "then": "user approves once in the UI"},
-            "offer": base + "/v1/offer", "guide": base + "/integrate", "mcp": {"command": "api-omni-brain", "args": ["--mcp"]}}
+            "offer": base + "/v1/offer", "guide": base + "/integrate",
+            "selfservice": {"tool_contracts": base + "/.well-known/omnipool-tools.json",
+                            "capabilities": base + "/v1/selfservice/capabilities",
+                            "human_approval": "local per-plan approval required; no AI self-approval"},
+            "mcp": {"command": "api-omni-brain", "args": ["--mcp"]}}
 
 
 def offer(c, base, apps):
@@ -59,6 +63,21 @@ Ask your user once whether you may delegate such tasks; keep doing the real thin
 
 ## Option: MCP
 `api-omni-brain --mcp` is an MCP stdio server with the tools `pool_ask`, `pool_models`, `pool_offer`. It registers itself the same way and waits for the same approval.
+
+## Model-independent tools (ChatGPT, Claude, Grok, local models, anything with tools)
+The same Self-Service capability protocol works across model vendors.
+- MCP-stdio: add `api-omni-brain --mcp`; discover tools via `tools/list`.
+- OpenAI function calling: tool JSON schemas at `{base}/.well-known/omnipool-tools.json`.
+- Anthropic tool use: the same manifest includes Anthropic-format schemas.
+- Any other tool-capable AI: use the authorized HTTP JSON endpoints `{base}/v1/selfservice/*`.
+- A text-only AI without tool access cannot execute anything: it may show a plan to the user.
+- Registration and Connect-tab approval authorize only connection, NOT execution.
+- Every diagnostic needs its own local terminal confirmation:
+  `api-omni-brain --selfservice-approve <plan-id>`.
+- The AI can then invoke `pool_selfservice_execute` once; returned receipt excludes host details.
+- Available today: restricted read-only diagnostics only. Generated shell scripts, file
+  modifications, deployments, external sending and paid-provider calls are NOT enabled.
+- All app credentials remain local. Never paste, log, include or ask for tokens in an AI chat.
 
 ## Safety and rollback
 - Never send the user's own API keys anywhere; this service never asks for them.
