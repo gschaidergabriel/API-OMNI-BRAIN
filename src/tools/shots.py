@@ -14,8 +14,8 @@ import cdp  # noqa: E402
 import demo  # noqa: E402
 
 OUT = os.path.join(it.ROOT, "omnipool", "manual")
-TABS = [("overview", 0, "demo"), ("keys", 1, "demo"), ("models", 2, "demo"), ("connect", 3, "demo"), ("settings", 4, "demo"), ("events", 5, "demo"),
-        ("assistant", 6, "demo"), ("radar", 7, "real"), ("search", 8, "real"), ("usecases", 9, "real")]
+TABS = [("assistant", 0, "demo"), ("overview", 1, "demo"), ("keys", 2, "demo"), ("models", 3, "demo"), ("connect", 4, "demo"), ("settings", 5, "demo"), ("events", 6, "demo"),
+        ("radar", 7, "real")]
 
 
 def grab(base, tabs, hook=None):
@@ -23,8 +23,8 @@ def grab(base, tabs, hook=None):
     try:
         c.goto(base + "/", 3.0)
         vis = c.js("[...document.querySelectorAll('nav button')].filter(b=>b.offsetHeight>0).length")
-        if not vis or vis < 10:
-            raise SystemExit("structural check failed: only %s visible nav buttons (expected 10)" % vis)
+        if not vis or vis < 9:
+            raise SystemExit("structural check failed: only %s visible nav buttons (expected 9)" % vis)
         for name, idx, _src in tabs:
             c.js("document.querySelectorAll('nav button')[%d].click()" % idx)
             time.sleep(1.6)
@@ -38,12 +38,7 @@ def grab(base, tabs, hook=None):
 
 
 def hook(c, name):
-    if name == "search":
-        c.js("(()=>{const i=document.querySelector('#main input[type=search],#main input[type=text],#main input');if(i){i.focus();i.value='speech to text';i.dispatchEvent(new Event('input',{bubbles:true}));const b=[...document.querySelectorAll('#main button')].find(x=>/search/i.test(x.textContent));b&&b.click()}})()")
-        time.sleep(3.5)
-    if name == "usecases":
-        c.js("(()=>{const t=document.querySelector('#main textarea');if(t){t.value='Transcribe meeting recordings to text, free, for a small team';t.dispatchEvent(new Event('input',{bubbles:true}));const b=[...document.querySelectorAll('#main button')].find(x=>/find|search|match/i.test(x.textContent));b&&b.click()}})()")
-        time.sleep(9)
+    return None
 
 
 def main():

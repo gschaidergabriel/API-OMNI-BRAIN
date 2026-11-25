@@ -67,7 +67,7 @@
   document.head.appendChild(css);
 
   const R = { news:null, q:"", gratis:false, busy:false, suche:null, sq:"", uc:null, ut:"", ubusy:false, pruef:{}, datei:{} };
-  const rr = () => { if (typeof render === "function") render(); };
+  const rr = () => { if (window.RR_HOOK && window.RR_HOOK()) return; if (typeof render === "function") render(); };
   const ago2 = t => typeof ago === "function" ? ago(t) : "";
   const safeHref = u => /^https?:\/\//i.test(u || "") ? u : "#";
   const info = k => typeof I === "function" ? I(k) : "";
@@ -231,147 +231,10 @@
     );
   }
 
-  /* ---------- TAB: API-SUCHE ---------- */
-  async function sucheLos() {
-    R.sq = document.getElementById("rds").value;
-    R.busy = true; R.suche = null; rr();
-    R.suche = await api("radar/suche", { q: R.sq });
-    R.busy = false; rr();
-  }
-
-  function apisuche() {
-    const s = R.suche;
-    return h("div", {},
-      h("div", { class: "card" },
-        h("div", { class: "card-header" }, h("h3", {}, "Free API search ", info("apisuche"))),
-        h("div", { class: "card-content prose" },
-          h("p", {}, "Like a search engine, but only for free APIs: It searches the index (public API lists + hand-curated providers) and the collected messages. Every result gets a safety check (encryption, certificate, domain age, warning signs). Dangerous links are blocked."),
-          h("div", { class: "row" },
-            h("input", { type: "text", id: "rds", placeholder: "e.g. text to speech, video generation, ocr, embeddings …", value: R.sq, on: { keydown: e => { if (e.key === "Enter") sucheLos(); } } }),
-            h("button", { class: "b p", on: { click: sucheLos } }, "Search")
-          )
-        )
-      ),
-      R.busy
-        ? h("div", { class: "card section-gap" },
-            h("div", { class: "card-content" },
-              h("div", { class: "rd-skel-card" },
-                h("div", { class: "rd-skel rd-skel-title" }),
-                h("div", { class: "rd-skel rd-skel-line" }),
-                h("div", { class: "rd-skel rd-skel-line" })
-              )
-            )
-          )
-        : s
-          ? h("div", {},
-              h("div", { class: "card section-gap" },
-                h("div", { class: "card-header" }, h("h3", {}, "APIs (" + s.apis.length + ")")),
-                h("div", { class: "card-content" },
-                  s.apis.length
-                    ? s.apis.map(apiKarte)
-                    : h("div", { class: "empty" }, h("p", {}, "Nothing found. Try English keywords (e.g. “speech”, “image”).")),
-                  h("p", { class: "rd-why" }, "Note: “Nothing suspicious” only means no warning signs were found – not proof. Free quotas change, so please check the provider's page.")
-                )
-              ),
-              s.news.length
-                ? h("div", { class: "card section-gap" },
-                    h("div", { class: "card-header" }, h("h3", {}, "Related in the messages")),
-                    h("div", { class: "card-content" },
-                      s.news.map(x => h("div", { class: "rd-item" }, link(x.link, x.titel), h("div", { class: "rd-why" }, x.feed)))
-                    )
-                  )
-                : ""
-            )
-          : ""
-    );
-  }
-
-  /* ---------- TAB: USECASES ---------- */
-  async function ucLos() {
-    R.ut = document.getElementById("rdu").value;
-    if (R.ut.trim().length < 5) return;
-    R.ubusy = true; R.uc = null; rr();
-    R.uc = await api("radar/usecase", { text: R.ut });
-    R.ubusy = false; rr();
-  }
-
-  function usecases() {
-    const u = R.uc;
-    return h("div", {},
-      h("div", { class: "card" },
-        h("div", { class: "card-header" }, h("h3", {}, "Use cases: Find the right free API ", info("usecases"))),
-        h("div", { class: "card-content prose" },
-          h("p", {}, "Describe in one or two sentences what you want to do. A strong language model categorizes it, then API-OMNI-BRAIN searches the index and messages, checks the results for safety, and tells you what you already have and what would be a new fit."),
-          h("textarea", { class: "rd-ta", id: "rdu", placeholder: "e.g. I want to automatically generate subtitles from podcasts and translate them into German.", rows: 3, on: { input: e => R.ut = e.target.value } }, R.ut),
-          h("div", { class: "rd-acts" }, h("button", { class: "b p", on: { click: ucLos } }, "Find suitable API"))
-        )
-      ),
-      R.ubusy
-        ? h("div", { class: "card section-gap" },
-            h("div", { class: "card-content" },
-              h("div", { class: "rd-skel-card" },
-                h("div", { class: "rd-skel rd-skel-title" }),
-                h("div", { class: "rd-skel rd-skel-line" }),
-                h("div", { class: "rd-skel rd-skel-line" }),
-                h("div", { class: "rd-skel rd-skel-line" })
-              )
-            )
-          )
-        : u
-          ? h("div", {},
-              /* Einordnung */
-              h("div", { class: "card section-gap" },
-                h("div", { class: "card-header" }, h("h3", {}, "Classification")),
-                h("div", { class: "card-content prose" },
-                  u.zusammenfassung ? h("p", {}, u.zusammenfassung) : "",
-                  h("div", { class: "rd-acts" },
-                    u.faehigkeiten.map(f => h("span", { class: "rd-chip ok" }, f)),
-                    u.suchbegriffe.map(f => h("span", { class: "rd-chip info" }, "🔎 " + f))
-                  ),
-                  h("div", { class: "rd-why" }, "Categorized by: " + u.eingeordnet_von)
-                )
-              ),
-              /* Schon vorhanden */
-              u.schon_da.length
-                ? h("div", { class: "card section-gap" },
-                    h("div", { class: "card-header" }, h("h3", {}, "You already have this")),
-                    h("div", { class: "card-content" },
-                      u.schon_da.map(x => h("div", { class: "rd-item" },
-                        h("b", {}, x.provider + " / " + x.model),
-                        h("div", { class: "rd-why" }, x.warum)
-                      ))
-                    )
-                  )
-                : "",
-              /* Neue Vorschläge */
-              h("div", { class: "card section-gap" },
-                h("div", { class: "card-header" }, h("h3", {}, "New suggestions")),
-                h("div", { class: "card-content" },
-                  u.empfehlungen.length
-                    ? u.empfehlungen.map(apiKarte)
-                    : h("div", { class: "empty" }, h("p", {}, "No safe results. The index is constantly being expanded – or rephrase your use case."))
-                )
-              ),
-              /* Passende Nachrichten */
-              u.news.length
-                ? h("div", { class: "card section-gap" },
-                    h("div", { class: "card-header" }, h("h3", {}, "Suitable news")),
-                    h("div", { class: "card-content" },
-                      u.news.map(x => h("div", { class: "rd-item" }, link(x.link, x.titel)))
-                    )
-                  )
-                : ""
-            )
-          : ""
-    );
-  }
-
   /* Tabs registrieren */
-  window.EXTRA = [
-    { name: "Radar", fn: radar },
-    { name: "API search", fn: apisuche },
-    { name: "Use cases", fn: usecases }
-  ];
+  /* API search and use cases live in the Assistant now (one input for every kind of search); it reuses these renderers */
+  window.EXTRA = [{ name: "Radar", fn: radar }];
+  window.RADAR_UI = { apiKarte, link, verdict };
 
   /* ---------- SICHERHEITS-POPUP (Quarantäne) ---------- */
   let shown = 0;

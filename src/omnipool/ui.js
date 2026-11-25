@@ -2,7 +2,7 @@ const $=(s,r=document)=>r.querySelector(s);let TXT={};fetch('/texte.json').then(
 function h(t,a,...k){const e=document.createElement(t);for(const[x,v]of Object.entries(a||{})){if(x==="on")for(const[ev,f]of Object.entries(v))e.addEventListener(ev,f);else if(x==="class")e.className=v;else if(v!==false&&v!=null)e.setAttribute(x,v===true?"":v)}
 for(const c of k.flat())e.append(c&&c.nodeType?c:document.createTextNode(c==null?"":String(c)));return e}
 async function api(p,b){const r=await fetch("/api/"+p,{method:b===undefined?"GET":"POST",headers:{"X-Omnipool":"1","Content-Type":"application/json"},body:b===undefined?undefined:JSON.stringify(b)});return r.json()}
-const EX=window.EXTRA||[];const TABS=["Overview","Keys & Providers","Models","Connect","Settings","Events","Assistant",...EX.map(x=>x.name)];let tab=0,S=null,M=null,tmp={};
+const EX=window.EXTRA||[];const TABS=["Assistant","Overview","Keys & Providers","Models","Connect","Settings","Events",...EX.map(x=>x.name)];let tab=Math.max(0,TABS.indexOf(sessionStorage.getItem("aob.tab")||"Assistant")),S=null,M=null,tmp={};
 const I=k=>TXT[k]?h('span',{class:'info',tabindex:'0','data-tip':TXT[k]},'?'):'';
 const ago=t=>!t?"-":(s=>s<90?Math.round(s)+" s":s<5400?Math.round(s/60)+" min":Math.round(s/3600)+" h")(Date.now()/1000-t);
 const pct=(a,b)=>b?Math.round(100*a/b):0;
@@ -31,8 +31,8 @@ h("div",{class:"card"},h("h3",{},"Best choice per class"),h("table",{},h("tr",{}
 Object.entries(S.wahl).flatMap(([k,r])=>r.slice(0,2).map((x,i)=>h("tr",{},h("td",{},i?"":k),h("td",{},x[0]+"/"+x[1].split("/").pop()),h("td",{},x[2]),h("td",{},x[3])))))),
 B.ruhende.length?h("div",{class:"card"},h("h3",{},"Resting (immune system)"),B.ruhende.map(r=>h("div",{class:"org"},h("span",{},r.modell),h("span",{class:"mu"},r.grund+", still "+r.noch_s+" s")))):""),
 h("div",{class:"card",style:"margin-top:var(--space-5)"},h("h3",{},"Get Started"),h("p",{class:"mu",style:"margin:0 0 var(--space-2)"},"Add a key, then connect your app. API-OMNI-BRAIN takes care of model choice and routing."),h("div",{class:"overview-actions"},
-h("button",{class:"b",on:{click:()=>{const tabIndex=TABS.indexOf("Keys & Providers");tab=tabIndex;render()}}},"Add Keys"),
-h("button",{class:"s",on:{click:()=>{const tabIndex=TABS.indexOf("Connect");tab=tabIndex;render()}}},"Connect Application"))))}
+h("button",{class:"b",on:{click:()=>go("Keys & Providers")}},"Add Keys"),
+h("button",{class:"s",on:{click:()=>go("Connect")}},"Connect Application"))))}
 async function pruefen(){const t=$("#tok").value.trim();if(!t)return;tmp.res=await api("token/check",{token:t,provider:$("#prov").value});render()}
 function keys(){const r=tmp.res,E=tmp.ent;
 return h("div",{},h("div",{class:"card"},h("h3",{},"Add token"),h("div",{class:"row"},h("input",{type:"password",id:"tok",placeholder:"Paste token (never displayed or logged)",autocomplete:"off"}),
@@ -277,25 +277,27 @@ function anfragen(){
       h("button",{class:"b",on:{click:async()=>{await api("settings",{harness:{name:n,an:true,klasse:v.klasse||"auto"}});load()}}},"Approve"),
       h("button",{class:"b s",on:{click:async()=>{await api("settings",{harness:{name:n,an:false,klasse:v.klasse||"auto",ablehnen:true}});load()}}},"Deny"))));
 }
-let CH={m:[],busy:false,draft:""};
-function assistent(){
-  const aus=(p)=>{if(p.tab){tab=TABS.indexOf(p.tab);if(tab===2&&!M)api("modelle").then(x=>{M=x;render()});render()}else api(p.api,p.body).then(()=>{CH.m.push({role:"assistant",content:"Done."});load()})};
-  const log=h("div",{id:"chlog",style:"max-height:55vh;overflow:auto;margin:var(--space-3) 0"},CH.m.length?CH.m.map(x=>h("div",{class:"row",style:"margin:8px 0;align-items:flex-start"},
-    h("b",{style:"width:80px"},x.role==="user"?"You":"Assistant"),
-    h("div",{style:"flex:1;white-space:pre-wrap"},x.content,x.model?h("div",{class:"mu"},"answered by "+x.model):"",
-      x.proposal?h("div",{style:"margin-top:6px"},h("button",{class:"b",on:{click:()=>aus(x.proposal)}},x.proposal.tab?"Open "+x.proposal.tab:"Do it: "+x.proposal.label)):""))):h("p",{class:"mu"},"Try: What is the best model for code right now? / Welche Keys sind kaputt? / Scan now / Zeig mir die Modelle für Bilder."));
-  const inp=h("textarea",{rows:"2",style:"width:100%",placeholder:"Frag etwas oder gib einen Auftrag / Ask something or give a task"});inp.value=CH.draft;inp.oninput=()=>{CH.draft=inp.value};
-  const senden=async()=>{const t=inp.value.trim();if(!t||CH.busy)return;CH.m.push({role:"user",content:t});CH.draft="";CH.busy=true;render();
-    let r;try{r=await api("chat",{messages:CH.m.map(({role,content})=>({role,content}))})}catch(e){r={error:String(e)}}
-    CH.m.push({role:"assistant",content:r.reply||("Error: "+(r.error||"no answer")),model:r.model,proposal:r.proposal});CH.busy=false;render()};
-  inp.onkeydown=e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();senden()}};
-  setTimeout(()=>{const l=$("#chlog");if(l)l.scrollTop=l.scrollHeight},0);
-  return h("div",{class:"card"},h("h3",{},"Assistant (Deutsch / English)"),
-    h("p",{class:"mu"},"Ask about your keys, models and applications, or give a task (scan now, emergency stop, open a tab). It answers with a free model from your pool, weaker than a frontier model. It never sees your keys: do not paste keys here (it refuses)."),
-    log,inp,h("div",{class:"row",style:"margin-top:6px"},h("button",{class:"b",on:{click:senden}},CH.busy?"Thinking ...":"Send"),h("button",{class:"b s",on:{click:()=>{CH.m=[];render()}}},"Clear")));
-}
-function render(){if(!S)return;head();const m=$("#main"),y=window.scrollY;m.replaceChildren(anfragen(),[uebersicht,keys,modelle,verbinden,einst,ereig,assistent,...EX.map(x=>x.fn)][tab]());window.scrollTo(0,y)
-$("#nav").replaceChildren(...TABS.map((t,i)=>h("button",{class:i===tab?"on":"",on:{click:()=>{tab=i;if(i===2&&!M)api("modelle").then(x=>{M=x;render()});render()}}},t)))}
-async function load(){S=await api("status");if(tab===2)M=await api("modelle");render()}
-$("#bAsk").onclick=()=>{tab=TABS.indexOf("Assistant");render()};$("#bScan").onclick=async()=>{await api("lauf",{});load()};$("#bAus").onclick=async()=>{await api("aus",{aus:!S.aus});load()};
-load();setInterval(()=>{if(document.hidden||document.activeElement&&["INPUT","SELECT","TEXTAREA"].includes(document.activeElement.tagName)||tab>5)return;load()},6000);
+function assistent(){return window.ASSIST?window.ASSIST.view():h("div",{class:"card"},"The assistant could not be loaded.")}
+/* One stable shell: the banner slot and the nav are built once; main is only rebuilt when the tab changes or the data really changed. */
+const BAN=h("div",{id:"ban"});let banKey="";
+function banner(){const k=JSON.stringify(Object.entries(S.harness||{}).filter(([n,v])=>v.angemeldet&&!v.an));if(k===banKey)return;banKey=k;BAN.replaceChildren(anfragen())}
+const VIEWS={"Assistant":assistent,"Overview":uebersicht,"Keys & Providers":keys,"Models":modelle,"Connect":verbinden,"Settings":einst,"Events":ereig};
+const tname=()=>TABS[tab];
+function navbar(){const n=$("#nav");if(n.children.length!==TABS.length)n.replaceChildren(...TABS.map((t,i)=>h("button",{on:{click:()=>go(i)}},t)));[...n.children].forEach((b,i)=>b.classList.toggle("on",i===tab))}
+function go(x){const was=tab;tab=typeof x==="string"?TABS.indexOf(x):x;if(tab<0)tab=0;try{sessionStorage.setItem("aob.tab",tname())}catch(e){}
+  if(tname()==="Models"&&!M)api("modelle").then(r=>{M=r;if(tname()==="Models")render()});render(tab!==was)}
+function render(fresh){if(!S)return;head();banner();navbar();const m=$("#main"),y=window.scrollY;m.classList.toggle("fx",!!fresh);
+  const v=(VIEWS[tname()]||(EX.find(x=>x.name===tname())||{fn:uebersicht}).fn)();m.replaceChildren(BAN,v);window.scrollTo(0,fresh?0:y)}
+let FP="",lastAct=0;["pointerdown","keydown","wheel"].forEach(e=>addEventListener(e,()=>{lastAct=Date.now()},{passive:true}));
+/* wahl = the router's current picks, re-drawn with jitter on every call: left out of the fingerprint, else every poll would look like a change and redraw the page */
+/* auto=true is the background poll: it re-renders only if the data actually changed, never while the user is interacting */
+async function load(auto){const s=await api("status");let m=M;if(tname()==="Models")m=await api("modelle");
+  const first=!S,fp=JSON.stringify(s,(k,v)=>k==="wahl"?undefined:v)+(tname()==="Models"?JSON.stringify(m):"");S=s;M=m;
+  if(auto&&!first&&(fp===FP||tname()==="Assistant")){FP=fp;head();banner();return}FP=fp;render(first)}
+window.goTab=go;window.refreshStatus=()=>load();
+$("#bAsk").onclick=()=>{go("Assistant");window.ASSIST&&window.ASSIST.fresh()};
+$("#bScan").onclick=async()=>{await api("lauf",{});showToast("Scan started");load()};
+$("#bAus").onclick=async()=>{await api("aus",{aus:!S.aus});showToast(S.aus?"Back on":"All off");load()};
+load();
+const POLL=["Overview","Keys & Providers","Connect","Events","Assistant"];
+setInterval(()=>{if(document.hidden||Date.now()-lastAct<5000||!POLL.includes(tname()))return;const a=document.activeElement;if(a&&["INPUT","SELECT","TEXTAREA"].includes(a.tagName))return;if(String(getSelection()).length)return;load(true)},6000);

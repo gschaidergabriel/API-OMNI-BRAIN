@@ -11,7 +11,7 @@ extra = open(os.path.join(R, "team/testing/extra.md")).read() if os.path.exists(
 t = ["# TESTING.md - what was tested, where, and what was not", "",
      "Every row below comes from a result file produced by `src/tools/sandbox_test.py` (raw JSON in `research/testing/`). A row says PASS only if every check passed.", "",
      "## Checks per run (15)", "",
-     "daemon starts; `--version` starts with 1.4; index page contains the product name; static files (ui.js, ui.css, ui_radar.js, ui_manual.js, texte.json) are served; `/manual.json` and a manual screenshot are served; `/api/*` without the header is refused (403); `/api/status` with the header answers; the clean data directory contains **no key**; `/v1/*` without an application key is refused; path traversal is blocked.", "",
+     "daemon starts; `--version` starts with 1.5; index page contains the product name; static files (ui.js, ui.css, ui_radar.js, ui_manual.js, texte.json) are served; `/manual.json` and a manual screenshot are served; `/api/*` without the header is refused (403); `/api/status` with the header answers; the clean data directory contains **no key**; `/v1/*` without an application key is refused; path traversal is blocked.", "",
      "Each run uses an empty HOME, no keys, its own port, `env -i`, background scanner and radar switched off.", "",
      "## Sandboxes on the author's machine (Linux 6.17, Python 3.12, glibc 2.39)", "",
      "- **plain**: `env -i`, empty home", "- **bwrap**: read-only `/usr`, own PID/IPC/UTS/cgroup namespaces, tmpfs `/tmp`", "- **firejail**: private home, no new privileges, all capabilities dropped",

@@ -18,7 +18,7 @@ from . import anbieter as AN
 from . import assistent, core, gehirn, integrieren, quarantaene, radar, sicher
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-VERSION = "1.4.0"
+VERSION = "1.5.0"
 STATE = {"lauf": False, "ts": 0.0, "fehler": "", "start": time.time()}
 LABEL = {"claude_code": "Claude Code", "hermes": "Hermes Agent", "grokbot": "Grokbot", "crush": "Crush", "aider": "Aider", "openai": 'Other OpenAI-compatible applications'}
 
@@ -324,7 +324,7 @@ class H(BaseHTTPRequestHandler):
                     return self.senden(200, core.res(path[1:]), "image/png")
                 except (OSError, FileNotFoundError):
                     return self.senden(404, {"error": "unknown"})
-            if meth == "GET" and path in ("/ui.css", "/ui.js", "/ui_radar.js", "/ui_manual.js", "/texte.json", "/manual.json"):
+            if meth == "GET" and path in ("/ui.css", "/ui.js", "/ui_radar.js", "/ui_assistant.js", "/ui_manual.js", "/texte.json", "/manual.json"):
                 return self.senden(200, core.res(path[1:]), {"css": "text/css", "js": "text/javascript", "json": "application/json"}[path.rsplit(".", 1)[1]] + "; charset=utf-8")
             base = "http://127.0.0.1:%d" % self.server.server_address[1]
             if meth == "GET" and path in ("/integrate", "/integrate.md", "/llms.txt"):
@@ -360,6 +360,9 @@ class H(BaseHTTPRequestHandler):
         c, s = core.db(), core.settings()
         if p == "ping":
             return self.senden(200, {"ok": True, "version": VERSION})
+        if p == "analyst":
+            from . import analyst
+            return self.senden(200, analyst.stand())
         if p == "needles":
             from . import schatten
             return self.senden(200, schatten.stand())

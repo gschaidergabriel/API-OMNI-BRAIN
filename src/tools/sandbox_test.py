@@ -32,7 +32,7 @@ for _ in range(120):
 res["checks"]["daemon_up"] = up
 if up:
     c = res["checks"]
-    c["ping_version_1_4"] = json.loads(get("/api/ping", {"X-Omnipool": "1"})[1]).get("version", "").startswith("1.4")
+    c["ping_version_1_5"] = json.loads(get("/api/ping", {"X-Omnipool": "1"})[1]).get("version", "").startswith("1.5")
     st, b = get("/"); c["index_200_brand"] = st == 200 and b"API-OMNI-BRAIN" in b
     for p in ("/ui.js", "/ui.css", "/ui_radar.js", "/ui_manual.js", "/texte.json"):
         c["static" + p] = get(p)[0] == 200

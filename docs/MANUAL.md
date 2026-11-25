@@ -147,28 +147,30 @@ A list of recent system events (information and warnings), newest first, with th
 
 ## Assistant
 
-A chat inside the app, in German or English, to ask questions about your keys, models and applications and to give small tasks. It answers with a free model from your own pool (weaker than a frontier model, and it says so) and gets only a short live summary, never a key.
+The first page. A normal AI chat with sessions, and every kind of search in the same input: ask questions, search free APIs, news and your own models, or describe a use case. The chat answers with a free model from your own pool (weaker than a frontier model, and it says so) and gets only a short live summary, never a key.
 
 ![Assistant](manual/assistant.png)
 
-1. Open the Assistant tab or press Ask in the header
-2. Type a question or a task, for example: 'What is the best model for code?', 'Is there a free OCR API?', 'Scan now', 'Zeig mir die Modelle fuer Bilder'
-3. Read the answer; the model that wrote it is shown under it
-4. If the assistant proposes an action (scan, emergency stop, open a tab), press the button it shows
+1. The Assistant opens first; press New chat (header or left column) for a fresh session, earlier sessions stay in the left column
+2. Pick Ask, Search or Use case above the input (or type /search words, /usecase text), then press Enter
+3. Ask: for example 'What is the best model for code?' or 'Scan now'. Search: for example 'text to speech' returns free APIs with a safety verdict, news and matching models you already have. Use case: describe what you want to build and get suitable APIs
+4. If the assistant proposes an action (scan, emergency stop, open a tab), press the button it shows. Ctrl+K jumps into Search from anywhere
 
 **What it can do**
 
 - Answer in German or English about the live state: best model per class, models per capability, applications, keys (counts only)
-- Look up free APIs in the local index (Radar data)
+- Search the free-API index, the collected news and your own models in one go, with a safety verdict per API
 - Propose a scan, the emergency stop (and undoing it) or opening a tab; you press the button, nothing changes without your click
-- Refuse a message that contains something that looks like an API key, before it reaches any model
+- Keep several chat sessions, rename, search and delete them; stop an answer while it is running, copy answers and code blocks, try an answer again
+- Refuse text that looks like an API key before it is sent or saved
 
 **What it cannot do - and must not**
 
 - It cannot add, show or change keys; use Keys & Providers
 - It does not change settings, applications or data on its own: state changes are only proposals
 - It can be wrong: it is a free model and sees only a summary; check important answers in the matching tab
-- Nothing is stored: the conversation lives in the open page and is gone when you reload
+- Chats are stored only in this browser (this computer), not on a server; clearing the browser data deletes them
+- Cannot search the live web: search covers the local API index, the collected news and your models; safety verdicts are signals, not proof
 
 ## Radar
 
@@ -194,50 +196,6 @@ Aggregates ~110 news feeds and 10 Hacker News searches every 2 hours, indexes ~2
 - Cannot release or recover quarantined files
 - Cannot guarantee all feeds are alive (95 of 129 alive at first run)
 - Cannot verify safety beyond signatures and heuristics
-
-## API Search
-
-Search the free-API index (~2600 entries) with full-text search; each result shows a safety verdict.
-
-![API Search](manual/search.png)
-
-1. Enter search terms
-2. Review results with safety verdicts
-3. Open provider details
-
-**What it can do**
-
-- Search the free-API index with full-text search
-- Show safety verdicts for each result (TLS, domain age, shorteners, punycode, risky TLDs)
-- Link to provider details
-
-**What it cannot do - and must not**
-
-- Cannot search the live web
-- Cannot guarantee index completeness or freshness
-- Cannot override safety verdicts
-
-## Use cases
-
-Describe a task; a strong model extracts capabilities and matches free APIs from the index, returning results with safety verdicts.
-
-![Use cases](manual/usecases.png)
-
-1. Describe your task in the input field
-2. Submit to get matching free APIs
-3. Review matches with safety verdicts
-
-**What it can do**
-
-- Match your described use case to free APIs using a strong model for capability extraction
-- Show matching APIs with safety verdicts
-- Provide links to provider details
-
-**What it cannot do - and must not**
-
-- Cannot execute the use case for you
-- Cannot guarantee the matched APIs will work for your specific need
-- Cannot bypass provider terms or rate limits
 
 ## What this app cannot do - and does not want to
 

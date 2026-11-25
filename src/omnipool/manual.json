@@ -141,24 +141,26 @@
   {
    "id": "assistant",
    "title": "Assistant",
-   "summary": "A chat inside the app, in German or English, to ask questions about your keys, models and applications and to give small tasks. It answers with a free model from your own pool (weaker than a frontier model, and it says so) and gets only a short live summary, never a key.",
+   "summary": "The first page. A normal AI chat with sessions, and every kind of search in the same input: ask questions, search free APIs, news and your own models, or describe a use case. The chat answers with a free model from your own pool (weaker than a frontier model, and it says so) and gets only a short live summary, never a key.",
    "steps": [
-    "Open the Assistant tab or press Ask in the header",
-    "Type a question or a task, for example: 'What is the best model for code?', 'Is there a free OCR API?', 'Scan now', 'Zeig mir die Modelle fuer Bilder'",
-    "Read the answer; the model that wrote it is shown under it",
-    "If the assistant proposes an action (scan, emergency stop, open a tab), press the button it shows"
+    "The Assistant opens first; press New chat (header or left column) for a fresh session, earlier sessions stay in the left column",
+    "Pick Ask, Search or Use case above the input (or type /search words, /usecase text), then press Enter",
+    "Ask: for example 'What is the best model for code?' or 'Scan now'. Search: for example 'text to speech' returns free APIs with a safety verdict, news and matching models you already have. Use case: describe what you want to build and get suitable APIs",
+    "If the assistant proposes an action (scan, emergency stop, open a tab), press the button it shows. Ctrl+K jumps into Search from anywhere"
    ],
    "can": [
     "Answer in German or English about the live state: best model per class, models per capability, applications, keys (counts only)",
-    "Look up free APIs in the local index (Radar data)",
+    "Search the free-API index, the collected news and your own models in one go, with a safety verdict per API",
     "Propose a scan, the emergency stop (and undoing it) or opening a tab; you press the button, nothing changes without your click",
-    "Refuse a message that contains something that looks like an API key, before it reaches any model"
+    "Keep several chat sessions, rename, search and delete them; stop an answer while it is running, copy answers and code blocks, try an answer again",
+    "Refuse text that looks like an API key before it is sent or saved"
    ],
    "cannot": [
     "It cannot add, show or change keys; use Keys & Providers",
     "It does not change settings, applications or data on its own: state changes are only proposals",
     "It can be wrong: it is a free model and sees only a summary; check important answers in the matching tab",
-    "Nothing is stored: the conversation lives in the open page and is gone when you reload"
+    "Chats are stored only in this browser (this computer), not on a server; clearing the browser data deletes them",
+    "Cannot search the live web: search covers the local API index, the collected news and your models; safety verdicts are signals, not proof"
    ],
    "image": "assistant.png"
   },
@@ -185,48 +187,6 @@
     "Cannot verify safety beyond signatures and heuristics"
    ],
    "image": "radar.png"
-  },
-  {
-   "id": "search",
-   "title": "API Search",
-   "summary": "Search the free-API index (~2600 entries) with full-text search; each result shows a safety verdict.",
-   "steps": [
-    "Enter search terms",
-    "Review results with safety verdicts",
-    "Open provider details"
-   ],
-   "can": [
-    "Search the free-API index with full-text search",
-    "Show safety verdicts for each result (TLS, domain age, shorteners, punycode, risky TLDs)",
-    "Link to provider details"
-   ],
-   "cannot": [
-    "Cannot search the live web",
-    "Cannot guarantee index completeness or freshness",
-    "Cannot override safety verdicts"
-   ],
-   "image": "search.png"
-  },
-  {
-   "id": "usecases",
-   "title": "Use cases",
-   "summary": "Describe a task; a strong model extracts capabilities and matches free APIs from the index, returning results with safety verdicts.",
-   "steps": [
-    "Describe your task in the input field",
-    "Submit to get matching free APIs",
-    "Review matches with safety verdicts"
-   ],
-   "can": [
-    "Match your described use case to free APIs using a strong model for capability extraction",
-    "Show matching APIs with safety verdicts",
-    "Provide links to provider details"
-   ],
-   "cannot": [
-    "Cannot execute the use case for you",
-    "Cannot guarantee the matched APIs will work for your specific need",
-    "Cannot bypass provider terms or rate limits"
-   ],
-   "image": "usecases.png"
   }
  ],
  "global_cannot": [

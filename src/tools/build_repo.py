@@ -63,7 +63,7 @@ def main():
         sums.append(subprocess.run(["sha256sum", n], cwd=os.path.join(REPO, "bin"), capture_output=True, text=True).stdout)
     open(os.path.join(REPO, "bin", "SHA256SUMS"), "w").write("".join(sums))
     src = os.path.join(REPO, "src")
-    tree(os.path.join(ROOT, "omnipool"), os.path.join(src, "omnipool"))
+    tree(os.path.join(ROOT, "omnipool"), os.path.join(src, "omnipool"), skip=("__pycache__", ".pytest_cache", "build", "dist", ".git", "rt"))   # rt/ = the compiled llama-server, built by tools/build_llama.sh, not committed
     tree(os.path.join(ROOT, "tests"), os.path.join(src, "tests"))
     tree(os.path.join(ROOT, "tools"), os.path.join(src, "tools"))
     tree(os.path.join(ROOT, "assets"), os.path.join(src, "assets"))

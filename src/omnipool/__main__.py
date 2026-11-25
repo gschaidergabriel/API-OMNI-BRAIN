@@ -124,7 +124,7 @@ def main():
     if a[:1] == ["--guide"]:                           # the integration guide for an AI agent, works without the service running
         from . import integrieren
         b = "http://127.0.0.1:%d" % port
-        print(integrieren.guide(b, "1.4.0", integrieren.snippets(b)))
+        print(integrieren.guide(b, "1.5.0", integrieren.snippets(b)))
         return
     if a[:1] == ["--needles-install"]:                 # optional trained router needle, checksummed download from the GitHub release
         from . import schatten
@@ -132,8 +132,14 @@ def main():
     if a[:1] == ["--needles-test"]:                    # load the installed router needle and classify a few samples (label + milliseconds)
         from . import schatten
         return sys.exit(schatten.selbsttest())
+    if a[:1] == ["--analyst-install"]:                 # local use-case analyst weights (GGUF, ~830 MB): checksummed download from the GitHub release, or a local file as argument
+        from . import analyst
+        return sys.exit(analyst.installieren(a[1] if len(a) > 1 else None))
+    if a[:1] == ["--analyst-test"]:                    # start the packed llama-server, analyse a few use cases (label + milliseconds)
+        from . import analyst
+        return sys.exit(analyst.selbsttest())
     if a[:1] == ["--version"]:
-        print("API-OMNI-BRAIN 1.4.0")
+        print("API-OMNI-BRAIN 1.5.0")
         return
     if a[:1] == ["--install"]:
         return sys.exit(installieren("--service" in a))
