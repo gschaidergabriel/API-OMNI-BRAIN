@@ -118,8 +118,8 @@ def identity():
 
 def validate_actions(actions):
     if (not isinstance(actions, list) or not 1 <= len(actions) <= len(ACTIONS)
-            or len(set(actions)) != len(actions)
-            or any(not isinstance(x, str) or x not in ACTIONS for x in actions)):
+            or any(not isinstance(x, str) or x not in ACTIONS for x in actions)
+            or len(set(actions)) != len(actions)):
         raise Denied("only unique bounded read-only diagnostics accepted")
     return actions
 
