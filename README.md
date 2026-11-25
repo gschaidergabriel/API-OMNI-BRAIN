@@ -88,6 +88,37 @@ Read `install.sh` first if you do not want to pipe a script into a shell; verify
 - **Radar**: ~110 news feeds and 10 Hacker-News searches every 2 h (95 of 129 sources alive at first run), an index of ~2600 free-API entries (public-apis list + hand-curated providers), full-text search (SQLite FTS5), twice-weekly model re-check (every 3.4 days), use-case matching (a strong model extracts capabilities, then search + safety verdict). Reddit is blocked on purpose.
 - **Safety**: hardened fetch (HTTPS only, public IPs only, pinned IP, redirects re-checked, size caps), URL verdicts (TLS, domain age via RDAP, shorteners, punycode, risky TLDs), a gate before any key travels to a new provider, and a quarantine: every fetched file is written to a private folder and scanned by a sandboxed worker (fresh network namespace if available, rlimits, empty environment, fail-closed); anything not clean is overwritten with zeros and deleted, a popup says so, and there is no release button.
 
+## Universal Self-Service tools (source-only P0)
+
+The pool exposes the **same tool contract regardless of which AI calls it**:
+MCP for capable agent harnesses, OpenAI function-tool JSON Schema, Anthropic
+tool-use JSON Schema, and authenticated local HTTP for other tool-enabled models
+including Grok, ChatGPT, Claude and local models. No vendor-specific permissions
+or key copies are introduced. Discover it at
+`/.well-known/omnipool-tools.json`; see [the implementation and threat model](docs/SELF-SERVICE.md).
+
+A connected AI can request a **restricted read-only diagnostic plan**.
+Each plan must be approved **separately by the human in a local terminal**;
+existing Connect-tab approval alone is insufficient. Every grant is
+one-use, expires within five minutes and is bound to the exact local
+application, host and plan hash. Only a status and receipt hash are
+returned to the AI; detailed host diagnostics remain private and local.
+
+**Not yet supported:** execution of arbitrary/generated scripts, repository
+writes, installations, service changes, cross-host state sharing or autonomous
+deployments. These require separate sandbox and consent work. A plain text-only
+AI without tools cannot execute actions.
+
+This feature is currently **source-only**. The published `bin/` artifacts
+have not been rebuilt, and installing the current release does not activate it.
+No live OMNIPOOL service has been changed.
+
+**Credential policy:** No live provider API keys or secrets are shipped or
+committed. The existing local key pool (20 free keys reported on one host)
+remains under OMNIPOOL's runtime control; the reference code does not read,
+copy, export or publish it. `python3 src/tools/check_secrets.py` scans
+tracked source/doc files before publication (not binaries or Git history).
+
 ## What it cannot and does not want to do
 
 - It is not an antivirus: the scanner uses signatures and heuristics; "nothing found" is not "proven harmless".
