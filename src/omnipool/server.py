@@ -15,7 +15,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from . import anbieter as AN
-from . import assistent, core, gehirn, integrieren, quarantaene, radar, sicher, selfservice
+from . import assistent, core, gehirn, integrieren, quarantaene, radar, sicher, selfservice, vorstufe
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 VERSION = "1.5.0"
@@ -380,7 +380,7 @@ class H(BaseHTTPRequestHandler):
                 "einstellungen": {k: v for k, v in s.items() if k not in ("app_key", "harness")}, "harness": hs, "keys_file": core.keys_file(),
                 "anbieter": [{"id": i, "label": core.TC.PROVIDERS[i][0], "art": "eingebaut"} for i in core.TC.FREE] +
                             [{"id": i, "label": v["label"], "art": "eigener", "faehigkeiten": v.get("faehigkeiten")} for i, v in core.custom().items()],
-                "meldungen": quarantaene.offene(c), "url": "http://127.0.0.1:%d" % self.server.server_address[1]})
+                "meldungen": quarantaene.offene(c), "vorstufe": vorstufe.bereit(c), "url": "http://127.0.0.1:%d" % self.server.server_address[1]})
         if p == "modelle":
             rows = c.execute("SELECT provider, model, COALESCE(faehigkeit,'chat'), status, gone, n_try, probed FROM modell ORDER BY provider, model").fetchall()
             kl = {}
@@ -388,11 +388,16 @@ class H(BaseHTTPRequestHandler):
                 kl.setdefault((pr, m), {})[k] = [round(ok, 1), round(n, 1)]
             return self.senden(200, [{"provider": r[0], "model": r[1], "faehigkeit": r[2], "status": r[3], "gone": r[4], "n_try": r[5], "probed": r[6], "klassen": kl.get((r[0], r[1]), {})}
                                      for r in rows])
+        if p == "vorstufe" and meth == "GET":                         # the Vorstufe switches itself on when a key serves one of its models
+            return self.senden(200, vorstufe.bereit(c))
         if meth != "POST":
             return self.senden(404, {"error": "unbekannt"})
         d = self.json_body()
         if p == "waehle":                                            # FranKenstein link: OMNI picks the model for the Vorstufe / the thinker
             return self.senden(200, gehirn.waehle_fuer(c, d.get("klasse"), d.get("erlaubt")))
+        if p == "vorstufe":                                          # pre-stage envelope: OMNI picks the strong model, rotates keys, learns
+            code, out = vorstufe.run(c, d)
+            return self.senden(code, out)
         if p == "lerne":                                             # FranKenstein link: real outcomes flow back into OMNI's learning
             ok, err = gehirn.lerne_extern(c, d)
             return self.senden(200 if ok else 400, {"ok": True} if ok else {"error": err})

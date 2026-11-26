@@ -160,6 +160,21 @@ For MCP harnesses: `api-omni-brain --mcp` (tools `pool_ask`, `pool_models`, `poo
 
 Tested: registration, approval, denial and use against a fake provider (88 unit tests, 6 of them cover this flow and 9 the assistant) and the MCP server through real JSON-RPC; Claude Code's own health check reports it as connected. Not tested live: full conversations with Claude Code, Hermes and Grokbot.
 
+## Vorstufe (pre-stage, built in)
+
+Before a strong thinker model starts on a task, the Vorstufe takes cognitive load off it. From the senses the caller sends
+(task, memory candidates with ids, organs, state, route hint, available tools) it builds one JSON envelope: the intent,
+hypotheses AND counter-hypotheses, at most 3 candidates to read in full, the tools needed, what is known and unknown, and a
+small world model (facts kept apart by domain, own state, what the message does).
+
+- **Switches itself on.** It is active as soon as OMNI holds a usable key for a provider that serves one of the strong
+  Vorstufe models (NVIDIA Nemotron 3 Ultra, Mistral Large 4, Kimi K3.1 Pro, Nemotron 3.5 Super VL, or the same model via
+  another provider). No key, no Vorstufe; nothing to configure. `"vorstufe": "aus"` in the settings turns it off by hand.
+- **OMNI picks the model** (strength floor, its own ranking and breaker), rotates keys and learns from every outcome.
+- `GET /api/vorstufe` says whether it is active and why; `POST /api/vorstufe` with
+  `{"runde": "r1"|"reflection"|"negotiation", "name", "kontext", "suggestion"}` returns the cleaned envelope, the raw one and
+  a receipt (model, ms, key as 8-char hash). The caller redacts its own input; everything the Vorstufe reads is data, never orders.
+
 ## Assistant (chat in the app)
 
 The **Assistant** is the first page of the app: a chat in German or English with sessions (a chat list on the left, "New chat" to start another). Three modes: **Ask** (about your keys, models and applications, or give a task), **Search** (free APIs from the local index, news, your own models; also `/search`, `/api`, `/news` or Ctrl+K) and **Use case** (describe what you want to build, get the matching models and APIs; also `/usecase`). It answers with a free model from your own pool and sees only a short live summary (never a key; a message that looks like a key is neither sent nor stored). Read-only questions (best model per class, models per capability, free APIs from the local index) are answered from the local data. Anything that changes state (scan now, emergency stop, open a tab) is only **proposed**: you press the button. Chats are kept only in your own browser storage on this machine (up to 40 chats), never sent anywhere. It is a free model, weaker than a frontier model.
