@@ -253,10 +253,27 @@
       (u.news || []).length ? h("div", { class: "as-sec" }, h("h4", {}, "Suitable news"), u.news.map(x => h("div", { class: "rd-item" }, ru.link ? ru.link(x.link, x.titel) : A(x.link, x.titel)))) : "",
       u.eingeordnet_von ? h("p", { class: "mu" }, "Categorized by: " + u.eingeordnet_von) : "");
   }
+  /* a new free API the radar found; OMNI shows at most two a day and learns from the answer */
+  function offer(c, o) { push(c, { r: "a", k: "offer", c: "New free API: " + (o.name || ""), res: o }); }
+  function offerNode(m) {
+    const o = m.res || {}, ru = RU();
+    const answer = async a => { try { await post("angebot/antwort", { id: o.id, antwort: a }); } catch (e) { /* offline: the answer is kept here */ } m.done = a; save(); drawThread(); };
+    return h("div", {},
+      h("p", {}, h("b", {}, "New free API found: "), o.name || ""),
+      o.beschr ? h("p", { class: "mu" }, String(o.beschr).slice(0, 300)) : "",
+      h("div", { class: "as-row" }, ru.link ? ru.link(o.url, o.url) : A(o.url, o.url)),
+      m.done === "ja" ? h("div", { class: "as-acts" }, h("span", { class: "mu" }, "Noted. Add its key once you have one. "),
+          h("button", { class: "b", type: "button", on: { click: () => window.goTab("Keys & Providers") } }, "Open Keys & Providers"))
+        : m.done ? h("p", { class: "mu" }, "OK, fewer offers like this from now on.")
+        : h("div", { class: "as-acts" },
+            h("button", { class: "b", type: "button", on: { click: () => answer("ja") } }, "Interested"),
+            h("button", { class: "b", type: "button", on: { click: () => answer("nein") } }, "Not interested")),
+      h("p", { class: "mu" }, "OMNI offers at most two new APIs a day. Free quotas change, check the provider's page."));
+  }
   function msgNode(m, c) {
     if (m.r === "u") return h("div", { class: "as-msg u" }, h("div", { class: "as-bub" }, m.c));
     const last = c.m[c.m.length - 1] === m;
-    const body = m.k === "search" ? searchNode(m) : m.k === "uc" ? ucNode(m) : h("div", { class: m.err ? "as-err" : "" }, md(m.c));
+    const body = m.k === "search" ? searchNode(m) : m.k === "uc" ? ucNode(m) : m.k === "offer" ? offerNode(m) : h("div", { class: m.err ? "as-err" : "" }, md(m.c));
     return h("div", { class: "as-msg a" }, h("div", { class: "as-av" }, "A"), h("div", { class: "as-bub" }, body, actions(m.proposal), meta(m, c, last)));
   }
   const typing = () => h("div", { class: "as-msg a as-typing" }, h("div", { class: "as-av" }, "A"), h("div", { class: "as-bub" }, h("span", { class: "as-dots" }, h("span"), h("span"), h("span"))));
@@ -273,7 +290,7 @@
   function redraw() { drawSide(); drawThread(); }
 
   /* ---------- sending ---------- */
-  const history = c => c.m.filter(m => !m.err).map(m => ({ role: m.r === "u" ? "user" : "assistant", content: String(m.c || "").slice(0, 2000) })).filter(m => m.content);
+  const history = c => c.m.filter(m => !m.err && m.k !== "offer").map(m => ({ role: m.r === "u" ? "user" : "assistant", content: String(m.c || "").slice(0, 2000) })).filter(m => m.content);
   const title = (c, t, m0) => { if (c.m.filter(m => m.r === "u").length === 1) c.t = (m0 === "search" ? "🔎 " : m0 === "uc" ? "💡 " : "") + t.replace(/\s+/g, " ").slice(0, 46); };
   async function models(q) {
     if (Date.now() - MC.ts > 60000) { try { MC = { ts: Date.now(), rows: await api("modelle") }; } catch (e) { MC = { ts: Date.now(), rows: [] }; } }
@@ -300,6 +317,7 @@
         const r = await post("chat", { messages: history(c) }, ctl.signal);
         if (ctl.signal.aborted) return;
         if (r.reply) push(c, { r: "a", c: r.reply, model: r.model, proposal: r.proposal });
+        if (r.reply && r.angebot && r.angebot.id) offer(c, r.angebot);
         else push(c, { r: "a", c: "Error: " + (r.error || "no answer"), err: true });
       }
     } catch (e) {
@@ -365,6 +383,7 @@
     window.RR_HOOK = () => { if (!root.isConnected) return false; drawThread(); return true; };
     if (!st.list.length) newChat(); else if (!cur()) st.cur = st.list[0].id;
     drawModes(); redraw();
+    post("angebot", {}).then(o => { if (o && o.id) offer(cur() || newChat(), o); }).catch(() => {});   // at most twice a day, server decides
   }
   function view() {
     if (!built) build();

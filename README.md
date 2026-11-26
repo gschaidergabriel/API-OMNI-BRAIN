@@ -175,6 +175,18 @@ small world model (facts kept apart by domain, own state, what the message does)
   `{"runde": "r1"|"reflection"|"negotiation", "name", "kontext", "suggestion"}` returns the cleaned envelope, the raw one and
   a receipt (model, ms, key as 8-char hash). The caller redacts its own input; everything the Vorstufe reads is data, never orders.
 
+## New APIs offered in the chat (at most twice a day)
+
+OMNI keeps looking for new free AI APIs by itself. Every 6 hours it reads the new entries of its free-API index and the
+free-API news; AI-related ones you do not have yet (not built in, not one of your own providers, https only, Reddit
+excluded) become candidates. The best one is offered in the AI chat with "Interested" / "Not interested".
+
+- At most `angebote_pro_tag` offers a day (default 2, max 2, `0` turns it off), at least 6 hours apart, never the same
+  one twice, and a 3-day pause after three "no" answers in a row.
+- It learns from your answers: kind, category, source and capability of an offer you liked or declined move the next
+  candidates up or down.
+- Nothing is installed or sent by itself; adding a key stays your step. `GET /api/angebote` shows the state.
+
 ## Assistant (chat in the app)
 
 The **Assistant** is the first page of the app: a chat in German or English with sessions (a chat list on the left, "New chat" to start another). Three modes: **Ask** (about your keys, models and applications, or give a task), **Search** (free APIs from the local index, news, your own models; also `/search`, `/api`, `/news` or Ctrl+K) and **Use case** (describe what you want to build, get the matching models and APIs; also `/usecase`). It answers with a free model from your own pool and sees only a short live summary (never a key; a message that looks like a key is neither sent nor stored). Read-only questions (best model per class, models per capability, free APIs from the local index) are answered from the local data. Anything that changes state (scan now, emergency stop, open a tab) is only **proposed**: you press the button. Chats are kept only in your own browser storage on this machine (up to 40 chats), never sent anywhere. It is a free model, weaker than a frontier model.

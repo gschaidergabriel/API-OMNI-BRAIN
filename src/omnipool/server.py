@@ -15,7 +15,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from . import anbieter as AN
-from . import assistent, core, gehirn, integrieren, quarantaene, radar, sicher, selfservice, vorstufe
+from . import assistent, core, gehirn, integrieren, quarantaene, radar, sicher, selfservice, vorstufe, angebote
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 VERSION = "1.5.0"
@@ -388,6 +388,8 @@ class H(BaseHTTPRequestHandler):
                 kl.setdefault((pr, m), {})[k] = [round(ok, 1), round(n, 1)]
             return self.senden(200, [{"provider": r[0], "model": r[1], "faehigkeit": r[2], "status": r[3], "gone": r[4], "n_try": r[5], "probed": r[6], "klassen": kl.get((r[0], r[1]), {})}
                                      for r in rows])
+        if p == "angebote" and meth == "GET":                         # what the API finder holds and whether it may offer now
+            return self.senden(200, angebote.stand(c))
         if p == "vorstufe" and meth == "GET":                         # the Vorstufe switches itself on when a key serves one of its models
             return self.senden(200, vorstufe.bereit(c))
         if meth != "POST":
@@ -405,7 +407,16 @@ class H(BaseHTTPRequestHandler):
             def frage(body, klasse):
                 r = beschaffe(c, waehle_kandidaten(c, {"model": "omnipool-auto"}, klasse), body, False, "assistant", klasse)
                 return (None, r[1]) if r[0] is None else (r[0]["choices"][0]["message"].get("content") or "", "%s/%s" % (r[1], r[2]))
-            return self.senden(200, assistent.chat(c, d.get("messages"), frage))
+            out = assistent.chat(c, d.get("messages"), frage)
+            try:
+                out["angebot"] = angebote.naechstes(c)                   # a new free API, at most twice a day
+            except Exception:  # noqa: BLE001
+                out["angebot"] = None
+            return self.senden(200, out)
+        if p == "angebot":
+            return self.senden(200, angebote.naechstes(c) or {})
+        if p == "angebot/antwort":
+            return self.senden(200, {"ok": angebote.antworte(c, d.get("id"), d.get("antwort"))})
         if p == "lauf":
             return self.senden(200, {"gestartet": starte_lauf(int(d.get("max", 0)) or None)})
         if p == "token/check":
@@ -489,7 +500,7 @@ class H(BaseHTTPRequestHandler):
             return self.senden(200, {"gestartet": was})
         if p == "settings":
             n = {**s}
-            for k, lo, hi in (("lauf_min", 5, 1440), ("max_modelle", 1, 40), ("port", 1024, 65535)):
+            for k, lo, hi in (("lauf_min", 5, 1440), ("max_modelle", 1, 40), ("port", 1024, 65535), ("angebote_pro_tag", 0, 2)):
                 if k in d:
                     n[k] = max(lo, min(hi, int(d[k])))
             if "melden" in d:

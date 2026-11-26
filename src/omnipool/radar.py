@@ -15,7 +15,7 @@ from email.utils import parsedate_to_datetime
 
 from . import analyst, core, quarantaene, sicher
 
-INTERVALL = {"feeds": 2 * 3600, "index": 7 * 86400, "entdeckung": 86400, "modellcheck": int(3.4 * 86400)}   # 3.4 days = about twice a week
+INTERVALL = {"feeds": 2 * 3600, "index": 7 * 86400, "entdeckung": 86400, "modellcheck": int(3.4 * 86400), "angebote": 6 * 3600}   # 3.4 days = about twice a week
 MAX_FEEDS = 150
 GESPERRT = ("reddit.com", "redd.it")                  # Gabriel 2026-11-23: Reddit generell raus (Quellen, Links, Index, Treffer)
 
@@ -407,6 +407,12 @@ def entdecke_feeds(c, max_neu=3):
     return neu
 
 
+def _angebote(c):
+    """new free AI APIs become offers for the chat (angebote.py decides when one is shown)"""
+    from . import angebote
+    return angebote.sammle(c)
+
+
 def faellig(c, name):
     r = c.execute("SELECT ts FROM radar_state WHERE name=?", (name,)).fetchone()
     return not r or time.time() - r[0] >= INTERVALL[name]
@@ -423,7 +429,7 @@ def zyklus(c, busy=False):
         getan.append("modellcheck")
     if busy:
         return getan
-    for name, fn in (("index", index_aktualisieren), ("feeds", feeds_aktualisieren), ("entdeckung", entdecke_feeds)):
+    for name, fn in (("index", index_aktualisieren), ("feeds", feeds_aktualisieren), ("entdeckung", entdecke_feeds), ("angebote", _angebote)):
         if faellig(c, name):
             try:
                 fn(c)
