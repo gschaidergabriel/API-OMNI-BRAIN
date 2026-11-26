@@ -391,6 +391,11 @@ class H(BaseHTTPRequestHandler):
         if meth != "POST":
             return self.senden(404, {"error": "unbekannt"})
         d = self.json_body()
+        if p == "waehle":                                            # FranKenstein link: OMNI picks the model for the Vorstufe / the thinker
+            return self.senden(200, gehirn.waehle_fuer(c, d.get("klasse"), d.get("erlaubt")))
+        if p == "lerne":                                             # FranKenstein link: real outcomes flow back into OMNI's learning
+            ok, err = gehirn.lerne_extern(c, d)
+            return self.senden(200 if ok else 400, {"ok": True} if ok else {"error": err})
         if p == "chat":
             def frage(body, klasse):
                 r = beschaffe(c, waehle_kandidaten(c, {"model": "omnipool-auto"}, klasse), body, False, "assistant", klasse)
