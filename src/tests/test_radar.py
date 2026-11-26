@@ -114,10 +114,10 @@ def test_usecase_drops_dangerous(c, monkeypatch):
 
 def test_zyklus_schedule(c, monkeypatch):
     calls = []
-    for n in ("modellcheck", "index_aktualisieren", "feeds_aktualisieren", "entdecke_feeds"):
+    for n in ("modellcheck", "index_aktualisieren", "feeds_aktualisieren", "entdecke_feeds", "_angebote"):
         monkeypatch.setattr(radar, n, lambda cc, *a, _n=n, **k: calls.append(_n) or {})
     monkeypatch.setattr(core, "aus", lambda: False)
-    assert set(radar.zyklus(c)) == {"modellcheck", "index", "feeds", "entdeckung"}
+    assert set(radar.zyklus(c)) == {"modellcheck", "index", "feeds", "entdeckung", "angebote"}
     for n in radar.INTERVALL:
         c.execute("INSERT OR REPLACE INTO radar_state VALUES(?,?,?)", (n, time.time(), ""))
     assert radar.zyklus(c) == []

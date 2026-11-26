@@ -199,3 +199,36 @@ def bericht(c):
         "ruhende": [{"modell": "%s/%s" % k, "grund": b["grund"], "noch_s": int(b["bis"] - now)} for k, b in BREAKER.items() if b["bis"] > now],
         "ereignisse": [{"ts": t, "art": a, "text": x} for t, a, x in c.execute("SELECT ts, art, text FROM ereignis ORDER BY ts DESC LIMIT 40")],
     }
+
+
+def waehle_fuer(c, klasse, erlaubt=None):
+    """FranKenstein link (Vorstufe / Machine God thinker): OMNI ranks the caller's allowed (provider, model) pairs for one class with
+    its own Thompson ranking; models resting in the breaker are left out, models whose last probe failed go last, allowed models
+    without any evidence here are named. -> {"klasse", "rang": [{provider, model, p, n, lat, status}], "ruhend", "ohne_beleg"}"""
+    k = klasse if klasse in core.KLASSEN else "reason"
+    ok_set = {(str(x[0]), str(x[1])) for x in (erlaubt or []) if isinstance(x, (list, tuple)) and len(x) == 2}
+    st = {(r[0], r[1]): r[2] for r in c.execute("SELECT provider, model, status FROM modell")}
+    rang = [r for r in core.rangfolge(c, k, None, 500) if not ok_set or (r[0], r[1]) in ok_set]
+    ruhend = [{"provider": r[0], "model": r[1]} for r in rang if not frei(r[0], r[1])]
+    rang = [r for r in rang if frei(r[0], r[1])]
+    rang.sort(key=lambda r: st.get((r[0], r[1])) == "fehler")          # stable: OMNI's order kept, failed-probe models last
+    seen = {(r[0], r[1]) for r in rang} | {(x["provider"], x["model"]) for x in ruhend}
+    return {"klasse": k, "rang": [{"provider": r[0], "model": r[1], "p": r[2], "n": r[3], "lat": r[4], "status": st.get((r[0], r[1]))} for r in rang],
+            "ruhend": ruhend, "ohne_beleg": [list(x) for x in sorted(ok_set - seen)]}
+
+
+def lerne_extern(c, d):
+    """FranKenstein link: a real outcome from an outside caller (Vorstufe call, Machine God task) enters the class stats like proxy
+    traffic (half weight, via lerne). Only known models, known classes, app names [a-z0-9_-]. -> (ok, error)"""
+    k = d.get("klasse")
+    p, m = str(d.get("provider") or ""), str(d.get("model") or "")
+    app = re.sub(r"[^a-z0-9_-]", "", str(d.get("app") or "").lower())[:40]
+    if k not in core.KLASSEN or not app or not c.execute("SELECT 1 FROM modell WHERE provider=? AND model=?", (p, m)).fetchone():
+        return False, "klasse, app and a known provider/model required"
+    try:
+        lat = max(0.0, min(3600.0, float(d.get("lat_s") or 0)))
+    except (TypeError, ValueError):
+        lat = 0.0
+    ok = d.get("ok") is True
+    lerne(c, "ext-" + app, k, p, m, ok, lat, 0, 0, 200 if ok else 599)
+    return True, ""
